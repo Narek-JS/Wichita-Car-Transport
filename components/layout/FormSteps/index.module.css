@@ -1,0 +1,135 @@
+.formSteps {
+    overflow-x: clip;
+    width: 100%;
+    padding-bottom: 50px;
+}
+
+.content {
+    display: flex;
+    justify-content: center;
+    gap: 100px;
+}
+
+.form {
+    flex: 50;
+}
+
+.textes {
+    flex: 50;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-top: 50px;
+}
+
+.explore {
+    margin: 20px auto;
+    max-width: 846px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.explore p {
+    font-weight: 700;
+    font-size: 48px;
+    color: #FFFFFF;
+}
+
+.explore .fz24 {
+    font-size: 24px;
+}
+
+.explore p span {
+    color: #DDC00C;
+}
+
+.toContactUs {
+    width: 140px;
+    color: #FDFDFF;
+    font-weight: 700;
+    text-align: center;
+    background: #DDC00C;
+    border: 1px solid #DDC00C;
+    border-radius: 5px;
+    padding: 8px 28px;
+    margin-bottom:30px;
+    display: block;
+}
+
+.linkTitle {
+    background: rgba(0, 41, 122, 0.6);;
+    border-radius: 5px;
+    padding: 16px;
+    margin-bottom: 10px;
+    max-width: 305px;
+}
+
+.linkTitle p {
+    color: #FFFFFF;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 24px;
+    text-align: center;
+}
+
+.seccondLinkTitle {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.seccondLinkTitle p {
+    max-width: 392px;
+    text-align: center;
+    font-weight: 500;
+    line-height: 24px;
+    font-size: 16px;
+    color: #FFFFFF;
+    padding: 10px;
+    background: rgba(0, 83, 121, 0.5);
+    border-radius: 5px;
+}
+
+.seccondLinkTitle a {
+    font-weight: 700;
+    font-size: 15px;
+    color: #FFFFFF;
+}
+
+@media screen and (max-width: 1024px) {
+    .content {
+        gap: 30px;
+    }
+    .explore p {
+        font-size: 33px;
+        text-align: center;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .explore {
+        margin: 20px auto 0 auto;
+    }
+
+    .explore p {
+        font-size: 32px;
+        color: #005379;
+        text-align: center;
+    }
+
+    .linkTitle,
+    .seccondLinkTitle { display: none; }
+
+    .content {
+        flex-direction: column;
+        gap: 0px;
+    }
+    
+    .textes {
+        margin-top: 20px;
+    }
+
+    .toContactUs { margin: 0 auto; }
+}

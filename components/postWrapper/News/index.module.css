@@ -1,0 +1,95 @@
+.newsSection {
+    margin-top: 160px;
+}
+
+.title {
+    color: #003B56;
+    font-weight: 600;
+    font-size: 20px; 
+    position: relative;
+    display: inline-block;
+    padding-right: 110px;
+    margin-bottom: 48px;
+    margin-top: 30px;
+}
+
+.title::after {
+    content: "";
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-80%);
+    width: 100px;
+    height: 5px;
+    background-color: rgba(0, 59, 86, 0.6);
+    display: inline-block;
+    border-radius: 5px;
+}
+
+.wrapperNews {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 40px;
+    margin-bottom: 40px;
+}
+
+.paginationBtns {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+.latstBlocks {
+    background: #F4F7FB;
+    padding: 50px 0;
+    margin: 50px 0;
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+}
+
+.firstLine {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.firstLine p {
+    color: #001D4A;
+    font-weight: 700;
+    font-size: 48px;
+}
+
+.firstLine a {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    color: #DDC00C;
+}
+
+.contentBlocks {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.contentBlocks div {
+    flex: 25;
+    width: 350px;
+    min-width: 350px;
+}
+
+.contentBlocks div p {
+    max-height: 100px;
+}
+
+@media screen and (max-width: 768px) {
+    .paginationBtns {
+        gap: 10px;
+    }
+}

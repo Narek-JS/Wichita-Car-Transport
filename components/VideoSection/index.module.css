@@ -1,0 +1,210 @@
+.videoSection {
+    width: 100%;
+    padding: 80px 0 30px 0;
+}
+
+.subTitle {
+    color: #DDC00C
+;
+    font-weight: 700;
+    font-size: 20px; 
+    margin-bottom: 30px;
+    text-align: center;
+    white-space: nowrap;
+}
+
+.wrapperSections {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 45px;
+}
+
+.video {
+    min-width: 590px;
+    border: 5px solid #DDC00C
+;
+    border-radius: 6px;
+}
+
+.seccondSection {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+.contentAboutCompany {
+    padding: 30px;
+    background: #F4F7FB;
+    border: 5px dashed #003B56;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    max-width: 418px;
+    min-width: 320px;
+    height: 290px;
+    overflow-y: auto;
+}
+
+.contentAboutCompany p {
+    color: #003B56; 
+}
+
+.contentAboutSubscibe {
+    background: #F4F7FB;
+    border: 5px dashed #DDC00C
+;
+    border-radius: 10px;
+    padding: 30px 20px;
+    max-width: 418px;
+    min-width: 320px;
+    height: 290px;
+    overflow-y: auto;
+}
+
+.firstPolygon {
+    transform: translateX(110px);
+    display: inline-block;
+}
+
+.contentAboutSubscibe p {
+    font-weight: 700;
+    font-size: 34px;
+    color: #021C41;
+    display: flex;
+}
+
+.contentAboutSubscibe p b {
+    color: #FF0000;
+}
+
+.contentAboutSubscibe p i {
+    transform: translateY(20px);
+}
+
+.wrapperLink {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 15px;
+    transform: translateY(10px);
+}
+
+.linkToYouTube {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    padding: 4px 7px;
+    border: 4px solid #FF0000;
+    border-radius: 10px;
+}
+
+.videoContainer {
+    position: relative;
+    width: 582px;
+    height: 100%;
+    overflow: hidden;
+}
+  
+.video {
+    height: 100%;
+    object-fit: cover;
+}
+  
+.videoOverlay {
+    position: relative;
+    width: 100%;
+    height: 600px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+  
+.greenTruckImage {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    z-index: -1;
+    object-fit: cover;
+}
+
+.playIcon {
+    width: 166px;
+    height: 117px;
+}
+
+@media screen and (min-width: 1025px) {
+    .contentAboutSubscibe::-webkit-scrollbar,
+    .contentAboutCompany::-webkit-scrollbar {
+        width: 5px;
+    }
+      
+    .contentAboutSubscibe::-webkit-scrollbar-track,
+    .contentAboutCompany::-webkit-scrollbar-track {
+        background-color: #FFFFFF;
+    }
+      
+    .contentAboutSubscibe::-webkit-scrollbar-thumb,
+    .contentAboutCompany::-webkit-scrollbar-thumb {
+        background-color: #DDC00C
+;
+        border-radius: 10px;
+    }
+}
+
+@media screen and (max-width: 1200px) {
+    .wrapperSections {
+        gap: 10px;
+    }
+
+    .contentAboutCompany,
+    .contentAboutSubscibe {
+        max-width: 360px;
+    }
+}
+
+@media screen and (max-width: 1024px) {
+    .video {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+
+        min-width: initial;
+        border: initial;
+    }
+
+    .seccondSection {
+        flex-direction: row;
+        justify-content: center;
+        width: 100%;
+    }
+
+    .wrapperSections {
+        gap: 35px;
+    }
+    
+    .contentAboutCompany,
+    .contentAboutSubscibe {
+        height: initial;
+        overflow-y: initial
+    }
+
+    .videoContainer {
+        border: 5px solid #DDC00C
+;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .seccondSection {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .aboutCompanySection {
+        padding: 120px 0 30px 0;
+    }
+}

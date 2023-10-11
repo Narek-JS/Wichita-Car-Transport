@@ -1,0 +1,119 @@
+.buttonUI {
+    transition: all .3s;    
+}
+
+.buttonUI:hover {
+    transform: translateY(-5px);
+}
+
+.buttonUI:active {
+    transform: translateY(1px);
+}
+
+.animationFromTransparent {
+    background-color: transparent;
+    border: none;
+    border: 1px solid #DDC00C;
+    color: #DDC00C;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 700; 
+    border-radius: 5px;
+    text-align: center;
+    padding: 12px 20px;
+    margin: 0 auto;
+    display: block;
+    position: relative;
+    overflow: hidden;
+}
+
+.animationFromTransparent::before {
+    content: '';
+    position: absolute;
+    left: -100%;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #DDC00C; 
+    transition: transform 0.3s ease-in-out;
+    z-index: -1;
+}
+
+.animationFromTransparent:hover {
+    color: #FFFFFF;
+}
+
+.animationFromTransparent:hover::before {
+    transform: translateX(100%);
+}
+
+.transparent {
+    background-color: transparent;
+    border: none;
+    border: 1px solid #DDC00C;
+    color: #DDC00C;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 700; 
+    border-radius: 5px;
+    text-align: center;
+    padding: 12px 20px;
+    display: block;
+    position: relative;
+    overflow: hidden;
+}
+
+.transparent::before {
+    content: '';
+    position: absolute;
+    left: -100%;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #DDC00C; 
+    transition: transform 0.3s ease-in-out;
+    z-index: -1;
+}
+
+.transparent:hover {
+    color: #FFFFFF;
+}
+
+.transparent:hover::before {
+    transform: translateX(100%);
+}
+
+
+.max-content {
+    width: max-content;
+}
+
+.border-dashed-trans {
+    color: #005379;
+    font-weight: 700;
+    font-size: 16px; 
+    border-radius: 10px;
+    text-align: center;
+    padding: 12px 20px;
+    cursor: pointer;
+}
+
+.border-dashed-trans:hover {
+    background: rgba(0, 59, 86, 0.068);
+} 
+
+.border-dashed-trans-active {
+    color: #005379;
+    font-weight: 700;
+    font-size: 16px; 
+    border-radius: 10px;
+    text-align: center;
+    padding: 7px 15px;
+    background: rgba(0, 59, 86, 0.15);
+}
+
+@media screen and (max-width: 768px) {
+    .border-dashed-trans {
+        padding: 3px 10px;
+    }
+}

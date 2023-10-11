@@ -1,0 +1,472 @@
+.mt160 {
+    margin-top: 160px;
+}
+
+.title {
+    color: #DDC00C;
+    font-weight: 600;
+    font-size: 20px; 
+    position: relative;
+    display: inline-block;
+    padding-right: 110px;
+    margin-top: 30px;
+}
+
+.title::after {
+    content: "";
+    position: absolute;
+    margin-left: 13px;
+    top: 50%;
+    transform: translateY(-80%);
+    width: 100px;
+    height: 5px;
+    background-color: rgba(0, 59, 86, 0.6);
+    display: inline-block;
+    border-radius: 5px;
+}
+
+/* general styles */
+.defaultText {
+    color: rgba(0, 59, 86, 0.6);
+    font-weight: 500; 
+}
+
+.activeLike .defaultText {
+    color: #DDC00C;
+}
+
+/* new Section, first Section */
+.newSection {
+    display: flex;
+    gap: 40px;
+    padding-bottom: 30px;
+    border-bottom: 2px solid rgba(0, 59, 86, 0.25);
+    margin-bottom: 30px;
+}
+
+.newContent {
+    max-width: 780px;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+
+    /* image block */
+.wrapperImage {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    border-bottom: 2px solid rgba(0, 59, 86, 0.25);
+    padding-bottom: 20px;
+}
+
+.newImage {
+    border-radius: 20px;
+    max-height: 520px;
+    object-fit: cover;
+}
+
+.wrapperSocial {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.calendarSlice {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+
+.verticalRow {
+    border: 1px solid rgba(0, 59, 86, 0.6);
+    transform: rotate(90deg);
+    width: 30px;
+    margin: 0 -20px;
+}
+
+.calendarSliceNewText {
+    color: #DDC00C;
+    font-weight: 500; 
+}
+
+.messageBlock,
+.likeBlock {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.messageBlock span,
+.likeBlock span {
+    color: rgba(0, 59, 86, 0.6);
+    font-weight: 500; 
+}
+
+.messageBlock svg,
+.likeBlock svg,
+.socialSlice svg {
+    width: 18px;
+    height: 18px;
+}
+
+.socialSlice {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.shareText {
+    color: rgba(0, 59, 86, 0.8);
+    font-weight: 700;
+    font-size: 20px; 
+}
+
+.likeGroup {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    cursor: pointer;
+}
+
+    /* new textes */
+.newBody {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+.newBody h2 {
+    color: #003B56;
+    font-weight: 500;
+    font-size: 24px;
+    margin: 25px 0;
+
+}
+
+.newBody p { 
+    color: rgba(0, 59, 86, 0.6);
+}
+
+.newBody p a {
+    color: #DDC00C;
+}
+
+    /* Latest News */
+
+.latestBlogs {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    max-width: 400px;
+}
+
+.blogsTitle {
+    margin-top: 30px;
+    color: #041A44;
+    font-weight: 700;
+    font-size: 18px; 
+} 
+
+.wrapperBlogCards {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.rowCardSpace {
+    border-bottom: 2px solid rgba(0, 59, 86, 0.25);
+}
+
+.blogsCard {
+    background: #F4F7FB;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.blogsCardImg {
+    border-radius: 15px 15px 0 0;
+    max-height: 340px;
+    object-fit: cover;
+}
+
+.blogsCardContent {
+    padding: 0px 20px 20px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.viewAllSlice {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.viewAllSlice p {
+    color: #DDC00C;
+    font-weight: 500; 
+    font-size: 20px;
+}
+
+.viewAllSlice a {
+    color: rgba(0, 59, 86, 0.6);
+    font-weight: 500;
+    font-size: 20px; 
+}
+
+.blogsCardBody {
+    -webkit-line-clamp: 5;
+    -webkit-box-orient: vertical;
+    height: 150px;
+    overflow: hidden;
+}
+
+.blogsCardBody p,
+.blogsCardBody h3 {
+    color: #041A44;
+    font-weight: 700;
+    font-size: 20px; 
+}
+
+.blogsCardReadMore {
+    color: #DDC00C;
+    font-weight: 700;
+    font-size: 20px; 
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    max-width: fit-content;
+}
+
+/* relatedPosts */
+
+.relatedPosts {
+    display: flex;
+    justify-content: space-between;
+    gap: 28px;
+    margin-bottom: 30px;
+    padding-bottom: 30px;
+}
+
+.wrapperRelatedPosts {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.relatedPostsTitle {
+    color: #003B56;
+    font-weight: 700;
+    font-size: 24px; 
+    display: flex;
+    gap: 9px;
+    align-items: center;
+}
+
+.posts {
+    display: flex;
+    gap: 10px;
+}
+
+.post {
+    background: #F4F4F3;
+    border: 5px dashed #003B56;
+    border-radius: 10px;
+    max-width: 240px;
+}
+
+.postImage {
+    border-radius: 5px 5px 0 0;
+    height: 185px;
+    object-fit: fill;
+}
+
+.postContent {
+    padding: 15px 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.wrapperTime {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+}
+
+.categoryName {
+    color: #DDC00C;
+    font-weight: 500; 
+}
+
+.postDescription {
+    line-height: 30px;
+    font-weight: 700;
+    color: #003B56; 
+    text-align: center;
+}
+
+.postComment {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    width: 100%;
+}
+
+.postCommentTitle {
+    color: #005379;
+    font-weight: 700;
+    font-size: 36px;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.wrapperSubmit {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 10px;
+    align-items: flex-end;
+    justify-content: space-between;
+}
+
+.comment {
+    border: none;
+    border-bottom: 1px solid rgba(0, 59, 86, 0.4);
+    min-height: 100px;
+    resize: none;
+    width: 60%;
+}
+
+.comment:focus {
+    outline: 2px solid transparent;
+}
+
+.wrapperCheckbox {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.checkbox {
+    position: relative;
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+}
+  
+.checkbox input[type="checkbox"] {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+}
+  
+.checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 25px;
+    height: 25px;
+    background-color: transparent;
+    border-radius: 999px;
+    border: 2px solid #DDC00C;
+    cursor: pointer;
+}
+  
+.checkbox input[type="checkbox"]:checked ~ .checkmark:after {
+    content: "";
+    position: absolute;
+    top: 2px;
+    left: 7px;
+    width: 8px;
+    height: 13px;
+    border: solid #DDC00C;
+    background-color: transparent;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+}
+
+.emailSaveText {
+    color: #003B56;
+    font-size: 12px; 
+}
+
+
+.comments,
+.likeCount,
+.like {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.like span,
+.likeCount span,
+.comments span {
+    color: rgba(0, 41, 122, 0.6);
+    font-weight: 500;
+}
+
+.like {
+    cursor: pointer;
+    transition: all .2s;
+}
+
+.like:hover {
+    transform: scale(1.1);
+}
+
+.aktiveLike span {
+    color: #DDC00C;
+}
+
+@media screen and (max-width: 1050px) {
+    .wrapperSocial {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .socialSlice {
+        flex-direction: row-reverse;
+    }
+}
+
+@media screen and (max-width: 991px) {
+    .newSection {
+        gap: 20px;
+    }
+
+    .blogsCardContent {
+        gap: 10px;
+        padding: 0px 10px 10px 10px;
+    }
+
+    .newImage {
+        width: 100%;
+    }
+
+    .wrapperSocial {
+        flex-direction: row;
+    }
+}
+
+@media screen and (max-width: 620px) {
+    .wrapperSocial {
+        flex-direction: column;
+    }
+
+    .wrapperSocial .calendarSlice,
+    .wrapperSocial .socialSlice {
+        justify-content: space-between;
+        width: 100%;
+    }
+}

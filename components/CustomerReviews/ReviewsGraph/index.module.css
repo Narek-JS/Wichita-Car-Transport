@@ -1,0 +1,200 @@
+.section {
+    margin-top: 210px;
+}
+
+.reviewsGraph {
+    background: #F4F7FB;
+    border-radius: 30px 30px 0 0;
+    padding-bottom: 50px;
+    padding-top: 20px;
+}
+
+
+.content {
+    background: #FFFFFF;
+    border: 2px solid rgba(7, 133, 134, 0.2);
+    border-radius: 20px;
+    padding: 50px;
+}
+
+.reviewSection {
+    background: #003B56;
+    width: 100%;
+    padding: 30px 0;
+}
+
+.mb30 {
+    margin-bottom: 30px;
+}
+
+.subTitle {
+    font-weight: 700;
+    font-size: 32px;
+    margin-bottom: 50px;
+    color: #003B56;
+    text-align: center;
+}
+
+.reviewContent {
+    display: flex;
+    justify-content: space-between;
+    gap: 40px;
+}
+
+.reviewContentSecondeBlock {
+    display: flex;
+    justify-content: space-between;
+    gap: 40px;
+    width: 100%;
+}
+
+.descriptionWrapper {
+    max-width: 470px;
+    margin-right: 10px;
+}
+
+.titleOfDescription {
+    font-weight: 700;
+    font-size: 20px;
+    color: #DDC00C; 
+    margin-bottom: 26px;
+}
+
+.description {
+    color: #FFFFFF;
+    font-weight: 400; 
+    line-height: 34px;
+}
+
+.estimate {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 35px;
+    max-height: 230px;
+}
+
+.estimateDiscuss {
+    font-weight: 700;
+    font-size: 64px;
+    color: #FFD60A;
+    white-space: nowrap;
+}
+
+.wrapperStars {
+    display: flex;
+    gap: 17px;
+}
+
+.reviewQuantity {
+    color: #005379;
+    font-weight: 700;
+    font-size: 32px;
+}
+
+.presentation {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    max-height: 230px;
+    gap: 20px;
+}
+
+.percentList {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.percentId {
+    font-size: 20px;
+    color: #005379;
+    font-weight: 900;
+}
+
+.percentWrapper {
+    width: 300px;
+    height: 24px;
+    background-color: #005379;
+    border-radius: 5px;
+}
+
+.row {
+    color: #005379;
+}
+
+.percent {
+    font-weight: 400;
+    font-size: 20px;
+    color: #005379;
+}
+
+.buttons {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 33px;
+    max-height: 230px;
+}
+
+.feedbackBtn {
+    max-width: 230px;
+    background: #DDC00C;
+    border-radius: 5px;
+    color: #FDFDFF;
+    font-size: 16px;
+    font-weight: 700; 
+    padding: 12px 18px;
+    cursor: pointer;
+    transition: all .3s;
+    text-align: center;
+}
+
+.redMoreBtn {
+    color: #DDC00C;
+    max-width: 140px;
+    border: 1px solid #DDC00C;
+    border-radius: 5px;
+    font-weight: 700;
+    font-size: 16px;
+    padding: 8px 28px;
+}
+
+.feedbackBtn:hover {
+    transform: translateY(-5px);
+}
+
+.feedbackBtn:active {
+    transform: translateY(-1px);
+}
+
+.percentActive {
+    background: #FFD60A;
+    border-radius: 5px;
+    height: 100%;
+    display: inline-block;
+}
+
+@media screen and (max-width: 991px) {
+    .reviewContent {
+        flex-direction: column;
+        align-items: center;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .reviewContentSecondeBlock {
+        flex-direction: column;
+        align-items: center;
+    }
+}
+
+@media screen and (max-width: 560px) {
+    .content { padding: 15px; }
+    .percentList { gap: 2px; }
+    .percentWrapper { width: 170px; }
+    .percent,
+    .percentId { font-size: 14px; }
+    .subTitle { margin-bottom: 15px; }
+    .estimate { gap: 15px; }
+}

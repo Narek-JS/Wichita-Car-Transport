@@ -1,0 +1,101 @@
+.bannerPost {
+    margin: 40px 0;
+}
+
+.title {
+    color: #005379;
+    font-weight: 700;
+    font-size: 64px;
+    margin-bottom: 50px;
+}
+
+.content {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.image {
+    flex: 70;
+    max-height: 600px;
+    object-fit: cover;
+}
+
+.postData {
+    flex: 30;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.firstLine {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.latestText {
+    color: #DDC00C;
+    font-weight: 700;
+    font-size: 14px;
+}
+
+.date {
+    color: #005379;
+    font-weight: 400;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.subTitle {
+    color: #005379;
+    text-decoration-line: underline;
+    font-weight: 700;
+    font-size: 30px;
+}
+
+.description {
+    -webkit-line-clamp: 5;
+    -webkit-box-orient: vertical;
+    height: 390px;
+    overflow: hidden;
+
+    color: #005379;
+
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 24px;
+}
+
+.description * {
+    line-height: 1.3;
+}
+
+.description h2 {
+    margin: 20px 0;
+}
+
+.link {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #DDC00C;
+    font-weight: 500;
+}
+
+@media screen and (max-width: 991px) {
+    .image {
+        flex: 50;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .content {
+        flex-direction: column;
+    }
+    .title {
+        margin-bottom: 25px;
+    }
+}

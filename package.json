@@ -1,0 +1,42 @@
+{
+  "name": "Wichita-Car-Transport",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "node sitemap-generator.js && next build && next export",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@hookform/resolvers": "^3.1.0",
+    "@react-google-maps/api": "^2.18.1",
+    "@reduxjs/toolkit": "^1.9.5",
+    "@types/node": "18.15.11",
+    "@types/react": "18.0.35",
+    "@types/react-dom": "18.0.11",
+    "autoprefixer": "10.4.14",
+    "classnames": "^2.3.2",
+    "dotenv": "^16.0.3",
+    "formik": "^2.4.1",
+    "framer-motion": "^10.12.16",
+    "google-map-react": "^2.2.1",
+    "leaflet": "^1.9.4",
+    "next": "13.3.0",
+    "next-share": "^0.20.0",
+    "postcss": "8.4.22",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "react-google-recaptcha": "^3.1.0",
+    "react-hook-form": "^7.43.9",
+    "react-input-mask": "^2.0.4",
+    "react-leaflet": "^4.2.1",
+    "react-query": "^3.39.3",
+    "react-redux": "^8.0.7",
+    "react-responsive-carousel": "^3.2.23",
+    "react-youtube": "^10.1.0",
+    "redux": "^4.2.1",
+    "typescript": "5.0.4",
+    "yup": "^1.1.1"
+  }
+}

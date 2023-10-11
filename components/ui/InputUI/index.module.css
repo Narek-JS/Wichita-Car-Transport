@@ -1,0 +1,65 @@
+.inputList {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    position: relative;
+}
+
+.input {
+    background: #FDFDFF;
+    border-radius: 5px;
+    width: 100%;
+    padding: 7px 20px;
+}
+.input:focus {
+    outline: 2px solid transparent;
+}
+.error {
+    position: absolute;
+    bottom: -20px;
+    left: 0;
+    color: red;
+    font-size: 13px; 
+}
+
+.search {
+    width: 100%;
+}
+
+.border-top-square {
+    border: none;
+    border-bottom: 1px solid rgba(0, 59, 86, 0.4);
+    border-radius: 0px;
+    padding-left: 0;
+}
+
+.border-top-square:focus {
+    outline: 2px solid transparent;
+}
+
+.focusTransparent {
+    border-radius: 5px 0 0 5px;
+    border: 1px solid #DDC00C;
+}
+
+.focusTransparent:focus {
+    outline: 2px solid transparent;
+}
+
+.wFull {
+    width: 100%;
+}
+
+@media screen and (max-width: 1140px) {
+    .focusTransparent {
+        padding: 7px 10px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .focusTransparent {
+        border-radius: 5px 0 0 5px;
+        height: initial !important;
+        padding: 11px;
+    }
+}

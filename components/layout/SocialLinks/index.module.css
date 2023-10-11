@@ -1,0 +1,64 @@
+.socialLinks {
+    position: fixed;
+    top: 50%;
+    right: 5px;
+    transform: translateY(-40%);
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    z-index: 9999;
+}
+
+.icon {
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 50px;
+}
+
+.socialLinks a {
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 50px;
+}
+
+.icon p {
+    color: #DDC00C;
+    transform: rotate(90deg);
+    font-weight: 700;
+    font-size: 20px;
+    background: #ffffff;
+    padding: 10px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.icon svg, 
+.socialLinks a svg {
+    width: 40px;
+    height: 40px;
+    transition: all .2s;
+}
+
+.icon svg:hover {
+    width: 50px;
+    height: 50px;
+}
+
+.socialLinks a svg:hover {
+    width: 50px;
+    height: 50px;
+}
+
+.wrapperLoading {
+    position: fixed;
+    top: 50%;
+    transform: translateY(0%);
+    right: 20px;
+}

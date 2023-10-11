@@ -1,0 +1,62 @@
+.articlesSection {
+    padding-bottom: 30px;
+}
+
+.content {
+    display: flex;
+    gap: 30px;
+}
+
+.subTitle {
+    color: #DDC00C;
+    font-weight: 400;
+    font-size: 40px;
+    margin-bottom: 30px;
+}
+
+.wrapperForm {
+    display: flex;
+    flex-direction: column;
+}
+
+.formTitle {
+    color: #003B56;
+    font-weight: 700;
+    font-size: 20px;
+    transform: translateY(-40px);
+}
+
+.formTitle span {
+    color: #DDC00C;
+}
+
+.title {
+    margin-bottom: 30px;
+    color: #005379;
+    font-weight: 400;
+    font-size: 24px;
+}
+
+.blogs,
+.news {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.blogs .title,
+.news .title {
+    margin-bottom: -10px;
+}
+
+.flex {
+    display: flex;
+    gap: 30px;
+}
+
+@media screen and (max-width: 991px) {
+    .wrapperForm {
+        width: 100%;
+    }
+}

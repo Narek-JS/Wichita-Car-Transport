@@ -1,0 +1,97 @@
+.stepsBar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.step {
+    background: transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 8px 30px;
+    position: relative;
+    width: 100%;
+}
+
+.step * {
+    cursor: default;
+}
+
+.step::after {
+    content: '';
+    position: absolute;
+    z-index: -1;
+    left: 0;
+    top: 0;
+    clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%, 15% 50%);
+    background: #FFFFFF;
+    width: 51%;
+    height: 100%;
+    cursor: default;
+}
+
+.step::before {
+    content: '';
+    position: absolute;
+    z-index: -1;
+    right: 0;
+    top: 0;
+    clip-path: polygon(0 0, 85% 0, 100% 50%, 85% 100%, 0 100%);
+    background: #FFFFFF;
+    width: 51%;
+    height: 100%;
+}
+
+.firstStep::before {
+    clip-path: polygon(0 0, 80% 0, 100% 50%, 80% 100%, 0 100%);
+}
+
+.activeStep * {
+    cursor: initial;
+}
+
+.activeStep::before,
+.activeStep::after {
+    background-color: #DDC00C;
+}
+
+.lastStep::before,
+.firstStep::after {
+    clip-path: initial;
+}
+
+.step span {
+    color: #DDC00C;
+    font-weight: 700;
+    font-size: 20px;
+    white-space: nowrap;
+}
+
+.activeStep span {
+    color: #FFFFFF;
+}
+
+@media screen and (max-width: 991px) {
+    .step {
+        padding: 5px 20px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .step::before,
+    .step::after {
+        background-color: #005379;
+    }
+
+    .activeStep::before,
+    .activeStep::after {
+        background-color: #DDC00C;
+    }
+
+    .step span {
+        color: #FFFFFF;
+    }
+    
+}

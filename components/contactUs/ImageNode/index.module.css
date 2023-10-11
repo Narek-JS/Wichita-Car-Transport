@@ -1,0 +1,31 @@
+.imageNode {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.title {
+    color: #003B56;
+    font-weight: 700;
+    font-size: 24px;
+}
+
+.title span {
+    color: #DDC00C;
+}
+
+.image {
+    max-width: 235px;
+    max-height: 335px;
+    object-fit: contain;
+}
+
+.link {
+    color: rgba(0, 59, 86, 0.6);
+    font-weight: 500;
+}
+
+.link span {
+    color: #DDC00C;
+    text-decoration: underline;
+}

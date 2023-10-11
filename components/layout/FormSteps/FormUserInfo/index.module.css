@@ -1,0 +1,177 @@
+.form {
+    max-width: 621px;
+    min-width: 530px;
+    height: 420px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 3px solid rgba(221, 192, 12, 0.4);
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.8);
+    padding: 25px;
+    margin: 30px auto 0 auto;
+    overflow-y: auto;
+    position: relative;
+}
+
+.goBack {
+    position: absolute;
+    top: 25px;
+    left: 25px;
+    display: flex;
+    gap: 5px;
+    align-items: center;
+    cursor: pointer;
+}
+
+.goBack span {
+    color: #005379;
+    font-weight: 700;
+    font-size: 18px;
+}
+
+.fromTitle {
+    color: #005379;
+    width: 260px;
+    border-bottom: 1px dashed #005379;
+
+    font-weight: 700;
+    font-size: 30px;
+    text-align: center;
+    padding-bottom: 5px;
+    margin-bottom: 30px;
+}
+
+.fromTitle span {
+    color: #DDC00C;
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 40px;
+    width: 100%;
+}
+
+.firstNode {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    width: 100%;
+}
+
+.seccondNode {
+    width: 260px;
+    margin-bottom: 58px;
+}
+
+.inputWrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+    max-width: 180px;
+    position: relative;
+}
+
+.seccondNode .inputWrapper {
+    width: 260px;
+    max-width: initial;
+
+}
+
+.input {
+    background: #FFFFFF;
+    height: 38px;
+    padding: 7px 20px;
+    border-radius: 5px;
+    border: none;
+    line-height: inherit;
+}
+
+.input:focus {
+    outline: 2px solid transparent;
+}
+
+.btn {
+    width: 260px;
+    border-radius: 5px;
+    background: #DDC00C;
+    color: #FFFFFF;
+    font-size: 20px;
+    font-weight: 700;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 12px 0;
+    cursor: pointer;
+}
+
+.backAnime svg {
+    outline: 2px solid transparent;
+    border-radius: 50%;
+    animation: border-spin .5s linear infinite;
+}
+
+@keyframes border-spin {
+  0% {
+    transform: scale(1);
+    outline-color: #005379;
+  }
+  50% {
+    outline-color: #DDC00C;
+    transform: scale(1.1);
+  }
+  100% {
+    outline-color: #005379;
+    transform: scale(1);
+  }
+}
+
+
+.error {
+    position: absolute;
+    bottom: -20px;
+    left: 5px;
+    font-size: 14px;
+    color: red;
+}
+
+@media screen and (max-width: 768px) {
+    .form {
+        padding: 10px;
+        padding-top: 35px;
+        background: #F5F5F5;
+        min-width: initial;
+        height: initial;
+    }
+
+    .goBack {
+        top: 15px;
+        left: 15px;
+    }
+    
+    .goBack span {
+        font-size: 16px;
+    }
+
+    .content,
+    .firstNode {
+        flex-direction: column;
+        gap: 20px;
+    }
+    
+    .seccondNode,
+    .inputWrapper {
+        max-width: initial;
+        width: 100% !important;
+    }
+
+    .error {
+        font-size: 10px;
+        bottom: -15px;
+        white-space: nowrap;
+    }
+}

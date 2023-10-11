@@ -1,0 +1,110 @@
+.banner {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+}
+
+.bannerConent {
+    margin-top: 185px;
+    position: relative;
+    z-index: 1;
+}
+
+.content {
+    display: flex;
+}
+
+.textes {
+    display: flex;
+    flex-direction: column;
+    margin-top: 50px;
+}
+
+.explore {
+    margin: 20px auto;
+    background: rgba(0, 59, 86, 0.85);
+    border-radius: 10px;
+    padding: 10px 25px;
+    display: flex;
+    justify-content: center;
+    max-width: 846px;
+}
+
+.explore p {
+    font-weight: 700;
+    font-size: 48px;
+    color: #FFFFFF;
+    text-align: center;
+}
+
+.explore p span {
+    color: #DDC00C;
+}
+
+.toContactUs {
+    width: 140px;
+    color: #FDFDFF;
+    font-weight: 700;
+    text-align: center;
+    background: #DDC00C;
+    border: 1px solid #DDC00C;
+    border-radius: 5px;
+    padding: 8px 28px;
+    margin: 0 auto 30px auto;
+    display: block;
+}
+
+.linkTitle {
+    background: rgba(7, 133, 134, 0.65);
+    border-radius: 5px;
+    padding: 16px;
+    margin-bottom: 10px;
+    max-width: 305px;
+}
+
+.linkTitle p {
+    color: #FFFFFF;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 24px;
+    text-align: center;
+}
+
+.seccondLinkTitle {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.seccondLinkTitle p {
+    max-width: 392px;
+    text-align: center;
+    font-weight: 500;
+    line-height: 24px;
+    font-size: 16px;
+    color: #FFFFFF;
+    padding: 10px;
+    background: rgba(7, 133, 134, 0.65);
+    border-radius: 5px;
+}
+
+.seccondLinkTitle a {
+    font-weight: 700;
+    font-size: 15px;
+    color: #FFFFFF;
+}
+
+@media screen and (max-width: 768px) {
+    .explore p {
+        font-size: 32px;
+    }
+
+    .seccondLinkTitle a {
+        color: #DDC00C;
+    }
+
+    .linkTitle,
+    .seccondLinkTitle { display: none; }
+}

@@ -1,0 +1,63 @@
+.wrapperRelatedPosts {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.relatedPostsTitle {
+    color: #003B56;
+    font-weight: 700;
+    font-size: 24px; 
+    display: flex;
+    gap: 9px;
+    align-items: center;
+}
+
+.posts {
+    display: flex;
+    gap: 10px;
+}
+
+.post {
+    background: #F4F4F3;
+    border: 5px dashed #003B56;
+    border-radius: 10px;
+    max-width: 280px;
+}
+
+.postImage {
+    border-radius: 5px 5px 0 0;
+    height: 185px;
+    object-fit: fill;
+}
+
+.postContent {
+    padding: 15px 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.wrapperTime {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+}
+
+.categoryName {
+    color: #DDC00C;
+    font-weight: 500; 
+}
+
+.postDescription {
+    line-height: 30px;
+    font-weight: 700;
+    color: #003B56; 
+    text-align: center;
+}
+
+.defaultText {
+    color: rgba(0, 59, 86, 0.6);
+    font-weight: 500; 
+}

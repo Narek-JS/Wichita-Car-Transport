@@ -1,0 +1,197 @@
+.calculatedFee {
+    margin-bottom: 40px;
+}
+
+.content {
+    display: flex;
+    gap: 30px;
+}
+
+.questionsBlock,
+.node {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.node {
+    flex: 50;
+}
+
+.title {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    color: #005379;
+    font-weight: 500;
+    font-size: 20px;
+}
+
+.calculatedTitleIcon {
+    width: 32px;
+    height: 32px;
+    transition: all .2s;
+}
+
+.title span {
+    color: #DDC00C;
+}
+
+.calculatedBlocks {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    position: relative;
+}
+
+.box {
+    width: 260px;
+    height: 183px;
+    background: #FFFFFF;
+    box-shadow: 5px 5px 5px rgba(7, 39, 101, 0.1);
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    transition: all .2s;
+
+}
+
+.box:hover {
+    box-shadow: 0 5px 5px 5px rgba(7, 39, 101, 0.1);
+}
+
+.box:hover .calculatedTitleIcon {
+    transform: scale(1.4);
+}
+
+.box p {
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 20px;
+    color: #005379;
+    text-align: center;
+}
+
+.addCalculated {
+    position: absolute;
+    padding: 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: #FFFFFF;
+    box-shadow: 5px 5px 5px rgba(7, 39, 101, 0.1);
+    top: 45%;
+    left: 45%;
+    transform: translate(-50%, -50%);
+}
+
+.addCalculatedIcon {
+    width: 48px;
+    height: 48px;
+    object-fit: cover;
+}
+
+.questionNode {
+    background: #F5F5F5;
+    border: 1px solid rgba(187, 34, 51, 0.15);
+    border-radius: 20px;
+    padding: 20px;
+    min-height: 73px;
+    overflow-y: hidden;
+} 
+
+.questionNode p:has(:not(.answer)) {
+    position: relative;
+    color: #005379;
+    font-weight: 500;
+    font-size: 20px;
+    padding-left: 20px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.questionNode p .addIcon {
+    background: rgba(0, 83, 121, 0.15);
+    width: 32px;
+    height: 32px;
+    border-radius: 100%;
+    display: flex;
+    padding: 7px;
+    align-items: center;
+}
+
+.activeNode .questionNode p .addIcon {
+    background: #005379;
+}
+
+.questionNode p:has(:not(.answer))::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 0;
+    width: 5px;
+    height: 5px;
+    background-color: #005379;
+    border-radius: 100%;
+}
+
+.questionNode .answer {
+    margin-top: 10px;
+    color: rgba(0, 41, 122, 0.6);
+    font-weight: 400;
+    transition: all .2s;
+}
+
+.activeAnswer {
+    animation: moveFromTop .2s ease-in-out;
+}
+
+.activeNode {
+    position: relative;
+    overflow: hidden;
+}
+
+@keyframes moveFromTop {
+    from {
+      margin-top: -900%;
+    }
+    to {
+      margin-top: 0;
+    }
+}
+
+.inActiveAnswer {
+    display: none;
+}
+
+.moreQuestionLink {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-weight: 500;
+    color: #DDC00C;
+}
+
+@media screen and (max-width: 1224px) {
+    .addCalculated,
+    .addCalculatedIcon {
+        display: none;
+    }
+}
+
+@media screen and (max-width: 991px) {
+    .calculatedBlocks {
+        justify-content: center;
+    }
+
+    .content {
+        flex-direction: column;
+    }
+}

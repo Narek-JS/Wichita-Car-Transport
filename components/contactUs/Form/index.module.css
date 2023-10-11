@@ -1,0 +1,178 @@
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    position: relative;
+}
+
+.description {
+    color: #003B56;
+    font-weight: 700;
+    font-size: 20px;
+    margin-bottom: 30px;
+}
+
+.frstLine, 
+.seccondLine {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.seccondLine {
+    align-items: flex-end;
+}
+
+.wrapperInput {
+    position: relative;
+    max-width: 196px;
+    width: 100%;
+}
+
+.seccondLine .wrapperInput {
+    max-width: initial;
+    width: initial;
+}
+
+.input {
+    width: 196px;
+    border: none;
+    text-decoration: none;
+    outline: none;
+    background: transparent;
+    border-bottom: 1px solid rgba(0, 59, 86, 0.4);
+    color: #16426c;
+    padding-bottom: 25px;
+}
+
+.input::placeholder, 
+.textarea::placeholder {
+    color: #003B56;
+    font-weight: 400;
+    font-size: 16px;
+}
+
+.textarea {
+    padding-bottom: 22px;
+    border: none;
+    text-decoration: none;
+    outline: none;
+    background: transparent;
+    border-bottom: 1px solid rgba(0, 59, 86, 0.4);
+    resize: none;
+    height: 90px;
+    width: 412px;
+}
+
+.recaptcha {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.title {
+    color: #003B56;
+    font-weight: 400;
+    font-size: 16px;
+}
+
+.titleError {
+    color: red;
+}
+
+.titleWin {
+    color: #DDC00C;
+}
+
+.title span {
+    font-weight: 700;
+}
+
+.boxes {
+    display: flex;
+    gap: 20px;
+}
+
+
+
+.box {
+    transition: all .3s;
+    width: 60px;
+    height: 60px;
+    padding: 20px 10px;
+    background: #FFFFFF;
+    box-shadow: 2px 2px 2px #00000041;
+    cursor: pointer;
+}
+
+.box:hover {
+    transform: translateY(-2px) scale(1.1);
+}
+
+
+.recapchaWin .box {
+    cursor: default;
+}
+
+.recapchaWin .box:hover {
+    transform: initial;
+}
+
+.btn {
+    background: #DDC00C;
+    padding: 10px 30px;
+    color: #FFFFFF;
+    font-weight: 700;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    cursor: pointer;
+}
+
+.underText {
+    color: rgba(0, 59, 86, 0.6);
+    font-weight: 400;
+    font-size: 15px;
+
+    position: absolute;
+    bottom: 0px;
+    left: 0;
+}
+
+.error {
+    color: red;
+    position: absolute;
+    bottom: -20px;
+    left: 0;
+    font-size: 12px;
+}
+
+@media screen and (max-width: 768px) {
+    .frstLine, 
+    .seccondLine {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    
+    .seccondLine {
+        align-items: start;
+    }
+
+    .form {
+        width: 100%;
+    }
+
+    .seccondLine .wrapperInput,
+    .wrapperInput {
+        max-width: 100%;
+    }
+
+    .textarea,
+    .seccondLine .wrapperInput,
+    .input {
+        width: 100%;
+    }
+}

@@ -1,0 +1,236 @@
+.mt160 {
+    margin-top: 160px;
+}
+
+.title {
+    color: #DDC00C;
+    font-weight: 600;
+    font-size: 20px; 
+    position: relative;
+    display: inline-block;
+    padding-right: 110px;
+    margin-top: 30px;
+}
+
+.title::after {
+    content: "";
+    position: absolute;
+    margin-left: 13px;
+    top: 50%;
+    transform: translateY(-80%);
+    width: 100px;
+    height: 5px;
+    background-color: rgba(0, 59, 86, 0.6);
+    display: inline-block;
+    border-radius: 5px;
+}
+
+/* general styles */
+.defaultText {
+    color: rgba(0, 59, 86, 0.6);
+    font-weight: 500; 
+}
+
+/* blog Section, first Section */
+.blogSection {
+    display: flex;
+    gap: 40px;
+    padding-bottom: 30px;
+    border-bottom: 2px solid rgba(0, 59, 86, 0.25);
+    margin-bottom: 30px;
+}
+
+.blogContent {
+    max-width: 780px;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+
+    /* image block */
+.wrapperImage {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    border-bottom: 2px solid rgba(0, 59, 86, 0.25);
+    padding-bottom: 20px;
+}
+
+.blogImage {
+    border-radius: 20px;
+    max-height: 520px;
+    object-fit: cover;
+}
+
+.wrapperSocial {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.calendarSlice {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.verticalRow {
+    border: 1px solid rgba(0, 59, 86, 0.6);
+    transform: rotate(90deg);
+    width: 30px;
+    margin: 0 -20px;
+}
+
+.calendarSliceBlogText {
+    color: #DDC00C;
+    font-weight: 500; 
+}
+
+.comment,
+.likeCount,
+.like {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.like span,
+.likeCount span,
+.comment span {
+    color: rgba(0, 41, 122, 0.6);
+    font-weight: 500;
+}
+
+.like {
+    cursor: pointer;
+    transition: all .2s;
+}
+
+.like:hover {
+    transform: scale(1.1);
+}
+
+.aktiveLike span {
+    color: #DDC00C;
+}
+
+.messageBlock,
+.likeBlock {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.messageBlock span,
+.likeBlock span {
+    color: rgba(0, 59, 86, 0.6);
+    font-weight: 500; 
+}
+
+.messageBlock svg,
+.likeBlock svg,
+.socialSlice svg {
+    width: 18px;
+    height: 18px;
+}
+
+.socialSlice {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.shareText {
+    color: rgba(0, 59, 86, 0.8);
+    font-weight: 700;
+    font-size: 20px; 
+}
+
+.likeGroup {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    cursor: pointer;
+}
+
+.activeLike .defaultText {
+    color: #DDC00C;
+}
+
+    /* blog textes */
+.blogBody {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+.blogBody h2 {
+    color: #005379;
+    font-weight: 500;
+    font-size: 24px;
+    margin: 25px 0;
+}
+
+.blogBody p { 
+    color: rgba(0, 41, 122, 0.6);
+}
+
+.blogBody p a {
+    color: #DDC00C;
+}
+
+/* Latest News */
+
+
+/* relatedPosts */
+
+.relatedPosts {
+    display: flex;
+    justify-content: space-between;
+    gap: 28px;
+    margin-bottom: 30px;
+    padding-bottom: 30px;
+}
+
+@media screen and (max-width: 1050px) {
+    .wrapperSocial {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .socialSlice {
+        flex-direction: row-reverse;
+    }
+}
+
+@media screen and (max-width: 991px) {
+    .blogSection {
+        gap: 20px;
+    }
+
+    .newsCardContent {
+        gap: 10px;
+        padding: 0px 10px 10px 10px;
+    }
+
+    .blogImage {
+        width: 100%;
+    }
+
+    .wrapperSocial {
+        flex-direction: row;
+    }
+}
+
+@media screen and (max-width: 620px) {
+    .wrapperSocial {
+        flex-direction: column;
+    }
+
+    .wrapperSocial .calendarSlice,
+    .wrapperSocial .socialSlice {
+        justify-content: space-between;
+        width: 100%;
+    }
+}

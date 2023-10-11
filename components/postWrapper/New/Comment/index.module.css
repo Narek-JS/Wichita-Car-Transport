@@ -1,0 +1,121 @@
+.postComment {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    width: 100%;
+}
+
+.postCommentTitle {
+    color: #005379;
+    font-weight: 400;
+    font-size: 20px; 
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.wrapperSubmit {
+    position: relative;
+    display: flex;
+    gap: 20px;
+    margin-bottom: 10px;
+    align-items: flex-end;
+    justify-content: space-between;
+}
+
+.comment {
+    padding: 20px;
+    border-radius: 5px;
+    border: 1px solid rgba(0, 41, 122, 0.4);
+    min-height: 100px;
+    resize: none;
+    width: 100%;
+}
+
+.comment:focus {
+    outline: 2px solid transparent;
+}
+
+.wrapperCheckbox {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+}
+
+.checkNode {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.wrapperCheckbox .error {
+    bottom: -28px;
+}
+
+.checkbox {
+    position: relative;
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+}
+  
+.checkbox input[type="checkbox"] {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+}
+  
+.checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 25px;
+    height: 25px;
+    background-color: transparent;
+    border-radius: 999px;
+    border: 2px solid #DDC00C;
+    cursor: pointer;
+}
+  
+.checkbox input[type="checkbox"]:checked ~ .checkmark:after {
+    content: "";
+    position: absolute;
+    top: 2px;
+    left: 7px;
+    width: 8px;
+    height: 13px;
+    border: solid #DDC00C;
+    background-color: transparent;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+}
+
+.emailSaveText {
+    color: #003B56;
+    font-size: 12px; 
+}
+
+.defaultText {
+    color: rgba(0, 59, 86, 0.6);
+    font-weight: 500; 
+}
+
+.inputs {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 30px;
+}
+
+.error {
+    position: absolute;
+    bottom: -20px;
+    left: 0;
+    color: red;
+    font-size: 13px; 
+}

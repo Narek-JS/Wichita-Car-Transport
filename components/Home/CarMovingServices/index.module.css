@@ -1,0 +1,32 @@
+.carMovingsSection {
+    padding-bottom: 20px;
+    margin: 30px 0;
+}
+
+.row {
+    width: 100px;
+    height: 5px;
+    background: #003B56;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+.subTitle {
+    color: #DDC00C;
+    font-weight: 500;
+    font-size: 35px;
+    margin-bottom: 30px;
+}
+
+.services {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+}
+
+@media screen and (max-width: 991px) {
+    .services {
+        flex-wrap: wrap;
+    }
+}

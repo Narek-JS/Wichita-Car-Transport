@@ -1,0 +1,13 @@
+export { ReviewSection } from './ReviewSection';
+export { Burger } from './Burger';
+export { CalculatedFee } from './CalculatedFee';
+export { CalculatedStep } from './CalculatedStep';
+export { CarService } from './CarService';
+export { ReviewsGraph } from './CustomerReviews';
+export { DiscoverSection } from './DiscoverSection';
+export { FormQuote } from './FormQuote';
+export { HelpSection } from './HelpSection';
+export { PostCard } from './PostCard';
+export { Search } from './Search';
+export { SosialeSection } from './SosialeSection';
+export { VideoSection } from './VideoSection';

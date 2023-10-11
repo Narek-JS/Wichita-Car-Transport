@@ -1,0 +1,176 @@
+.feedbackForm {
+    width: 100%;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #00000041;
+    
+}
+
+.content {
+    max-width: 1140px;
+    display: flex;
+    position: relative;
+}
+
+.form {
+    border-radius: 20px 0 0 20px;
+    padding: 20px;
+    background: #FFFFFF;
+    display: flex;
+    flex-direction: column;
+    max-width: 570px;
+    width: 100%;
+}
+
+.fomrTitle {
+    font-weight: 700;
+    font-size: 32px;
+    color: #DDC00C;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.wrapperInput {
+    position: relative;
+}
+
+.input {
+    padding-bottom: 22px;
+    margin-bottom: 20px;
+    border: none;
+    text-decoration: none;
+    outline: none;
+    background: transparent;
+    border-bottom: 1px solid rgba(0, 83, 121, 0.4);
+    color: #16426c;
+    font-weight: 700;
+    width: 100%;
+}
+
+.error {
+    position: absolute;
+    bottom: 5px;
+    left: 0;
+    font-size: 12px;
+    color: red;
+}
+
+.textarea {
+    padding-bottom: 22px;
+    border: none;
+    text-decoration: none;
+    outline: none;
+    background: transparent;
+    border-bottom: 1px solid rgba(0, 59, 86, 0.4);
+    resize: none;
+    font-weight: 700;
+    height: 120px;
+    margin-bottom: 20px;
+}
+
+.textarea::placeholder,
+.input::placeholder {
+    color: rgba(0, 83, 121, 0.4);
+    font-weight: 700;
+    font-size: 16px;
+}
+
+.vihacleList,
+.locations {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.rating,
+.recommend {
+    width: 100%;
+    border: 1px solid rgba(0, 83, 121, 0.4);
+    border-radius: 5px;
+    padding: 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 23px;
+    margin-bottom: 20px;
+}
+
+.recapcha {
+    position: relative;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.recommend p {
+    font-weight: 500;
+    color: rgba(0, 83, 121, 0.4);
+}
+
+.rating svg,
+.recommend svg { 
+    cursor: pointer;
+} 
+
+.btn {
+    cursor: pointer;
+    width: 100%;
+    background: #0069D9;
+    border-radius: 5px;
+    font-weight: 700;
+    color: #FFFFFF;
+    padding: 12px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.imageNode {
+    border-radius: 0 20px 20px 0;
+    padding: 20px;
+    background: #F4F7FB;
+    max-width: 570px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.image {
+    max-width: 570px;
+    max-height: 670px;
+    width: 100%;
+    height: 100%;
+
+    object-fit: contain;
+}
+
+.closeForm {
+    width: 40px;
+    height: 40px;
+    border-radius: 100%;
+    background-color: #DDC00C;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    position: absolute;
+    right: 20px;
+    top: 20px;
+    cursor: pointer;
+}
+
+
+@media screen and (max-width: 768px) {
+    .imageNode { display: none; }
+    .form { border-radius: 20px; }
+    .content { max-width: 570px; margin: 0 auto; }
+}
