@@ -80,3 +80,9 @@
 .links a:hover {
     transform: scale(1.10);
 }
+
+@media screen and (max-width: 991px) {
+    .helpSection {
+        display: none;
+    }
+}

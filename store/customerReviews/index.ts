@@ -1,15 +1,16 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
-import { IcustomerReviewsData, CustomerReviewsDataAdapter } from '@/model/customerReviews';
+import { IReviewsData, ReviewsAdapter } from '@/model/customerReviews';
+import { BASE_URL } from '@/constants/api';
 
 export const customerReviewsApi = createApi({
   reducerPath: 'customerReviewsApi',
-  baseQuery: fetchBaseQuery({ baseUrl: 'https://secure.globalautotransportation.com/reviews/backend/datatable.php' }),
+  baseQuery: fetchBaseQuery({ baseUrl: BASE_URL }),
   endpoints: (builder) => ({
-    getCustomerReviews: builder.query<IcustomerReviewsData, string>({
+    getCustomerReviews: builder.query<IReviewsData, string>({
       query: routeName => routeName,
       transformResponse: (response: any) =>  {
-        const customerReviewsData = CustomerReviewsDataAdapter.createCustomerReviewsData(response);
-        return new Promise<IcustomerReviewsData>(resolve => resolve(customerReviewsData));
+        const customerReviewsData = ReviewsAdapter.createReviewsData(response);
+        return new Promise<IReviewsData>(resolve => resolve(customerReviewsData));
       },
     }),
   }),

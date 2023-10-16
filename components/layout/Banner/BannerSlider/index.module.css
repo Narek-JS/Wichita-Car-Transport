@@ -1,5 +1,12 @@
 .imageWrapper {
+    background-color: red;
     position: relative;
-    width: 100%;
+    z-index: 99999;
     height: 100vh;
+    width: 100%;
+}
+
+.imageWrapper img {
+    position: absolute;
+    z-index: 99;
 }

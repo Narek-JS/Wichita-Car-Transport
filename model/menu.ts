@@ -49,6 +49,7 @@ export class MenuAdapter {
             };
             return acc;
         }, {});
+
         return {
             logo: data?.logo || '/assets/images/logo.png',
             social: (data?.social?.items || []).map((socialItem, index): SocialGroup => ({
@@ -60,7 +61,7 @@ export class MenuAdapter {
             contactInfo,
             allItems: items.concat(topHeaderCenterItems),
             topHeaderCenterItems,
-            topHeaderLeftItem: topHeaderItems.find(item => item.title === 'left')?.children?.[0] || null, 
+            topHeaderLeftItem: topHeaderItems.find(item => item.title === 'Left')?.children?.[0] || null, 
             topHeaderRightItem: topHeaderItems.find(item => item.title === 'Right')?.children?.[0] || null
         };
     }

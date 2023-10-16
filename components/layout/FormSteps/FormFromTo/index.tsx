@@ -32,7 +32,7 @@ const FormFromTo: React.FC<IProps> = ({
     return (
         <form className={classes.form} onSubmit={formik.handleSubmit}>
             <h2 className={classes.fromTitle}>
-                Get A <span>FREE</span> Quote
+                GET A <span>FREE</span> QUOTE <span>NOW</span>
             </h2>
 
             <div className={classes.inputWrapper}>

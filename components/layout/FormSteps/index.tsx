@@ -44,15 +44,15 @@ const FormSteps: React.FC = () => {
                 <div className={classes.textes}>
                     <div className={classes.explore}>
                         <p>
-                            Explore <span>Virginia Beach Auto</span> Transport
+                            <span>Moving </span>Made <span>Easy</span>
                         </p>
                         <p className={classes.fz24}>
-                            Serving to and from Phoenix!
+                            WICHITA CAR TRANSPORT
                         </p>
                     </div>
                     <div className={classes.seccondLinkTitle}>
                         <p>
-                            Door-to-Door Delivery and Full Insurance Benefits
+                            Open Car Transport and Full Insurance Benefits
                         </p>
                     </div>
                 </div>

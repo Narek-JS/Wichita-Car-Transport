@@ -9,8 +9,8 @@ const PostWrapper: NextPage = () => {
     const { pathname } = useRouter();
     const { data } = useGetMenusQuery('menus');
 
-    if(pathname === '/' + data?.contactInfo?.[LINKS_FROM_MENU_TITLES.blogs].url) return <Blogs />;
-    if(pathname === '/' + data?.contactInfo?.[LINKS_FROM_MENU_TITLES.news].url) return <News />;
+    if(pathname === '/' + data?.contactInfo?.[LINKS_FROM_MENU_TITLES.blogs]?.url) return <Blogs />;
+    if(pathname === '/' + data?.contactInfo?.[LINKS_FROM_MENU_TITLES.news]?.url) return <News />;
 
     return null;
 };

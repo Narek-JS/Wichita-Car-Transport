@@ -10,6 +10,13 @@ import { Footer } from './Footer';
 import { SocialLinks } from './SocialLinks';
 import { useRouter } from 'next/router';
 import { ScrollTopIcon } from './ScrollTopIcon';
+import { Ubuntu } from 'next/font/google';
+
+const ubuntuFont = Ubuntu({
+  weight: '400',
+  subsets: ['latin'],
+  style: 'normal'
+});
 
 const queryClient = new QueryClient();
 
@@ -34,7 +41,7 @@ const Layout: React.FC<IProps> = ({ children, pageTitle = 'New York' }) => {
             <Head>
                 <title>{pageTitle}</title>
             </Head>
-            <main>
+            <main className={ubuntuFont.className}>
                 <ReduxProvider store={store}>
                     <QueryClientProvider client={queryClient}>
                         <Header />

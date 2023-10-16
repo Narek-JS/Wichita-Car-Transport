@@ -3,13 +3,25 @@ import { ArrowRightRed } from '@/public/assets/svgs/ArrowRightRed';
 import { AddIcon } from '@/public/assets/svgs/AddIcon';
 import { useState } from 'react';
 import { CloseIcon } from '@/public/assets/svgs/CloseIcon';
+import { selectHome } from '@/store/home';
+import { useAppSelector } from '@/store/hooks';
 import Link from 'next/link';
 import classes from './index.module.css';
 import Image from 'next/image';
 import classNames from 'classnames';
 
 const CalculatedFee: React.FC = () => {
-
+    const data = useAppSelector(selectHome).data?.calculate;
+    const [ activeNoteIndex, setActiveNoteIndex ] = useState<number>();
+    
+    const toogleNote = (index: number) => {
+        if(activeNoteIndex === index) {
+            setActiveNoteIndex(undefined);
+        } else {
+            setActiveNoteIndex(index);
+        };
+    };
+    
     const calculatedSteps = [
         {
             imagePath: '/assets/images/calculatedStepImage1.png',
@@ -29,33 +41,6 @@ const CalculatedFee: React.FC = () => {
         },
     ];
 
-    const calculatedQuestions = [
-        {
-            question: 'Lorem ipsum dolor sit amet consectetur ?',
-            answer: 'Lorem ipsum dolor sit amet consectetur. Faucibus et cras metus quam. Eu accumsan vel suspendisse vel nisl eu lacus pellentesque imperdiet.Lorem ipsum dolor sit amet consectetur. Faucibus et cras metus quam. Eu accumsan vel suspendisse vel nisl eu lacus pellentesque imperdiet.Lorem ipsum dolor sit amet consectetur. '
-        },
-        {
-            question: 'Lorem ipsum dolor sit amet consectetur ?',
-            answer: 'Lorem ipsum dolor sit amet consectetur. Faucibus et cras metus quam. Eu accumsan vel suspendisse vel nisl eu lacus pellentesque imperdiet.Lorem ipsum dolor sit amet consectetur. Faucibus et cras metus quam. Eu accumsan vel suspendisse vel nisl eu lacus pellentesque imperdiet.Lorem ipsum dolor sit amet consectetur. '
-        },
-        {
-            question: 'Lorem ipsum dolor sit amet consectetur ?',
-            answer: 'Lorem ipsum dolor sit amet consectetur. Faucibus et cras metus quam. Eu accumsan vel suspendisse vel nisl eu lacus pellentesque imperdiet.Lorem ipsum dolor sit amet consectetur. Faucibus et cras metus quam. Eu accumsan vel suspendisse vel nisl eu lacus pellentesque imperdiet.Lorem ipsum dolor sit amet consectetur. '
-        },
-        {
-            question: 'Lorem ipsum dolor sit amet consectetur ?',
-            answer: 'Lorem ipsum dolor sit amet consectetur. Faucibus et cras metus quam. Eu accumsan vel suspendisse vel nisl eu lacus pellentesque imperdiet.Lorem ipsum dolor sit amet consectetur. Faucibus et cras metus quam. Eu accumsan vel suspendisse vel nisl eu lacus pellentesque imperdiet.Lorem ipsum dolor sit amet consectetur. '
-        }
-    ];
-
-    const [modifyQuestions, setModifyQuestions] = useState(calculatedQuestions.map(_ => ({ ..._, active: false })));
-
-    const selectQuestionNode = (index) => {
-        setModifyQuestions(modifyQuestions.map((_, i) => ({
-            ..._,
-            active: index === i && !_.active
-        })));
-    };
 
     return (
         <section className={classes.calculatedFee}>
@@ -63,43 +48,46 @@ const CalculatedFee: React.FC = () => {
                 <div className={classes.content}>
                     <div className={classes.node}>
                         <div className={classes.questionsBlock}>
-                            { modifyQuestions.map((question, index) => (
+                            { data?.notes.map((question, index) => (
                                 <div key={index} className={classNames(classes.questionNode, {
-                                    activeNode: [question.active] 
+                                    activeNode: activeNoteIndex === index
                                 })}>
-                                    <p onClick={() => selectQuestionNode(index)}>
+                                    <p onClick={() => toogleNote(index)}>
                                         {question.question}
                                         <span className={classes.addIcon}>
-                                            {question.active ? <CloseIcon /> : <AddIcon />}
+                                            {activeNoteIndex === index ? <CloseIcon /> : <AddIcon />}
                                         </span>
                                     </p>
                                     <p className={classNames(classes.answer, {
-                                        [classes.activeAnswer]: question.active,
-                                        [classes.inActiveAnswer]: !question.active
+                                        [classes.activeAnswer]: activeNoteIndex === index,
+                                        [classes.inActiveAnswer]: activeNoteIndex !== index
                                     })}>
                                         { question.answer }
                                     </p>
                                 </div>
                             ))}
                         </div>
-                        <Link href='/asd' className={classes.moreQuestionLink}> <ArrowRightRed /> Read More</Link>
+                        <Link href='/faq' className={classes.moreQuestionLink}> <ArrowRightRed /> Read More</Link>
                     </div>
                     <div className={classes.node}>
                         <h2 className={classes.title}>
-                            <Image
-                                src={'/assets/images/calculatedTitleIcon.png'}
-                                alt="title icon"
-                                className={classes.calculatedTitleIcon}
-                                width={32}
-                                height={32}
-                            />
+                            { data?.titleImage && (
+                                <Image
+                                    src={data?.titleImage}
+                                    alt="title icon"
+                                    className={classes.calculatedTitleIcon}
+                                    width={32}
+                                    height={32}
+                                />
+                            )}
+                            {/* { data?.title } */}
                             How are <span>Calculated</span> your transport <span>Fee</span>
                         </h2>
                         <div className={classes.calculatedBlocks}>
-                            { calculatedSteps.map((block, index) => (
+                            { data?.steps.map((block, index) => (
                                 <div key={index} className={classes.box}>
                                     <Image
-                                        src={block.imagePath}
+                                        src={block.image}
                                         alt="Calculated Step image"
                                         className={classes.calculatedTitleIcon}
                                         width={32}
@@ -108,15 +96,17 @@ const CalculatedFee: React.FC = () => {
                                     <p>{block.text}</p>
                                 </div>
                             ))}
-                            <div className={classes.addCalculated}>
-                               <Image
-                                    src='/assets/images/calculetedCenterICon.png'
-                                    alt='calculeted Center Icon'
-                                    className={classes.addCalculatedIcon}
-                                    width={48}
-                                    height={48}
-                               />
-                            </div>
+                            { data?.stepImage && (
+                                <div className={classes.addCalculated}>
+                                    <Image
+                                        src={data?.stepImage}
+                                        alt='calculeted Center Icon'
+                                        className={classes.addCalculatedIcon}
+                                        width={48}
+                                        height={48}
+                                    />
+                                </div>
+                            )}
                         </div>
                     </div>
                 </div>

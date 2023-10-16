@@ -23,6 +23,7 @@ const Nav: React.FC = () => {
     const scrollPosition = useScrollPositionWindow();
     const isOpenSideBar = useAppSelector(selectSiteBarStatus);
     const dispatch = useAppDispatch();
+
     const isBanner = (
         pathname === '/blogs' ||
         pathname === '/news' ||
@@ -58,8 +59,11 @@ const Nav: React.FC = () => {
             <Container>
                 <div className={classNames(classes.contentDesktop)}>
                     { data?.topHeaderLeftItem?.url &&
-                        <Link href={`tel:${data?.topHeaderLeftItem?.url}`} className={classes.dynamicLink}>
-                            { data?.topHeaderLeftItem?.title === 'phone' ? <EarringIcon /> : <MailIcon /> }
+                        <Link
+                            href={`${data?.topHeaderLeftItem?.title === 'Phone' ? 'tel' : "mailto"}:${data?.topHeaderLeftItem?.url}`}
+                            className={classes.dynamicLink}
+                        >
+                            { data?.topHeaderLeftItem?.title === 'Phone' ? <EarringIcon /> : <MailIcon /> }
                             { data?.topHeaderLeftItem?.url }
                         </Link>
                     }
@@ -75,7 +79,7 @@ const Nav: React.FC = () => {
                         ))}
                     </ul>
                     { data?.topHeaderRightItem?.url &&
-                        <Link href={`tel:${data?.topHeaderRightItem?.url}`} className={classes.dynamicLink}>
+                        <Link href={`${data?.topHeaderLeftItem?.title === 'Phone' ? 'tel' : "mailto"}:${data?.topHeaderRightItem?.url}`} className={classes.dynamicLink}>
                             { data?.topHeaderLeftItem?.title === 'Mail' ?  <EarringIcon /> : <MailIcon /> }
                             { data?.topHeaderRightItem?.url }
                         </Link>
