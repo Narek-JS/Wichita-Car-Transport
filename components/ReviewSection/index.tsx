@@ -63,7 +63,10 @@ const ReviewSection = () => {
                             </div>
                         )}
                         <div className={classes.buttons}>
-                            <button className={classes.redMoreBtn}><ArrowIcon /> Read More</button>
+                            <button className={classes.redMoreBtn}>
+                                <ArrowIcon />
+                                <span> Read More </span>
+                            </button>
                             <Link href='/customer-reviews' className={classes.feedbackBtn}>Give us your feedback</Link>
                         </div>
                     </div>

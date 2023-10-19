@@ -12,12 +12,11 @@ export interface IPost {
 };
 
 export interface IPosts {
-    data: Array<IPost>;
-    currentPage: string;
-    pageCount: number;
+    blogs: Array<IPost>;
+    news: Array<IPost>;
 };
 
-export class Posts {
+export class LatestPosts {
     constructor() {};
 
     static getPosts(data: Array<Record<string, any>>): Array<IPost> {
@@ -33,11 +32,16 @@ export class Posts {
         }));
     };
 
-    static createPostsData(data: any): IPosts {
+    static createLatestPostsData(data: any): IPosts {
+        if(data?.data?.blogs && data?.data?.news) {
+            return {
+                blogs: this.getPosts(data?.data?.blogs || []),
+                news: this.getPosts(data?.data?.news || [])
+            };
+        };
         return {
-            currentPage: data?.data?.currentPage,
-            pageCount: data?.data?.pageCount,
-            data: this.getPosts(data?.data?.posts || [])
+            blogs: this.getPosts((data?.data || []).filter(post => post.category_id === 1)),
+            news: this.getPosts((data?.data || []).filter(post => post.category_id === 2))
         };
     };
 }

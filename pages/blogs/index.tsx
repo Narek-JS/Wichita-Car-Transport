@@ -1,4 +1,4 @@
-import { PostWrapper } from '@/components/postWrapper';
+import { Posts } from '@/components/Posts';
 import { metaTags } from '@/constants/metaTags';
 import { Fragment } from 'react';
 import { NextPage } from 'next';
@@ -9,7 +9,7 @@ const Blogs: NextPage = () => {
     return (
         <Fragment>
           <Head>{metaTags.blogs}</Head>
-          <PostWrapper />
+          <Posts />
         </Fragment>
     );
 };

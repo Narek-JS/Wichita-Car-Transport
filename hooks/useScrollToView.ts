@@ -11,7 +11,7 @@ const useScrollToView = <T extends HTMLElement>(): MutableRefObject<T | null> =>
             behavior: 'smooth'
           })
         }
-    }, []);
+    });
 
     return ref;
 };

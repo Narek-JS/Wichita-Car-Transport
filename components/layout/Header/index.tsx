@@ -40,6 +40,7 @@ const Header: React.FC = () => {
         query.dynamicPage
     );
 
+
     if(error !== undefined) return <Redirect to='/404'/>
     if(isLoading) return <LoadingUI type='fullPage' />;
 
@@ -75,9 +76,10 @@ const Header: React.FC = () => {
                                     <Dropdown
                                         key={item.id}
                                         label={item.title || ''}
-                                        items={item.children!.map(({ url, title }) => ({
+                                        items={item.children!.map(({ url, title, children }) => ({
                                             link: url!,
-                                            label: title!
+                                            label: title!,
+                                            ...(!item.children?.isEmpty() && { children })
                                         }))}
                                     />
                                 )

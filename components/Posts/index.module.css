@@ -1,4 +1,5 @@
-.newsSection {
+
+.postsSection {
     margin-top: 160px;
 }
 
@@ -26,7 +27,7 @@
     border-radius: 5px;
 }
 
-.wrapperNews {
+.wrapperPosts {
     display: flex;
     flex-wrap: wrap;
     gap: 40px;
@@ -60,6 +61,7 @@
 }
 
 .firstLine p {
+    text-transform: capitalize;
     color: #001D4A;
     font-weight: 700;
     font-size: 48px;
@@ -80,8 +82,8 @@
 
 .contentBlocks div {
     flex: 25;
-    width: 350px;
-    min-width: 350px;
+    width: 290px;
+    min-width: 290px;
 }
 
 .contentBlocks div p {
@@ -91,5 +93,10 @@
 @media screen and (max-width: 768px) {
     .paginationBtns {
         gap: 10px;
+    }
+    .contentBlocks .card {
+        flex: 25;
+        width: 200px;
+        min-width: 200px;
     }
 }

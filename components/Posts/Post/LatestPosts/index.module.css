@@ -1,12 +1,12 @@
 
-.latestNews {
+.latestPosts {
     display: flex;
     flex-direction: column;
     gap: 40px;
     max-width: 400px;
 }
 
-.newsTitle {
+.postsTitle {
     margin-top: 30px;
     color: #DDC00C;
     font-weight: 500;
@@ -15,27 +15,28 @@
     display: flex;
     align-items: center;
     gap: 5px;
+    text-transform: uppercase;
 } 
 
-.wrapperNewCards {
+.wrapperPostsCards {
     display: flex;
     flex-direction: column;
     gap: 20px;
 }
 
-.newsCard {
+.postsCard {
     background: #F4F7FB;
     display: flex;
     flex-direction: column;
     gap: 20px;
 }
 
-.newsCardImg {
+.postsCardImg {
     max-height: 340px;
     object-fit: cover;
 }
 
-.newsCardContent {
+.postsCardContent {
     padding: 0px 20px 20px 20px;
     display: flex;
     flex-direction: column;
@@ -49,6 +50,7 @@
 }
 
 .viewAllSlice p {
+    text-transform: uppercase;
     color: #DDC00C;
     font-weight: 500; 
     font-size: 20px;
@@ -60,23 +62,23 @@
     font-size: 20px; 
 }
 
-.newsCardBody {
+.postsCardBody {
     -webkit-line-clamp: 5;
     -webkit-box-orient: vertical;
     height: 150px;
     overflow: hidden;
 }
 
-.newsCardBody p,
-.newsCardBody div,
-.newsCardBody h3 {
+.postsCardBody p,
+.postsCardBody div,
+.postsCardBody h3 {
     color: #041A44;
     font-weight: 300;
     font-size: 14px;
     color: rgba(0, 41, 122, 0.8);
 }
 
-.newsCardReadMore {
+.postsCardReadMore {
     color: #DDC00C;
     font-weight: 700;
     font-size: 20px; 
@@ -110,7 +112,7 @@
 }
 
 @media screen and (max-width: 991px) {
-    .latestNews {
+    .latestPosts {
         display: none;
     }    
 }

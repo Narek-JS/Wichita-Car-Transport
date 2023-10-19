@@ -1,5 +1,5 @@
 .imageWrapper {
-    background-color: red;
+    background-color: rgba(17, 17, 17, 0.2);
     position: relative;
     z-index: 99999;
     height: 100vh;

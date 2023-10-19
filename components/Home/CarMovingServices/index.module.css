@@ -30,3 +30,16 @@
         flex-wrap: wrap;
     }
 }
+
+@media screen and (max-width: 819px) {
+    .subTitle {
+        text-align: center;
+        font-size: 28px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .carMovingsSection {
+        margin: 0;
+    }
+}

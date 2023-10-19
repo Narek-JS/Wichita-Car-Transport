@@ -1,27 +1,46 @@
-import { Blog } from "@/components/postWrapper/Blog";
-import { CurrentNew } from "@/components/postWrapper/New";
+import { Post } from "@/components/Posts/Post";
 import { LoadingUI } from "@/components/ui/LoadingUI";
-import { getCurrentPageData } from "@/constants/service";
 import { Redirect } from "@/components/Redirect";
 import { useRouter } from "next/router";
-import { useQuery } from "react-query";
+import { useGetDynamicPageDataQuery } from "@/store/dynamicPage";
+import { DynamicRoute } from "@/components/DynamicRoute";
+import { DynamicContentFromAdmin } from "@/components/DynamicContentFromAdmin";
+import { IDynamicContentFromAdmin, IDynamicPageData, IPostData } from "@/model/dynamicPage";
 import NotFound from './404';
 
 const DynamicPage: React.FC = () => {
     const { query: { dynamicPage: slug } } = useRouter();
-    const { isLoading, data } = useQuery<any>(
-        ['dynamicData', slug],
-        getCurrentPageData(String(slug)),
-        { enabled: Boolean(slug) }
-    );
+
+    const { isLoading, data } = useGetDynamicPageDataQuery(String(slug), {
+        skip: !slug
+    });
 
     if(slug === 'home') return <Redirect to="/"/>;
 
     if(isLoading) return <LoadingUI type="fullPage" />;
 
-    if(data?.data?.post?.category.name === 'Blogs') return <Blog slug={String(slug)} data={data.data} />;
+    if(data && 'categoryName' in data) {
+        if(data?.categoryName === 'Blogs') {
+            const dataT: IPostData = data as any;
+            return <Post data={dataT} />;
+        };
+        if(data?.categoryName === 'News') {
+            const dataT: IPostData = data as any;
+            return <Post data={dataT} />;
+        };
+    };
 
-    if(data?.data?.post?.category.name === 'News') return <CurrentNew slug={String(slug)} data={data.data} />;
+    if(data && 'category' in data) {
+        if(data?.category === "dynamic-route") {
+            const dataT: IDynamicPageData = data as IDynamicPageData;
+            return <DynamicRoute {...dataT} />
+        };
+
+        if(data?.category === "dynamic-content-from-admin") {
+            const dataT: IDynamicContentFromAdmin = data as IDynamicContentFromAdmin;
+            return <DynamicContentFromAdmin {...dataT} />
+        };
+    };
 
     return <NotFound />;
 };

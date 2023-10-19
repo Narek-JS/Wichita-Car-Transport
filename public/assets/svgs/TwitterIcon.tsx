@@ -1,7 +1,7 @@
 import { LINKS } from "@/constants/links";
 import Link from "next/link";
 
-export const TwitterIcon: React.FC = () => (
+export const  TwitterIcon: React.FC = () => (
   <Link
     aria-label={LINKS.to_twitter.ariaLabel}
     target="_blank"

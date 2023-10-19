@@ -1,5 +1,5 @@
 import { BASE_URL } from '@/constants/api';
-import { IPosts, LatestPosts } from '@/model/posts';
+import { IPosts, LatestPosts } from '@/model/latestPosts';
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 
 export const latestPostsApi = createApi({

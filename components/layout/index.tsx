@@ -32,7 +32,6 @@ const Layout: React.FC<IProps> = ({ children, pageTitle = 'New York' }) => {
         pathname === '/blogs' ||
         pathname === '/news' ||
         pathname === '/404' ||
-        query.dynamicPage ||
         pathname === '/customer-reviews'
     );
 

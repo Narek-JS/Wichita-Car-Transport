@@ -140,6 +140,19 @@
     cursor: pointer;
 }
 
+.redMoreBtn i,
+.redMoreBtn span {
+    transition: all .3s;
+}
+
+.redMoreBtn:hover i {
+    transform: translate(95px);
+}
+
+.redMoreBtn:hover span {
+    transform: translate(-45px, -2px);
+}
+
 .feedbackBtn:hover {
     transform: translateY(-5px);
 }

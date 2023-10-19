@@ -34,12 +34,8 @@ const CarService: React.FC<IProps> = ({
                     { description }
                 </p>
                 <Link href={url} className={classes.link}>
-                    <ArrowIcon 
-                        color={'#FDFDFF'}
-                    />
-                    <span>
-                        {text}
-                    </span>
+                    <ArrowIcon color={'#FDFDFF'} />
+                    <span> {text} </span>
                 </Link>
             </div>
         </div>

@@ -1,6 +1,6 @@
 import { Container } from '@/components/ui/container';
 import { PostCard } from '@/components/PostCard';
-import { useGetLatestPostsApiQuery } from '@/store/posts';
+import { useGetLatestPostsApiQuery } from '@/store/posts/latestPosts';
 import classes from './index.module.css';
 import useWindowSize from '@/hooks/useWindowSize';
 
@@ -26,7 +26,7 @@ const Articles: React.FC = () => {
                         </div>
                     </div>
                     <div className={classes.news}>
-                        <p className={classes.title}>LATEST BLOGS</p>
+                        <p className={classes.title}>LATEST NEWS</p>
                         <div className={classes.flex}>
                             { latestPosts?.news.map((post) => (
                                 <PostCard {...post} />

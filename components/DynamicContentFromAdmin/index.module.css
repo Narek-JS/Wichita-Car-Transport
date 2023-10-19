@@ -1,0 +1,27 @@
+.section {
+    margin: 50px 0;
+}
+
+.title {
+    color: #DDC00C;
+    font-weight: 700;
+    font-size: 32px;
+    margin-bottom: 20px;
+}
+
+.content, .content div {
+    color: #072765;
+    line-height: 28px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.content a {
+    text-decoration: underline;
+    transition: all .2s;
+}
+
+.content a:hover {
+    color: #DDC00C;
+}

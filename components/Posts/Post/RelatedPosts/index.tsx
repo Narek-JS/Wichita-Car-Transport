@@ -23,7 +23,7 @@ const RelatedPosts: React.FC<IProps> = ({ relatedPosts }) => {
                         <Link href={'/' + post.slug}>
                             <Image
                                 src={post.image}
-                                alt="hero Blog image"
+                                alt="hero Post image"
                                 className={classes.postImage}
                                 width={999}
                                 height={360}

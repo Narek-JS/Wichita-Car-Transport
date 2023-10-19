@@ -22,5 +22,9 @@ export const LINKS = {
     to_youtube: {
         url: 'https://www.youtube.com/watch?v=bezmTmpG00U',
         ariaLabel: "Read more about Wichita Car Transport in the youtube tax hike"
+    },
+    to_facebook: {
+        url:'https://www.facebook.com/wichitacartransport',
+        ariaLabel: "Read more about Wichita Car Transport in the facebook tax hike"
     }
 }

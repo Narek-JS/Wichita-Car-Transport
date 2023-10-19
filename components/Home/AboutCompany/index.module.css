@@ -36,7 +36,7 @@
 .fistNodeLeft .text {
     background: #F5F5F5;
     border: 1px solid rgba(187, 34, 51, 0.15);
-    padding: 20px;
+    padding: 17px 20px;
 
     display: flex;
     flex-direction: column;
@@ -64,6 +64,19 @@
     font-size: 16px;
     padding: 3px 5px 0px 3px;
     cursor: pointer;
+}
+
+.fistNodeLeft .text .redMoreBtn i,
+.fistNodeLeft .text .redMoreBtn span {
+    transition: all .3s;
+}
+
+.fistNodeLeft .text .redMoreBtn:hover i {
+    transform: translate(95px);
+}
+
+.fistNodeLeft .text .redMoreBtn:hover span {
+    transform: translate(-45px, -2px);
 }
 
 .fistNodeLeft .warning {
@@ -179,5 +192,11 @@
     .fistNodeLeft .text {
         max-height: initial;
         height: initial;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .title {
+        font-size: 25px;
     }
 }

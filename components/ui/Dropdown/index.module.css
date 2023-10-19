@@ -2,7 +2,11 @@
     position: relative;
     display: inline-block;
 }
-  
+
+.isNested {
+    padding: 0.5rem;
+}
+
 .dropdownBtn {
     background-color: transparent;
     border: none;

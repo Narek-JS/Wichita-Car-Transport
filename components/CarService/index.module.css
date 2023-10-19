@@ -50,3 +50,20 @@
     font-size: 16px;
     color: #DDC00C;
 }
+
+.link span {
+    transform: translate(0, -2px);
+}
+
+.link i,
+.link span {
+    transition: all .3s;
+}
+
+.link:hover i {
+    transform: translate(95px);
+}
+
+.link:hover span {
+    transform: translate(-45px, -2px);
+}

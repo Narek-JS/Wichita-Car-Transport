@@ -21,26 +21,6 @@ const CalculatedFee: React.FC = () => {
             setActiveNoteIndex(index);
         };
     };
-    
-    const calculatedSteps = [
-        {
-            imagePath: '/assets/images/calculatedStepImage1.png',
-            text: 'The size and weight of your vehicle'
-        },
-        {
-            imagePath: '/assets/images/calculatedStepImage2.png',
-            text: 'Distance between vehicle pickup and delivery '
-        },
-        {
-            imagePath: '/assets/images/calculatedStepImage3.png',
-            text: 'Choosing open or enclosed car transport'
-        },
-        {
-            imagePath: '/assets/images/calculatedStepImage4.png',
-            text: 'The condition of your vehicle'
-        },
-    ];
-
 
     return (
         <section className={classes.calculatedFee}>

@@ -7,13 +7,12 @@ import { selectMenus } from '@/store/manu';
 import { socialIcons } from '@/constants/options';
 import useWindowSize from '@/hooks/useWindowSize';
 import Portal from '@/components/ui/Portal';
-
-import classes from './index.module.css';
 import classNames from 'classnames';
+import classes from './index.module.css';
 
 const SocialLinks = () => {
     const { width } = useWindowSize();
-    const { data, } = useAppSelector(selectMenus);
+    const { data } = useAppSelector(selectMenus);
     const dispatch = useAppDispatch();
     const isOpenQuoteFormDesktop = useAppSelector(selectQuoteFormStatusDesktop)
     const openFormPopup = () => dispatch(openQuoteFormDesktop());
@@ -30,7 +29,7 @@ const SocialLinks = () => {
                 </div>
                 { data?.social.map((social, index) => {
                     const IconComponent = socialIcons[social.title];
-                    return IconComponent && <IconComponent key={index} />
+                    return IconComponent && <IconComponent key={index} />;
                 })}
             </div>
             {isOpenQuoteFormDesktop && (

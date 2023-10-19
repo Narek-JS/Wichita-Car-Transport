@@ -11,15 +11,6 @@ import classes from './index.module.css';
 const HelpSection: React.FC = () => {
     const { data: menuData } = useAppSelector(selectMenus);
     const { data } = useGetHelpsQuery('help');
-    
-    const descriptionTextes = [
-        'With our simple steps, you can get a free car shipping quote at New York City Car Transport!.',
-        'With us, your vehicle moving will be the easiest thing to do.',
-        'You can get the quote on our website or you can also get a direct quote by calling us and speaking to one of our live agents.',
-        'After checking your information, our agents will get back to you with the quoted price.'
-    ];
-
-    console.log(data);
 
     return (
         <section className={classes.helpSection}>
@@ -33,10 +24,16 @@ const HelpSection: React.FC = () => {
             />
                 <div className={classes.content}>
                     <div className={classes.textes}>
-                        <h3 className={classes.title}>
-                            {data?.title}
-                            {/* If you need an any <span>HELP</span>,  using Our auto transport <span>Quote Form</span> just let us know ! */}
-                        </h3>
+                        {data?.title && 
+                            <h3
+                                className={classes.title}
+                                dangerouslySetInnerHTML={{
+                                    __html: data.title
+                                        .replace('HELP', '<span>HELP</span>')
+                                        .replace('Quote Form', '<span>Quote Form</span>')
+                                }}
+                            />
+                        }
                         { data?.texts.map((text, index) => (
                             <p key={index} className={classes.description}>{text}</p>
                         ))}
