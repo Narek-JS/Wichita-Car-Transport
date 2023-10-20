@@ -11,6 +11,7 @@ import { latestPostsApi } from './posts/latestPosts';
 import { helpApi } from './help';
 import { dynamicPageApi } from './dynamicPage';
 import { postsApi } from './posts/posts';
+import { searchApi } from './search';
 
 export const store = configureStore({
   reducer: {
@@ -21,6 +22,7 @@ export const store = configureStore({
     [latestPostsApi.reducerPath]: latestPostsApi.reducer,
     [dynamicPageApi.reducerPath]: dynamicPageApi.reducer,
     [postsApi.reducerPath]: postsApi.reducer,
+    [searchApi.reducerPath]: searchApi.reducer,
     [customerReviewsApi.reducerPath]: customerReviewsApi.reducer,
     [transportServicesApi.reducerPath]: transportServicesApi.reducer,
     siteBar: siteBarSlice.reducer,
@@ -34,6 +36,7 @@ export const store = configureStore({
     dynamicPageApi.middleware,
     latestPostsApi.middleware,
     postsApi.middleware,
+    searchApi.middleware,
     customerReviewsApi.middleware,
     transportServicesApi.middleware
   ]),

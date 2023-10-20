@@ -3,7 +3,7 @@ type FindMessage = {
     title: string; 
 };
 
-interface ISearchData {
+export interface ISearchData {
     pages: Array<FindMessage>;
     postByCategory: Array<FindMessage>;
     posts: Array<FindMessage>;

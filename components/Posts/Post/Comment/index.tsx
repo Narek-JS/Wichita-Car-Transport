@@ -13,7 +13,7 @@ interface IFormData {
     checkbox: boolean;
 };
 
-const schema = yup.object().shape({
+const schema: any = yup.object().shape({
     name: yup.string().required(),
     phone: yup.string().required(),
     email: yup.string().required().matches(
@@ -36,7 +36,7 @@ const Comment = () => {
     const onSubmit = (data: IFormData) => {
         alert(JSON.stringify(data, undefined, 2));
     };
-
+    
     return ( 
         <div className={classes.postComment}>
             <h2 className={classes.postCommentTitle}>Leave a Reply</h2>
@@ -48,7 +48,7 @@ const Comment = () => {
                         className={classes.comment}
                         {...register('comment', { minLength: 2 })}
                     />
-                    <span className={classes.error}>{errors.comment?.message}</span>
+                    <span className={classes.error}>{errors?.comment?.message}</span>
                 </div>
                 <div className={classes.inputs}>
                     <InputUI
