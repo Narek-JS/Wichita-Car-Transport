@@ -25,14 +25,15 @@ const PostCard: React.FC<IProps> = ({
     return (
         <div className={classes.card}>
             <div className={classes.wrapperImage}>
-                <div className={classes.bg}/>
-                <Image
-                    src={imagePath}
-                    alt="post image"
-                    className={classes.image}
-                    width={390}
-                    height={240}
-                />
+                <Link className={classes.bg} href={url}/>
+                    <Image
+                        src={imagePath}
+                        alt="post image"
+                        className={classes.image}
+                        width={390}
+                        height={240}
+                        sizes='(max-width: 768px) 100vw, (max-width: 1200) 50vw, 33vw'
+                    />
             </div>
             <div className={classes.content}>
                 <div className={classes.firstList}>

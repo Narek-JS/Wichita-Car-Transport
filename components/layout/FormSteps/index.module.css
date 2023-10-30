@@ -6,8 +6,8 @@
 
 .content {
     display: flex;
-    justify-content: center;
-    gap: 100px;
+    justify-content: space-between;
+    gap: 20px;
 }
 
 .form {
@@ -107,6 +107,31 @@
     .explore p {
         font-size: 33px;
         text-align: center;
+    }
+
+    .explore .fz24 {
+        font-size: 18px;
+    }
+}
+
+@media screen and (max-width: 991px) {
+    .content {
+        gap: 10px;
+    }
+
+    .explore p {
+        font-size: 28px;
+        text-align: center;
+    }
+
+    .explore .fz24 {
+        font-size: 16px;
+    }
+}
+
+@media screen and (max-width: 905px) {
+    .textes {
+        display: none;
     }
 }
 

@@ -11,10 +11,11 @@ import classNames from 'classnames';
 import classes from './index.module.css';
 
 const SocialLinks = () => {
+    const dispatch = useAppDispatch();
     const { width } = useWindowSize();
     const { data } = useAppSelector(selectMenus);
-    const dispatch = useAppDispatch();
     const isOpenQuoteFormDesktop = useAppSelector(selectQuoteFormStatusDesktop)
+
     const openFormPopup = () => dispatch(openQuoteFormDesktop());
     const closeFormPopup = () => dispatch(closeQuoteFormDesktop());
 

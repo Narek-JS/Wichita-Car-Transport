@@ -14,3 +14,169 @@
     width: 515px;
     height: 320px;
 }
+
+.questionsSection {
+    margin-top: 30px;
+    padding: 42px 0;
+    width: 100;
+    min-height: calc(100vh - 450px);
+}
+
+.title {
+    color: #DDC00C;
+    font-weight: 700;
+    font-size: 20px; 
+    margin-bottom: 25px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    position: relative;
+    max-width: 400px;
+    width: 100%;
+    margin: 0 auto;
+}
+
+.title::before,
+.title::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 100px;
+    height: 4px;
+    background-color: rgba(0, 59, 86, 0.6);
+    display: inline-block;
+    border-radius: 5px;
+}
+
+.title::before {
+    left: 30px;
+}
+
+.title::after {
+    right: 30px;
+}
+
+
+.subTitle {
+    color: rgba(0, 12, 51, 0.6);
+    font-weight: 400;
+    font-size: 18px; 
+    margin-bottom: 20px;
+    text-align: center;
+    margin-top: 25px;
+    white-space: nowrap;
+}
+
+.wrapperQuestions {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.questionList {
+    overflow: hidden;
+}
+
+.question {
+    background: #F4F7FB;
+    border: 1px solid rgba(187, 34, 51, 0.15);
+    border-radius: 20px;
+
+    padding: 18px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+}
+
+.activeQuestion {
+    border-bottom: none;
+    border-radius: 20px 20px 0 0;
+}
+
+.question p {
+    color: #005379;
+    font-weight: 500;
+    font-size: 20px; 
+}
+
+.activeQuestion p {
+}
+
+.question .icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-width: 32px;
+    height: 32px;
+    cursor: pointer;
+    border-radius: 999px;
+    background-color: rgba(0, 41, 122, 0.15);
+} 
+
+.answer {
+    background: #F4F4F3;
+    border-radius: 15px 15px 10px 10px;
+    padding: 30px;
+    color: #003B56;
+    font-size: 20px; 
+}
+
+.inActive {
+    display: none;
+}
+
+.active {
+    display: block;
+    position: relative;
+    z-index: -1;
+    border-radius: 0 0 20px 20px;
+    border: 1px solid rgba(187, 34, 51, 0.15);
+    background: #F4F7FB;
+    border-top: none;
+    padding-top: 0px;
+    animation: formTop .3s forwards;
+}
+
+@media screen and (max-width: 768px) {
+    .question,
+    .answer {
+        padding: 15px;
+    }
+
+    .answer {
+        line-height: 20px;
+        padding-top: 0;
+    }
+
+    .answer, 
+    .question p {
+        font-size: 16px; 
+    }
+
+    .questionsSection {
+        margin-top: 0;
+        padding-top: 0;
+    }
+}
+
+@keyframes formTop {
+    from {
+        margin-top: -500px;
+    }
+    to {
+        margin-top: 0;
+    }
+}
+
+
+@keyframes toTop {
+    from {
+        margin-top: 0px;
+    }
+    to {
+        margin-top: -500;
+    }
+}

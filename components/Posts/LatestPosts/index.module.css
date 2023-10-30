@@ -1,0 +1,55 @@
+.latstBlocks {
+    background: #F4F7FB;
+    padding: 50px 0;
+    margin: 50px 0;
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+}
+
+.firstLine {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.firstLine p {
+    text-transform: capitalize;
+    color: #001D4A;
+    font-weight: 700;
+    font-size: 48px;
+}
+
+.firstLine a {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    color: #DDC00C;
+}
+
+.contentBlocks {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.contentBlocks div {
+    flex: 25;
+    width: 290px;
+    min-width: 290px;
+}
+
+.contentBlocks div p {
+    max-height: 100px;
+}
+
+@media screen and (max-width: 768px) {
+    .contentBlocks .card {
+        flex: 25;
+        width: 200px;
+        min-width: 200px;
+    }
+}

@@ -1,22 +1,38 @@
 .form {
-    max-width: 621px;
+    width: 621px;
     min-width: 530px;
     height: 420px;
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: space-between;
+    gap: 15px;
     border: 3px solid rgba(221, 192, 12, 0.4);
     border-radius: 10px;
     background: rgba(255, 255, 255, 0.8);
-    padding: 25px;
+    padding: 15px 20px;
     margin: 30px auto 0 auto;
     overflow-y: auto;
     position: relative;
 }
 
+.form::-webkit-scrollbar {
+    width: 8px;
+}
+  
+.form::-webkit-scrollbar-track {
+    background-color: #FFFFFF;
+    border-radius: 10px;
+}
+  
+.form::-webkit-scrollbar-thumb {
+    background-color: #DDC00C;
+    border-radius: 10px;
+}
+
 .goBack {
     position: absolute;
-    top: 25px;
+    top: 15px;
     left: 25px;
     display: flex;
     gap: 5px;
@@ -39,30 +55,77 @@
     font-size: 30px;
     text-align: center;
     padding-bottom: 5px;
-    margin-bottom: 30px;
 }
 
 .fromTitle span {
     color: #DDC00C;
 }
 
-.content {
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
-    margin-bottom: 35px;
-}
-
 .nestedNode {
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 15px;
+    width: 100%;
+}
+
+.nestedNodeMethods {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 15px;
 }
 
 .node {
     display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.vehicles {
+    flex-direction: column;
+    align-items: start;
+}
+
+.vehiclesMobile {
+    display: none;
     flex-direction: column;
     gap: 5px;
+    width: 98%;
+}
+
+.vehicleLine {
+    overflow-y: clip;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.vehicleLineTopPanel {
+    position: relative;
+    z-index: 1;
+    background: #F5F5F5;
+    color: #005379;
+    font-weight: 700;
+    font-size: 18px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+    height: 30px;
+}
+
+.vehicleLine .value {
+    transform: translateY(-70px);
+    height: 0;
+    opacity: 0;
+    transition: all .2s;
+}
+
+.activeVehicleLine .value {
+    transform: translateY(0px);
+    height: 35px;
+    opacity: 1;
 }
 
 .type {
@@ -71,10 +134,40 @@
     font-size: 20px;
 }
 
+.node .type {
+    min-width: 50px;
+}
+
+.nestedNodeMethods .type {
+    min-width: initial;
+}
+
 .value {
     color: #005379;
     font-weight: 700;
-    font-size: 24px;
+    font-size: 18px;
+}
+
+.vehicles .value {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.vehicles .value p {
+    color: #005379;
+    font-weight: 700;
+    font-size: 18px;
+    width: 37%;
+}
+
+.vehicles .value p:last-child {
+    width: 82px;
+}
+
+.vehicles .value p span {
+    color: #DDC00C;
 }
 
 .btn {
@@ -143,11 +236,14 @@
         background: #F5F5F5;
         min-width: initial;
         height: initial;
+        min-height: 420px;
+        width: 100%;
+        max-width: 621px;
     }
 
     .goBack {
-        top: 15px;
-        left: 15px;
+        top: 10px;
+        left: 10px;
     }
     
     .goBack span {
@@ -160,5 +256,33 @@
 
     .value {
         font-size: 20px;
+    }
+
+    .vehicles .value {
+        display: none;
+    }
+
+    .vehiclesMobile {
+        display: flex;
+    }
+
+    .vehiclesMobile .value {
+        display: flex;
+    }
+}
+
+@media screen and (max-width: 530px){
+    .vehiclesMobile .value {
+        flex-direction: column;
+        align-items: start;
+    }
+    
+    .activeVehicleLine .value {
+        height: 80px;
+    }
+
+    .vehicles .value p,
+    .vehicles .value p:last-child {
+        width: initial;
     }
 }

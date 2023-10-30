@@ -10,6 +10,7 @@ import { SocialLinks } from './SocialLinks';
 import { useRouter } from 'next/router';
 import { ScrollTopIcon } from './ScrollTopIcon';
 import { Ubuntu } from 'next/font/google';
+import { ToastContainer } from 'react-toastify';
 
 const ubuntuFont = Ubuntu({
   weight: '400',
@@ -23,7 +24,7 @@ interface IProps {
 };
 
 const Layout: React.FC<IProps> = ({ children, pageTitle = 'New York' }) => {
-    const { pathname, query } = useRouter();
+    const { pathname } = useRouter();
     
     const isBanner = (
         pathname === '/blogs' ||
@@ -43,6 +44,7 @@ const Layout: React.FC<IProps> = ({ children, pageTitle = 'New York' }) => {
                     {!isBanner && <Banner />}
                     <SideBarMenu />
                     <SocialLinks />
+                    <ToastContainer />
                     {children}
                     <ScrollTopIcon />
                     <Footer />

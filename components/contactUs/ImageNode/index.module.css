@@ -6,7 +6,7 @@
 
 .title {
     color: #003B56;
-    font-weight: 700;
+    font-weight: 500;
     font-size: 24px;
 }
 
@@ -28,4 +28,14 @@
 .link span {
     color: #DDC00C;
     text-decoration: underline;
+}
+
+@media screen and (max-width: 768px) {
+    .link {
+        text-align: center;
+    }
+
+    .imageNode {
+        align-items: center;
+    }
 }

@@ -43,6 +43,7 @@
 .underNode a {
     color: #DDC00C;
     font-size: 14px;
+    text-decoration: underline;
 }
 
 .parentNode {
@@ -89,6 +90,13 @@
     color: #FFFFFF;
     font-size: 14px;
     font-weight: 400;
+    transition: all .2s;
+    text-decoration: underline;
+}
+
+.link:hover {
+    color: #DDC00C;
+    text-decoration: underline;
 }
 
 @media screen and (max-width: 768px) {

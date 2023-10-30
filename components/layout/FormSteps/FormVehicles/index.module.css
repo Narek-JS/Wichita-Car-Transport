@@ -1,24 +1,41 @@
 .form {
-    max-width: 621px;
+    width: 621px;
     min-width: 530px;
     height: 420px;
-    
+
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: space-between;
 
     border: 3px solid rgba(221, 192, 12, 0.4);
     background: rgba(255, 255, 255, 0.8);
     border-radius: 10px;
-    padding: 25px;
+    padding: 10px 25px;
     margin: 30px auto 0 auto;
-
+    overflow-y: auto;
+    overflow-x: clip;
     position: relative;
+}
+
+.form::-webkit-scrollbar {
+    width: 8px;
+}
+  
+.form::-webkit-scrollbar-track {
+    height: 80%;
+    background-color: #FFFFFF;
+    border-radius: 10px;
+}
+
+.form::-webkit-scrollbar-thumb {
+    background-color: #DDC00C;
+    border-radius: 10px;
 }
 
 .goBack {
     position: absolute;
-    top: 25px;
+    top: 10px;
     left: 25px;
     display: flex;
     gap: 5px;
@@ -36,27 +53,29 @@
     color: #005379;
     width: 260px;
     border-bottom: 1px dashed #005379;
-
     font-weight: 700;
     font-size: 30px;
     text-align: center;
     padding-bottom: 5px;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
 }
 
 .fromTitle span {
     color: #DDC00C;
 }
 
+.cehicleGroup {
+    display: flex;
+    flex-direction: column;
+}
+
 .vehicles {
     display: flex;
     flex-direction: column;
-    margin-bottom: 10px;
-    overflow-y: auto;
-    min-height: 87px;
+    gap: 5px;
 }
 
-.vehicles label {
+.cehicleGroup label {
     margin-bottom: 5px;
 }
 
@@ -64,8 +83,17 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    gap: 20px;
-    margin-bottom: 20px;
+    gap: 15px;
+    margin-top: 15px;
+}
+
+.vehicleList:last-child {
+    margin-bottom: 10px;
+}
+
+.vehicleList:nth-child(1) {
+    margin-top: 0px;
+    margin-bottom: 0px;
 }
 
 .inputWrapper {
@@ -85,7 +113,9 @@
     width: 100%;
 }
 
-.input::placeholder { color: rgba(0, 41, 122, 0.6); }
+.input::placeholder {
+    color: rgba(0, 41, 122, 0.6);
+}
 
 .input:focus {
     outline: 2px solid transparent;
@@ -114,7 +144,12 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 30px;
+    margin-bottom: 5px;
+    margin-top: 10px;
+}
+
+.vehicles:has(.overflowAuto) .underVehicleLine {
+    margin-top: 0px;
 }
 
 .underVehicleLine span {
@@ -136,10 +171,8 @@
     justify-content: space-between;
     align-items: center;
     width: 100%;
-    margin-bottom: 30px;
     gap: 20px;
 }
-
 
 .seccondLine {
     margin-bottom: 0;
@@ -269,9 +302,10 @@
 
 .error {
     position: absolute;
-    bottom: -20px;
+    bottom: -13px;
     left: 5px;
-    font-size: 14px;
+    font-size: 11px;
+    letter-spacing: .5px;
     color: red;
 }
 
@@ -282,11 +316,14 @@
         background: #F5F5F5;
         min-width: initial;
         height: initial;
+        width: 100%;
+        max-width: 621px;
+        min-height: 420px;
     }
 
     .goBack {
-        top: 15px;
-        left: 15px;
+        top: 10px;
+        left: 10px;
     }
     
     .goBack span {
@@ -294,21 +331,26 @@
     }
 
     .underVehicleLine span {
-        font-size: 12px;
+        font-size: 16px;
     }
     
     .seccondLine {
-        flex-direction: column;
         align-items: start;
         margin-bottom: 0px;
+        gap: 10px;
     }
 
     .nestedNode { 
         flex-wrap: wrap;
+        gap: 20px;
     }
 
     .vehicleList {
         gap: 5px;
+    }
+
+    .shippingMethod, .operableOrNot {
+        gap: 10px;
     }
 
     .error {
@@ -316,4 +358,89 @@
         bottom: -15px;
         white-space: nowrap;
     }
+}
+
+@media screen and (max-width: 611px) {
+    .seccondLine {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .nestedNode {
+        gap: 20px;
+        justify-content: flex-start;
+    }
+
+    .seccondLine,
+    .nestedNode {
+        margin-bottom: 15px;
+    }
+}
+
+@media screen and (max-width: 530px) {
+    .input {
+        padding: 7px 10px;
+    }
+}
+
+@media screen and (max-width: 430px) {
+    .nestedNode {
+        gap: 10px;
+        justify-content: space-between;
+    }
+
+    .vehicles {
+        width: 100%;
+    }
+
+    .vehicleList {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .inputWrapper {
+        width: 100%;
+    }
+
+    .dropDownWrapper {
+        width: 100%;
+    } 
+
+    .underVehicleLine span {
+        font-size: 16px;
+    }
+
+    .removeIcon svg,
+    .addIcon svg {
+        max-width: 18px;
+    }
+
+    .checkboxInput {
+        width: 18px;
+        min-width: 18px;
+        height: 18px;
+        border: 1.8px solid #DDC00C;
+    }
+    
+    .checkboxInput::before {
+        border: 1.8px solid #DDC00C;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    .underVehicleLine span {
+        font-size: 15px;
+    }
+}
+
+@media screen and (max-width: 389px) {
+    .underVehicleLine span,
+    .checkBox label {
+        font-size: 14px;
+    }
+
+    .addIcon span span {
+        display: none;
+    }
+
 }

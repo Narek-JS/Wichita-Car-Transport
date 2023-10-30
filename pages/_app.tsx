@@ -2,6 +2,7 @@ import type { AppProps } from 'next/app';
 import Layout from '@/components/layout';
 import Head from 'next/head';
 import '@/styles/globals.css';
+import 'react-toastify/dist/ReactToastify.css';
 
 Array.prototype.isEmpty = function () {
   return !Boolean(this.length);

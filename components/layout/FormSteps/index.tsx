@@ -1,8 +1,9 @@
-import { useCallback, useRef, useState } from 'react';
-import { FormFromTo } from './FormFromTo';
-import { FormVehicles } from './FormVehicles';
 import { FormConfirmation } from './FormConfirmation';
+import { useCallback, useRef, useState } from 'react';
+import { FormVehicles } from './FormVehicles';
 import { FormUserInfo } from './FormUserInfo';
+import { eventEmitter } from '@/eventEmitter';
+import { FormFromTo } from './FormFromTo';
 import { StepsBar } from './StepsBar';
 import {
     IFormData,
@@ -14,16 +15,22 @@ import {
 } from '@/model/form';
 import classes from './index.module.css';
 
+const initialValues = {
+    from_to: initialValuesFromToForm,
+    form_vehicles: initialValuesVehicleForm,
+    form_user_info: initialValuesUserInfoForm
+};
+
 const FormSteps: React.FC = () => {
     const [ step, setStep ] = useState<1 | 2 | 3 | 4>(1);
     const [ inputBorderAnime, setInputBorderAnime ] = useState<'' | 'back' | 'continue'>('');
-    
+
     const wholeFormDataRef = useRef<IFormData>({
-        from_to: initialValuesFromToForm,
-        form_vehicles: initialValuesVehicleForm,
-        form_user_info: initialValuesUserInfoForm
+        form_user_info: { ...initialValues.form_user_info },
+        form_vehicles: { ...initialValues.form_vehicles },
+        from_to: { ...initialValues.from_to }
     });
-    
+
     const updateGeneralFormData = useCallback((name: TypeNamesFormData, updatedFormData: TypeFormData) => {
         wholeFormDataRef.current[name] = updatedFormData as any;
     }, [step]);
@@ -32,6 +39,19 @@ const FormSteps: React.FC = () => {
         if(inputBorderAnime) return;
         setInputBorderAnime(to);
         setTimeout(() => setInputBorderAnime(''), 1500);
+    };
+
+    const handleResetForm = () => {
+        wholeFormDataRef.current = {
+            form_user_info: { ...initialValues.form_user_info },
+            form_vehicles: { ...initialValues.form_vehicles },
+            from_to: { ...initialValues.from_to }
+        };
+        eventEmitter.publish('resetForm', {
+            form_user_info: { ...initialValues.form_user_info },
+            form_vehicles: { ...initialValues.form_vehicles },
+            from_to: { ...initialValues.from_to }
+        });
     };
 
     return (
@@ -85,7 +105,8 @@ const FormSteps: React.FC = () => {
                             animatedBorder={inputBorderAnime}
                             initialValues={wholeFormDataRef.current.form_user_info}
                             setStep={setStep}
-                            updateGeneralFormData={updateGeneralFormData}
+                            formData={wholeFormDataRef.current}
+                            handleResetForm={handleResetForm}
                         />
                     )}
                 </div>

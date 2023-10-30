@@ -2,8 +2,13 @@ import { useFormik } from 'formik';
 import { SmallTrucForRecapcha } from '@/public/assets/svgs/SmallTrucForRecapcha';
 import { SmallOpenTrucForRecapcha } from '@/public/assets/svgs/SmallOpenTrucForRecapcha';
 import { ArrowForBtn } from '@/public/assets/svgs/ArrowForBtn';
-import { useState } from 'react';
+import { useState, useEffect, Fragment } from 'react';
 import { RecapchaWinStar } from '@/public/assets/svgs/RecapchWinStar';
+import { TextField } from '@mui/material';
+import { hendleTypeRemoveSpace } from '@/helper/strings';
+import { useContactUsMutation } from '@/store/contactUs';
+import { LoadingUI } from '@/components/ui/LoadingUI';
+import { toast } from 'react-toastify';
 import * as yup from "yup";
 import classes from './index.module.css';
 import classNames from 'classnames';
@@ -24,91 +29,99 @@ const initialValues = {
     message: ''
 };
 
+const validationSchema = yup.object({
+    name: yup.string().required(),
+    email: yup.string().required().email(),
+    phone: yup.string().required(),
+    subject: yup.string().required(),
+    message: yup.string().required()
+});
+
 const Form: React.FC = () => {
     const [ isCheckRecapchaAnswer, setIsCheckRecapchaAnswer ] = useState<Boolean | null>(null);
+    const [ onSubmit, { isLoading, data, isError } ] = useContactUsMutation();
 
     const formik = useFormik<IFormData>({
         initialValues,
-        onSubmit: (values) => {
-            console.log('values --> ', values);
-        },
-        validationSchema: yup.object({
-            name: yup.string().required(),
-            email: yup.string().required().email(),
-            phone: yup.string().required(),
-            subject: yup.string().required(),
-            message: yup.string().required()
-        })
+        onSubmit,
+        validationSchema 
     });
 
-    const selectRecapcha = (bool: Boolean) => setIsCheckRecapchaAnswer(bool);
+    useEffect(() => {
+        if(isError) {
+            toast.error('sorry something is wrong', {
+                position: toast.POSITION.TOP_RIGHT
+            });
+        } else if(data?.action) {
+            formik.resetForm();
+            setIsCheckRecapchaAnswer(null);
+            toast.success('your message is successfully sent', {
+                position: toast.POSITION.TOP_RIGHT
+            });
+        } else if(data?.action === false) {
+            toast.error('sorry something is wrong', {
+                position: toast.POSITION.TOP_RIGHT
+            });
+        };
+    }, [data, isError]);
 
-    const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    const handleSubmit = (event) => {
         event.preventDefault();
-        isCheckRecapchaAnswer && formik.handleSubmit(event);
+        if(formik.isValid === false || !formik.values.name) {
+            formik.handleSubmit(event);
+        } else if (isCheckRecapchaAnswer !== false) {
+            setIsCheckRecapchaAnswer(true);
+        } else {
+            formik.handleSubmit(event);
+        };
     };
 
+    const handleRecapchaChange = (status: boolean) => {
+        if(isCheckRecapchaAnswer !== false) {
+            setIsCheckRecapchaAnswer(status);
+        };
+    };
+
+    const handleChange = (event) => {
+        hendleTypeRemoveSpace(event);
+        formik.handleChange(event);
+    };
+
+    const getTextFieldOptions = (name: string, label: string): any => ({
+        helperText: formik.touched?.[name] && formik.errors?.[name],
+        error: formik.touched?.[name] && formik.errors?.[name],
+        classNames: classes.textField,
+        value: formik.values?.[name],
+        onChange: handleChange,
+        variant: 'standard',
+        label, name,
+    });
+
     return (
-        <form className={classes.form} onSubmit={formik.handleSubmit}>
-            <p className={classes.description}>You can contact Phoenix Car Transport using the following details:</p>
+        <form className={classes.form} onSubmit={handleSubmit}>
+            <p className={classes.description}>You can contact Wichita Car Transport using the following details:</p>
             <div className={classes.frstLine}>
-                <div className={classes.wrapperInput}>
-                    <input
-                        className={classes.input}
-                        name='name'
-                        placeholder='Your Name *'
-                        autoComplete='off'
-                        onChange={formik.handleChange}
-                        value={formik.values.name}
-                    />
-                    {formik.touched.name && formik.errors?.name && <span className={classes.error}>{formik.errors.name}</span>}
-                </div>
-                <div className={classes.wrapperInput}>
-                    <input
-                        className={classes.input}
-                        name='email'
-                        placeholder='Your Email *'
-                        autoComplete='off'
-                        onChange={formik.handleChange}
-                        value={formik.values.email}
-                    />
-                    {formik.touched.email && formik.errors?.email && <span className={classes.error}>{formik.errors.email}</span>}
-                </div>
-                <div className={classes.wrapperInput}>
-                    <input
-                        className={classes.input}
-                        name='phone'
-                        placeholder='Your Phone*'
-                        autoComplete='off'
-                        onChange={formik.handleChange}
-                        value={formik.values.phone}
-                    />
-                    {formik.touched.phone && formik.errors?.phone && <span className={classes.error}>{formik.errors.phone}</span>}
-                </div>
-                <div className={classes.wrapperInput}>
-                    <input
-                        className={classes.input}
-                        name='subject'
-                        placeholder='Subject*'
-                        autoComplete='off'
-                        onChange={formik.handleChange}
-                        value={formik.values.subject}
-                    />
-                    {formik.touched.subject && formik.errors?.subject && <span className={classes.error}>{formik.errors.subject}</span>}
-                </div>  
+                <TextField {...getTextFieldOptions('name', 'your Name *')} />
+                <TextField {...getTextFieldOptions('email', 'Your Email *')} />
+                <TextField {...getTextFieldOptions('phone', 'Your Phone *')} />
+                <TextField {...getTextFieldOptions('subject', 'Subject *')} />
             </div>
             <div className={classes.seccondLine}>
-                <div className={classes.wrapperInput}>
-                    <textarea
-                        className={classes.textarea}
-                        name='message'
-                        placeholder='Your Message*'
-                        autoComplete='off'
-                        onChange={formik.handleChange}
-                        value={formik.values.message}
-                    />
-                    {formik.touched.message && formik.errors?.message && <span className={classes.error}>{formik.errors.message}</span>}
-                </div>
+                <TextField
+                    error={Boolean(formik?.touched?.message && formik.errors?.message)}
+                    helperText={formik?.touched?.message && formik.errors?.message}
+                    className={classNames(classes.textField, classes.textarea)}
+                    inputProps={{ style: { height: '100%' } }}
+                    onChange={(event) => {
+                        hendleTypeRemoveSpace(event)
+                        formik.handleChange(event);
+                    }}
+                    id="outlined-multiline-static"
+                    value={formik.values.message}
+                    name='message' rows={4}
+                    label="Your Message *" 
+                    multiline
+                />
                 <div className={classes.recaptcha}>
                     <h2 className={classNames(classes.title, {
                         [classes.titleError]: isCheckRecapchaAnswer,
@@ -120,23 +133,27 @@ const Form: React.FC = () => {
                     <div className={classNames(classes.boxes, {
                         [classes.recapchaWin]: isCheckRecapchaAnswer === false
                     })}>
-                        <div className={classes.box} onClick={() => isCheckRecapchaAnswer !== false && selectRecapcha(false)}>
+                        <div className={classes.box} onClick={() => handleRecapchaChange(false)}>
                             {isCheckRecapchaAnswer !== false  ? <SmallTrucForRecapcha /> : <RecapchaWinStar /> }
                         </div>
-                        <div className={classes.box} onClick={() => isCheckRecapchaAnswer !== false && selectRecapcha(true)}>
+                        <div className={classes.box} onClick={() => handleRecapchaChange(true)}>
                             <SmallOpenTrucForRecapcha />
                         </div>
                     </div>
-
+                    { isCheckRecapchaAnswer &&
+                        <p className={classes.errorRecaptcha}>Please choose one of this option</p>
+                    }
                 </div>
                 <button className={classes.btn} type='submit'>
-                    <ArrowForBtn />
-                    Send
+                    {isLoading && <LoadingUI type='roundSmall' />}
+                    {!isLoading && (
+                        <Fragment>
+                            <ArrowForBtn />
+                            Send
+                        </Fragment>
+                    ) }
                 </button>
             </div>
-            { Boolean(Object.keys(formik.errors).length) &&
-                <p className={classes.underText}>One or more fields have an error. Please check and try again.</p>
-            }
         </form>
     );
 };

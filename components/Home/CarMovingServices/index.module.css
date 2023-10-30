@@ -19,15 +19,15 @@
 }
 
 .services {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    display: grid;
+    grid-template-columns: calc(25% - 15px) calc(25% - 15px) calc(25% - 15px) calc(25% - 15px);
     gap: 20px;
 }
 
 @media screen and (max-width: 991px) {
     .services {
-        flex-wrap: wrap;
+        grid-template-columns: calc(40% - 10px) calc(40% - 10px);
+        justify-content: center;
     }
 }
 
@@ -41,5 +41,17 @@
 @media screen and (max-width: 768px) {
     .carMovingsSection {
         margin: 0;
+    }
+
+    .services {
+        grid-template-columns: calc(50% - 10px) calc(50% - 10px);
+        justify-content: center;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .services {
+        grid-template-columns: 100%;
+        justify-content: center;
     }
 }

@@ -26,9 +26,8 @@
 
 .fromTitle {
     color: #FFFFFF;
-    width: 260px;
+    width: 280px;
     border-bottom: 1px solid #FFFFFF;
-
     font-weight: 700;
     font-size: 30px;
     text-align: center;
@@ -72,16 +71,25 @@
     flex-direction: column;
     gap: 10px;
     position: relative;
+    width: 100%;
 }
 
 .input {
     background: #FFFFFF;
-    height: 38px;
-    padding: 7px 20px;
+    height: 37px;
+    padding: 7px 10px 4px 12px;
     border-radius: 5px;
     border: none;
     line-height: inherit;
     width: 100%;
+}
+
+.input::placeholder {
+    color: #A1A1A2;
+    font-size: 15px;
+    font-weight: 100;
+    letter-spacing: .5px;
+    font-family: sans-serif;
 }
 
 .input:focus {
@@ -119,6 +127,7 @@
     color: #FFFFFF;
     font-weight: 700;
     font-size: 20px;
+    letter-spacing: .5px;
 }
 
 .addIcon, .removeIcon {
@@ -220,8 +229,9 @@
 
 .error {
     position: absolute;
-    bottom: -20px;
+    bottom: -13px;
     left: 5px;
-    font-size: 14px;
+    font-size: 11px;
+    letter-spacing: .5px;
     color: red;
 }

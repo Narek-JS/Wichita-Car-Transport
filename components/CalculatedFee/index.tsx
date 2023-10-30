@@ -30,7 +30,7 @@ const CalculatedFee: React.FC = () => {
                         <div className={classes.questionsBlock}>
                             { data?.notes.map((question, index) => (
                                 <div key={index} className={classNames(classes.questionNode, {
-                                    activeNode: activeNoteIndex === index
+                                    [classes.activeNode]: activeNoteIndex === index
                                 })}>
                                     <p onClick={() => toogleNote(index)}>
                                         {question.question}

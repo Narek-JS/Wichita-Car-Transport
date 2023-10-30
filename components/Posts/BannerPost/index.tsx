@@ -24,8 +24,10 @@ const BannerPost: React.FC<IPost> = ({
                     src={imagePath || ''}
                     alt='Banner Post image'
                     className={classes.image}
-                    width={973}
-                    height={600}
+                    width={800}
+                    height={550}
+                    priority={true}
+                    sizes='(max-width: 768px) 100vw, (max-width: 1200) 50vw, 33vw'
                 />
                 <div className={classes.postData}>
                     <div className={classes.firstLine}>

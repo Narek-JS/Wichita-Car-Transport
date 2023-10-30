@@ -7,4 +7,23 @@
     align-items: center;
     gap: 18px;
     white-space: nowrap;
+    letter-spacing: .5px;
+}
+
+@media screen and (max-width: 768px) {
+    .label {
+        gap: 5px;
+    }
+}
+
+@media screen and (max-width: 430px) {
+    .label {
+        font-size: 16px;
+    }
+}
+
+@media screen and (max-width: 389px) {
+    .label {
+        font-size: 14px;
+    }
 }

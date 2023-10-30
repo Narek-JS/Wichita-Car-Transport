@@ -74,3 +74,21 @@ export type TypeFormData = IFromToFormData | IVehicleFormData | IUserInfoFormDat
 
 export type SetStepFunction = React.Dispatch<React.SetStateAction<1 | 2 | 3 | 4>>;
 export type UpdateGeneralFormData = (name: TypeNamesFormData, updatedFormData: TypeFormData) => void;
+
+export interface ISubmitFormData extends IUserInfoFormData, IFromToFormData {
+    vehicle: Array<IvehicleData>;
+    time: string;
+    shipping: TypeShippingMethod
+    operable: TypeOperableMethod
+};
+
+
+// form animations
+export interface IMentionInitialValues {
+    fromLeft?: Record<string, any>;
+    toRight?: Record<string, any>;
+    fromRight?: Record<string, any>;
+    toLeft?: Record<string, any>;
+};
+
+export type MentionVariants = 'fromLeft' | 'toRight' | 'fromRight' | 'toLeft';

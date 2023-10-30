@@ -1,5 +1,5 @@
 .form {
-    max-width: 621px;
+    width: 621px;
     min-width: 530px;
     height: 420px;
     display: flex;
@@ -10,6 +10,7 @@
     background: rgba(255, 255, 255, 0.8);
     padding: 25px;
     margin: 30px auto 0 auto;
+    overflow-x: hidden;
     overflow-y: auto;
     position: relative;
 }
@@ -84,7 +85,7 @@
 .input {
     background: #FFFFFF;
     height: 38px;
-    padding: 7px 20px;
+    padding: 7px 15px;
     border-radius: 5px;
     border: none;
     line-height: inherit;
@@ -133,9 +134,10 @@
 
 .error {
     position: absolute;
-    bottom: -20px;
+    bottom: -13px;
     left: 5px;
-    font-size: 14px;
+    font-size: 11px;
+    letter-spacing: .5px;
     color: red;
 }
 
@@ -146,11 +148,13 @@
         background: #F5F5F5;
         min-width: initial;
         height: initial;
+        width: 100%;
+        max-width: 621px;
     }
 
     .goBack {
-        top: 15px;
-        left: 15px;
+        top: 10px;
+        left: 10px;
     }
     
     .goBack span {

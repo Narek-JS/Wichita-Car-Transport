@@ -19,6 +19,15 @@ img {
   height: auto;
 }
 
+.autocomplete {
+  border-radius: 5px;
+  background: #FDFDFF;
+}
+
+.autocomplete * {
+  max-height: 44px;
+}
+
 :root {
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
@@ -79,4 +88,20 @@ body:has(.sideBar), body:has(.fullScreen), body:has(.feedbackForm) {
 
 body:has(.feedbackForm) .socialLinks {
     display: none;
+}
+
+.css-18nc3u2 .MuiOutlinedInput-root .MuiAutocomplete-input,
+.css-1h51icj-MuiAutocomplete-root .MuiOutlinedInput-root {
+  padding: 0px 50px 0px 5px !important;
+}
+
+.css-18nc3u2 .MuiOutlinedInput-root .MuiAutocomplete-input:hover fieldset,
+.css-1h51icj-MuiAutocomplete-root .MuiOutlinedInput-root:hover fieldset {
+  border: none !important;
+  outline: none !important;
+}
+
+form * {
+  user-select: none;
+  transition: all .2s !important;
 }

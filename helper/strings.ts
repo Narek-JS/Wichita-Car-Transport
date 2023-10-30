@@ -1,6 +1,6 @@
 interface DangerousHTML {
     __html: string;
-}
+};
   
 export function sliceDangerousHTMLString(
     dangerouslySetInnerHTML: DangerousHTML,
@@ -40,4 +40,19 @@ export function sliceDangerousHTMLString(
 
     // Return the new dangerouslySetInnerHTML object
     return slicedDangerouslySetInnerHTML;
-}
+};
+
+export const hendleTypeRemoveSpace = (event) => {
+    const { target, target: { value } } = event;
+    target.value = value.replace(/^\s+/g, '');
+};
+
+export const handleTypeChangeYear = (event) => {
+    const { target, target: { value } } = event;
+    target.value = value.replace(/\D/g, '').slice(0, 4);
+};
+
+export const handleTypeChangePhone = (event) => {
+    const { target, target: { value } } = event;
+    target.value = value.replace(/\D/g, '');
+};

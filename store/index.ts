@@ -12,6 +12,7 @@ import { helpApi } from './help';
 import { dynamicPageApi } from './dynamicPage';
 import { postsApi } from './posts/posts';
 import { searchApi } from './search';
+import { optionsByZipApi } from './optionsByZip';
 
 export const store = configureStore({
   reducer: {
@@ -23,6 +24,7 @@ export const store = configureStore({
     [dynamicPageApi.reducerPath]: dynamicPageApi.reducer,
     [postsApi.reducerPath]: postsApi.reducer,
     [searchApi.reducerPath]: searchApi.reducer,
+    [optionsByZipApi.reducerPath]: optionsByZipApi.reducer,
     [customerReviewsApi.reducerPath]: customerReviewsApi.reducer,
     [transportServicesApi.reducerPath]: transportServicesApi.reducer,
     siteBar: siteBarSlice.reducer,
@@ -37,6 +39,7 @@ export const store = configureStore({
     latestPostsApi.middleware,
     postsApi.middleware,
     searchApi.middleware,
+    optionsByZipApi.middleware,
     customerReviewsApi.middleware,
     transportServicesApi.middleware
   ]),

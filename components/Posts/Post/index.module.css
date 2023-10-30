@@ -35,13 +35,11 @@
 .postSection {
     display: flex;
     gap: 40px;
-    padding-bottom: 30px;
-    border-bottom: 2px solid rgba(0, 59, 86, 0.25);
     margin-bottom: 30px;
 }
 
 .postContent {
-    max-width: 780px;
+    max-width: 865px;
     display: flex;
     flex-direction: column;
     gap: 40px;
@@ -162,10 +160,11 @@
 }
 
     /* post textes */
+.postBody p,
 .postBody {
     display: flex;
     flex-direction: column;
-    gap: 25px;
+    gap: 20px;
 }
 
 .postBody h2 {
@@ -177,6 +176,7 @@
 
 .postBody p { 
     color: rgba(0, 41, 122, 0.6);
+    line-height: 20px;
 }
 
 .postBody p a {

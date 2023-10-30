@@ -18,17 +18,19 @@
     text-transform: uppercase;
 } 
 
-.wrapperPostsCards {
+.wrapperPostCards {
     display: flex;
     flex-direction: column;
     gap: 20px;
 }
 
 .postsCard {
+    max-width: 300px;
     background: #F4F7FB;
     display: flex;
     flex-direction: column;
     gap: 20px;
+    box-shadow: 5px 5px 5px 0px rgba(7, 39, 101, 0.15);
 }
 
 .postsCardImg {

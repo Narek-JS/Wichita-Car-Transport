@@ -1,7 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { RootState } from "..";
 
-
 export const quoteFormSlice = createSlice({
     name: "quoteForm",
     initialState: { isOpenMobile: false, isOpenDesktop: false },

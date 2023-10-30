@@ -1,15 +1,19 @@
 .form {
     display: flex;
     flex-direction: column;
-    gap: 40px;
+    gap: 25px;
     position: relative;
 }
 
 .description {
-    color: #003B56;
+    color: #005379;
     font-weight: 700;
     font-size: 20px;
-    margin-bottom: 30px;
+}
+
+.frstLine {
+    margin-bottom: 15px;
+    display: grid;
 }
 
 .frstLine, 
@@ -28,6 +32,15 @@
     position: relative;
     max-width: 196px;
     width: 100%;
+}
+
+.textField {
+    position: relative;
+}
+
+.textField p {
+    position: absolute;
+    bottom: -20px;
 }
 
 .seccondLine .wrapperInput {
@@ -54,18 +67,24 @@
 }
 
 .textarea {
-    padding-bottom: 22px;
     border: none;
     text-decoration: none;
     outline: none;
     background: transparent;
-    border-bottom: 1px solid rgba(0, 59, 86, 0.4);
     resize: none;
-    height: 90px;
+    min-height: 90px;
     width: 412px;
+    position: relative;
+}
+
+.textarea p {
+    position: absolute;
+    bottom: -20px;
+    left: -10px;
 }
 
 .recaptcha {
+    position: relative;
     display: flex;
     flex-direction: column;
     gap: 20px;
@@ -94,8 +113,6 @@
     gap: 20px;
 }
 
-
-
 .box {
     transition: all .3s;
     width: 60px;
@@ -120,33 +137,41 @@
 }
 
 .btn {
+    width: 127px;
+    height: 40px;
     background: #DDC00C;
     padding: 10px 30px;
     color: #FFFFFF;
     font-weight: 700;
     font-size: 16px;
     display: flex;
+    justify-content: center;
     align-items: center;
-    gap: 5px;
     cursor: pointer;
+    gap: 5px;
 }
 
-.underText {
-    color: rgba(0, 59, 86, 0.6);
-    font-weight: 400;
-    font-size: 15px;
-
-    position: absolute;
-    bottom: 0px;
-    left: 0;
-}
-
-.error {
-    color: red;
+.errorRecaptcha {
     position: absolute;
     bottom: -20px;
-    left: 0;
+    color: #d32f2f;
     font-size: 12px;
+    font-size: 0.75rem;
+    line-height: 1.66;
+    letter-spacing: 0.03333em;
+}
+
+.frstLine {
+    display: grid;
+    justify-content: space-between;
+    gap: 20px;
+    grid-template-columns: 181px 181px 181px 181px;
+}
+
+@media screen and (max-width: 1160px) {
+    .frstLine {
+        grid-template-columns: calc(50% - 10px) calc(50% - 10px)
+    }
 }
 
 @media screen and (max-width: 768px) {
@@ -155,7 +180,6 @@
         flex-direction: column;
         width: 100%;
     }
-
     
     .seccondLine {
         align-items: start;
@@ -174,5 +198,11 @@
     .seccondLine .wrapperInput,
     .input {
         width: 100%;
+    }
+}
+
+@media screen and (max-width: 1160px) {
+    .frstLine {
+        grid-template-columns: 100%
     }
 }

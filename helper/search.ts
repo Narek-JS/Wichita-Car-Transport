@@ -37,12 +37,17 @@ const getPosts = (posts: Array<Record<string, any>>, searchText: string): Array<
     return { slug: url, title: title };
 });
 
-export const getSearchAdaptedData = (data: any, searchText: string): ISearchData => ({
-    pages: getPagesData(data?.data?.pages || []),
-    postByCategory: getPosts(data?.data?.postByCategory || [], searchText),
-    posts: getPosts(data?.data?.posts || [], searchText),
-    empty: data?.data?.empty
-});
+export const getSearchAdaptedData = (data: any, searchText: string): ISearchData => {
+    
+    console.log('data --> ', data);
+
+    return {
+        pages: getPagesData(data?.pages || []),
+        postByCategory: getPosts(data?.postByCategory || [], searchText),
+        posts: getPosts(data?.posts || [], searchText),
+        empty: data?.empty
+    };
+};
 
 
 export const scrollIsArriveBottom = (position: number, element: HTMLDivElement): boolean => (

@@ -19,7 +19,6 @@ const LatestPosts: React.FC<IProps> = ({
     latestPosts,
     latestPostCategory
 }) => {
-
     return (
         <div className={classes.latestPosts}>
             <h2 className={classes.postsTitle}>

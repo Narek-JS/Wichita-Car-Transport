@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { ArrowBottmgender } from '@/public/assets/svgs/ArrowBottmgender';
+import { eventEmitter } from '@/eventEmitter';
 import classNames from 'classnames';
 import classes from './index.module.css';
 
@@ -35,20 +36,26 @@ const DropdownSelectUI: React.FC<IProps> = ({
     const handleClickOutside = (event: MouseEvent) => {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
         setIsOpen(false);
+        eventEmitter.publish('dropdownStatus', false);
         setFormValue && setFormValue(name, '');
       }
     };
+
     if (isOpen) {
       document.addEventListener('mousedown', handleClickOutside);
+      eventEmitter.publish('dropdownStatus', isOpen);
     } else {
       document.removeEventListener('mousedown', handleClickOutside);
-    }
+    };
+
     return () => {
       document.removeEventListener('mousedown', handleClickOutside);
     };
   }, [isOpen]);
 
-  const toggleDropdown = () => setIsOpen(!isOpen);
+  const toggleDropdown = () => {
+    setIsOpen(!isOpen);
+  };
 
   const paintedItems = useMemo(() => {
     if (value === undefined) return items;
@@ -71,11 +78,15 @@ const DropdownSelectUI: React.FC<IProps> = ({
           {...(register && name && registerOption && { ...register(name, registerOption) })}
           {...(name && { name })}
           value={value || ''}
-          className={classes.dropdownInput}
+          className={classNames(classes.dropdownInput, {
+            [classes.activDropdownInput]: isOpen
+          })}
           placeholder="Pick up Date"
           autoComplete="off"
         />
-        <span className={classes.wrapperIcon}>
+        <span className={classNames(classes.wrapperIcon, {
+          [classes.activeWrapperIcon]: isOpen 
+        })}>
           <ArrowBottmgender rotate={isOpen ? 180 : 0} />
         </span>
       </div>

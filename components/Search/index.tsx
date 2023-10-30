@@ -1,18 +1,15 @@
 import { SearchIcon } from '@/public/assets/svgs/SearchIcon';
-import { useEffect, useMemo, useRef, useState } from 'react';
-import { InputUI } from '@/components/ui/InputUI';
-// import { MutationFunction, UseMutationResult, useMutation } from 'react-query';
-import { sendSearch } from '@/constants/service';
-import { LoadingUI } from '@/components/ui/LoadingUI';
-import { getSearchAdaptedData, scrollIsArriveBottom } from '@/helper/search';
 import { useScrollPosition } from '@/hooks/useScrollPosition';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { CloseIcon } from '@/public/assets/svgs/CloseIcon';
+import { scrollIsArriveBottom } from '@/helper/search';
+import { LoadingUI } from '@/components/ui/LoadingUI';
+import { useSearchMutation } from '@/store/search';
+import { InputUI } from '@/components/ui/InputUI';
 import { useDebounce } from '@/hooks/useDebounce';
-import { useSearchMutation } from '@/store/search'; // Update the path
-
+import useWindowSize from '@/hooks/useWindowSize';
 import classNames from 'classnames';
 import Link from 'next/link';
-import useWindowSize from '@/hooks/useWindowSize';
 import classes from './index.module.css';
 
 export interface PostData {
@@ -30,15 +27,7 @@ interface ApiResponse {
     postByCategory: Array<FindMessage>;
     posts: Array<FindMessage>;
     empty?: boolean;
-}
-
-// const searchCall: MutationFunction<ApiResponse, PostData> = async (postData: PostData) => {
-//     const response = await sendSearch(postData);
-//     const clonedResponse = response.clone();
-//     const responseData = await clonedResponse.json();
-
-//     return getSearchAdaptedData(responseData, postData.text);
-// };
+};
 
 const Search = () => {
     const [ isOpen, setIsOpen ] = useState<Boolean>(false);
@@ -52,14 +41,8 @@ const Search = () => {
     const debouncedSearchTerm = useDebounce<string>(value || '');
     const scrollPosition = useScrollPosition(dropDownRef);
 
-    // Mutation
-    // const { mutate,  }: UseMutationResult<
-    //     ApiResponse, unknown, PostData, unknown
-    // > = useMutation('search', searchCall);
-
     const [ search, { isLoading, data } ] = useSearchMutation();
 
-    // useEffects
     useEffect(() => {
         if(data !== undefined) {
             setSearchData([
@@ -133,7 +116,7 @@ const Search = () => {
                 )}
             </div>
         </div>
-    )
+    );
 };
 
 export { Search };

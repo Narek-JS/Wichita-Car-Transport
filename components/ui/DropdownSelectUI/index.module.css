@@ -11,17 +11,32 @@
     background-color: #FFFFFF;
     border: none;
     cursor: pointer;
-    font-size: 1rem;
     display: flex;
+    letter-spacing: .5px;
     align-items: center;
     gap: 4px;
     width: 183px;
     position: relative;
-    padding: 7px 0 7px 20px;
+    padding: 7px 0 7px 15px;
     background: #FDFDFF;
     border-radius: 5px;
     max-width: 183px;
+    height: 36px;
+    line-height: inherit;
 }
+
+.activDropdownInput {
+    border-radius: 5px 5px 0 0;
+}
+
+.dropdownInput::placeholder {
+    color: #A1A1A2;
+    font-size: 16px;
+    font-weight: 100;
+    letter-spacing: .5px;
+    font-family: sans-serif;
+}
+
 .dropdownInput:focus {
     outline: 2px solid transparent;
 }
@@ -38,6 +53,10 @@
     background: #F2F2F2;
     border-radius: 0px 5px 10px 0px;
     cursor: pointer;
+}
+
+.activeWrapperIcon {
+    border-radius: 0px 5px 0px 0px;
 }
 
 .dropdownMenu {
@@ -57,6 +76,7 @@
     padding: 0.5rem;
     margin: 0;
     cursor: pointer;
+    color: #005379;
 }
 
 .dropdownMenuItem:hover {

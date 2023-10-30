@@ -34,6 +34,7 @@
 }
 
 .fistNodeLeft .text {
+    position: relative;
     background: #F5F5F5;
     border: 1px solid rgba(187, 34, 51, 0.15);
     padding: 17px 20px;
@@ -45,6 +46,26 @@
 
     max-height: 340px;
     overflow-y: auto;
+}
+
+.fistNodeLeft .text::before {
+    content: "";
+    background-color: #FFFFFF;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 0%;
+    transition: all .2s;
+}
+
+.fistNodeLeft .text * {
+    position: relative;
+    z-index: 1;
+}
+
+.fistNodeLeft .text:hover::before {
+    height: 100%;
 }
 
 .fistNodeLeft .text p {
@@ -126,23 +147,43 @@
 }
 
 .seccondNode {
-    display: flex;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: calc(33% - 13.3333333px) calc(33% - 13.3333333px) calc(33% - 13.3333333px);
+    justify-content: space-between;
     gap: 20px;
 }
 
 .box {
+    position: relative;
     background: #FFFFFF;
     border: 1px solid rgba(0, 83, 121, 0.15);
     padding: 20px;
-
     max-width: 390px;
-    height: 280px;
     overflow-y: auto;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     gap: 20px;
+}
+
+.box::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 0%;
+    background-color: #F5F5F5;
+    transition: all .2s;
+}
+
+.box:hover::before {
+    height: 100%;
+}
+
+.box * {
+    position: relative;
+    z-index: 2px;
 }
 
 .boxFirstLine {
@@ -159,7 +200,8 @@
 
 .boxFirstLine .icon {
     width: 30px;
-    height: 24px;object-fit: contain;
+    height: 24px;
+    object-fit: contain;
 }
 
 .description {
@@ -175,6 +217,10 @@
 }
 
 @media screen and (max-width: 991px) {
+    .seccondNode {
+        grid-template-columns: calc(50% - 10px) calc(50% - 10px);
+    }
+
     .firstNode {
         display: flex;
         flex-direction: column;
@@ -198,5 +244,18 @@
 @media screen and (max-width: 768px) {
     .title {
         font-size: 25px;
+    }
+}
+
+@media screen and (max-width: 630px) {
+    .seccondNode {
+        grid-template-columns: 100%;
+    }
+}
+
+@media screen and (max-width: 470px) {
+    .fistNodeLeft .text .redMoreBtn {
+        width: 100%;
+        justify-content: center;
     }
 }

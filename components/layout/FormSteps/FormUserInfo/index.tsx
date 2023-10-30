@@ -1,39 +1,85 @@
 import { useFormik } from 'formik';
+import { useState } from 'react';
 import { LabelUI } from '@/components/ui/LabelUI';
 import { GoBackFormIcon } from '@/public/assets/svgs/GoBackFormIcon';
-import { IUserInfoFormData, SetStepFunction, UpdateGeneralFormData } from '@/model/form';
+import { IFormData, IUserInfoFormData, MentionVariants, SetStepFunction } from '@/model/form';
 import { validationSchemaFormUserInfo } from '@/constants/validationSchema';
 import { FormikErrors } from '@/components/ui/FormikError';
+import { hendleTypeRemoveSpace } from '@/helper/strings';
+import { IMaskInput } from 'react-imask';
+import { useQuoteFormMutation } from '@/store/quoteForm/mutation';
+import { getCuurentFormatData, getMentionAnimationValues, getMentionInitialValues } from '@/helper/form';
+import { LoadingUI } from '@/components/ui/LoadingUI';
+import { eventEmitter } from '@/eventEmitter';
+import { motion } from "framer-motion"
+import { toast } from 'react-toastify';
 import useWindowSize from '@/hooks/useWindowSize';
 import classes from './index.module.css';
 import classNames from 'classnames';
 
-
 interface IProps {
     setStep: SetStepFunction;
-    updateGeneralFormData: UpdateGeneralFormData;
     initialValues: IUserInfoFormData;
     animatedBorder: '' | 'back' | 'continue';
+    formData: IFormData;
+    handleResetForm: () => void;
 };
 
 const FormUserInfo: React.FC<IProps> = ({
     initialValues,
-    updateGeneralFormData,
     setStep,
-    animatedBorder
+    animatedBorder,
+    formData,
+    handleResetForm
 }) => {
+    const [ mutate, { isLoading } ] = useQuoteFormMutation();
+    const [ animationVariant, setAnimationVariant ] = useState<MentionVariants>('fromLeft');
     const { width } = useWindowSize();
 
     const formik = useFormik<IUserInfoFormData>({
         initialValues,
         onSubmit: (values) => {
-            updateGeneralFormData('form_user_info', values);
+            if(!isLoading) {
+                const modifyeFormData = getCuurentFormatData({
+                    ...formData,
+                    form_user_info: values
+                });
+                mutate(modifyeFormData).then(() => {
+                    toast.success('your message is successfully sent', {
+                        position: toast.POSITION.TOP_RIGHT
+                    });
+                }).catch(() => {
+                    toast.error('something is wrong', {
+                        position: toast.POSITION.TOP_RIGHT
+                    });
+                }).finally(() => {
+                    handleResetForm();
+                    setAnimationVariant('toRight');
+                });
+            };
         },
         validationSchema: validationSchemaFormUserInfo
     });
 
+    eventEmitter.subscribe('resetForm', formik.resetForm);
+
+    const onAnimationComplete = () => {
+        if(animationVariant === 'toRight') {
+            setStep(1);
+        };
+    };
+
     return (
-        <form className={classes.form} onSubmit={formik.handleSubmit}>
+        <motion.form
+            initial={getMentionInitialValues(animationVariant)}
+            variants={{
+                toFixed: getMentionAnimationValues(animationVariant),
+            }}
+            animate={'toFixed'}
+            onAnimationComplete={onAnimationComplete}
+            className={classes.form}
+            onSubmit={formik.handleSubmit}
+        >
             <div
                 className={classNames(classes.goBack, {
                     [classes.backAnime]: animatedBorder === 'back'
@@ -58,7 +104,10 @@ const FormUserInfo: React.FC<IProps> = ({
                             className={classes.input}
                             autoComplete='off'
                             placeholder='Enter full name'
-                            onChange={formik.handleChange}
+                            onChange={(event) => {
+                                hendleTypeRemoveSpace(event);
+                                formik.handleChange(event);
+                            }}
                             value={formik.values.name}
                             name='name'
                         />
@@ -66,13 +115,15 @@ const FormUserInfo: React.FC<IProps> = ({
                     </div>
                     <div className={classes.inputWrapper}>
                         <LabelUI text='Phone number' toolti={true} icon={true}/>
-                        <input
+                        <IMaskInput
                             className={classes.input}
-                            autoComplete='off'
-                            placeholder='( 999 ) 999 - 999'
-                            onChange={formik.handleChange}
                             value={formik.values.phone}
+                            placeholder='Enter Phone number'
+                            type="tel"
+                            mask="(#00) 000-0000"
+                            definitions={{"#": /[1-9]/}}
                             name='phone'
+                            onChange={formik.handleChange}
                         />
                         <FormikErrors {...{ classes, formik, name: 'phone' }} />
                     </div>
@@ -84,7 +135,10 @@ const FormUserInfo: React.FC<IProps> = ({
                             className={classes.input}
                             autoComplete='off'
                             placeholder='example@domain.com'
-                            onChange={formik.handleChange}
+                            onChange={(event) => {
+                                hendleTypeRemoveSpace(event);
+                                formik.handleChange(event);
+                            }}
                             value={formik.values.email}
                             name='email'
                         />
@@ -98,8 +152,11 @@ const FormUserInfo: React.FC<IProps> = ({
                     [classes.btnAnimeBorder]: animatedBorder === 'continue'
                 })}
                 type='submit'
-            > Continue </button>
-        </form> 
+            >
+                {isLoading && <LoadingUI type='roundSmall' />}
+                {!isLoading && 'Continue' }
+            </button>
+        </motion.form>
     );
 };
 
