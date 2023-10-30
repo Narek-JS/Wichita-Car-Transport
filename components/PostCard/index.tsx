@@ -11,7 +11,9 @@ interface IProps {
     title: string;
     description: string,
     date: string,
-    url: string
+    url: string,
+    lazyLoading?: boolean,
+    priority?: boolean
 };
 
 const PostCard: React.FC<IProps> = ({
@@ -20,7 +22,9 @@ const PostCard: React.FC<IProps> = ({
     title,
     description,
     date,
-    url
+    url,
+    lazyLoading,
+    priority
 }) => {
     return (
         <div className={classes.card}>
@@ -33,6 +37,9 @@ const PostCard: React.FC<IProps> = ({
                         width={390}
                         height={240}
                         sizes='(max-width: 768px) 100vw, (max-width: 1200) 50vw, 33vw'
+                        {...(lazyLoading && { loading: 'lazy' })}
+                        {...(priority && { priority: true })}
+                        
                     />
             </div>
             <div className={classes.content}>
@@ -44,10 +51,12 @@ const PostCard: React.FC<IProps> = ({
                     </p>
                 </div>
                 <p className={classes.title}>{title}</p>
-                <p
-                    className={classes.description}
-                    dangerouslySetInnerHTML={{ __html: description }}
-                />
+                {description && 
+                    <p
+                        className={classes.description}
+                        dangerouslySetInnerHTML={{ __html: description.slice(0, 200) }}
+                    />
+                }
                 <Link href={url} className={classes.link}>
                     <span className={classes.readMore}>
                         <ArrowRightRed />

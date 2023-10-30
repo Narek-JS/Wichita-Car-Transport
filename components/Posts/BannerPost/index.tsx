@@ -14,21 +14,29 @@ const BannerPost: React.FC<IPost> = ({
     title,
     url
 }) => {
+
+    const onLoad = (event) => {
+        console.log('onLoad event --> ', event);
+    };
+
     return (
         <div className={classes.bannerPost}>
             <h1 className={classes.title}>
                 Dive into Engaging { categoryName } Posts
             </h1>
             <div className={classes.content}>
-                <Image
-                    src={imagePath || ''}
-                    alt='Banner Post image'
-                    className={classes.image}
-                    width={800}
-                    height={550}
-                    priority={true}
-                    sizes='(max-width: 768px) 100vw, (max-width: 1200) 50vw, 33vw'
-                />
+                { imagePath &&
+                    <Image
+                        src={imagePath}
+                        alt='Banner Post image'
+                        className={classes.image}
+                        width={800}
+                        height={550}
+                        priority={true}
+                        sizes='(max-width: 768px) 100vw, (max-width: 1200) 50vw, 33vw'
+                        onLoad={onLoad}
+                    />
+                }
                 <div className={classes.postData}>
                     <div className={classes.firstLine}>
                         <p className={classes.latestText}>
@@ -40,7 +48,12 @@ const BannerPost: React.FC<IPost> = ({
                         </p>
                     </div>
                     <h3 className={classes.subTitle}>{title}</h3>
-                    <p className={classes.description} dangerouslySetInnerHTML={{ __html: description }}/>
+                    { description &&
+                        <p
+                            className={classes.description}
+                            dangerouslySetInnerHTML={{ __html: description.slice(0, 200) }}
+                        />
+                    }
                     <Link href={url || ''} className={classes.link}>
                         <ArrowRightRed />
                         Continue Reading

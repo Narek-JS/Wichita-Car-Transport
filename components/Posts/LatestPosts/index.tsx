@@ -36,6 +36,7 @@ const LatestPosts: React.FC = memo(() => {
                                 imagePath={post?.imagePath || ''}
                                 url={post?.url || ''}
                                 key={post?.id}
+                                priority={true}
                             />
                         ))}
                     </div>

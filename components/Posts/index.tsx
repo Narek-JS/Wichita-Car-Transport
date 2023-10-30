@@ -63,6 +63,7 @@ const Posts = () => {
                             imagePath={post?.imagePath || ''}
                             url={post?.url || ''}
                             key={post?.id}
+                            lazyLoading={true}
                         />
                     ))}
                 </div>
