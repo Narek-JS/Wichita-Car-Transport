@@ -9,8 +9,8 @@ export const useScrollPosition = (elementRef: RefObject<HTMLElement>): number =>
     const handleScroll = () => {
       if (element instanceof HTMLElement && element.scrollTop !== scrollPosition) {
         setScrollPosition(element.scrollTop);
-      }
-    }
+      };
+    };
 
     element && element.addEventListener('scroll', handleScroll);
 

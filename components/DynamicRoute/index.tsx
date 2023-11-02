@@ -1,18 +1,15 @@
-import { Fragment } from 'react';
-import { HelpSection } from '@/components/HelpSection';
-import { Container } from '@/components/ui/container';
 import { useScrollToView } from '@/hooks/useScrollToView';
+import { HelpSection } from '@/components/HelpSection';
 import { IDynamicPageData } from '@/model/dynamicPage';
+import { Container } from '@/components/ui/container';
+import { Fragment } from 'react';
+
 import Head from 'next/head';
-import classes from './index.module.css';
 import Image from 'next/image';
+import classes from './index.module.css';
 
 
-const DynamicRoute: React.FC<IDynamicPageData> = ({
-    content,
-    pageName,
-    title,
-}) => {
+const DynamicRoute: React.FC<IDynamicPageData> = ({ content, pageName, title }) => {
     const sectionRef = useScrollToView<HTMLDivElement>();
 
     return (
@@ -24,7 +21,7 @@ const DynamicRoute: React.FC<IDynamicPageData> = ({
                     data-hid="og:title"
                     data-n-head="ssr"
                     content={`Wichita Car Transport Website ${pageName}`}
-                ></meta>
+                />
             </Head>
             <section className={classes.section} ref={sectionRef}>
                 <Container>

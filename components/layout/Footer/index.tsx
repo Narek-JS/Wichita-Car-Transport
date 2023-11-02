@@ -1,12 +1,13 @@
-import { useAppSelector } from '@/store/hooks';
-import { selectMenus } from '@/store/manu';
-import { Container } from '@/components/ui/container';
 import { EarringIcon } from '@/public/assets/svgs/EarringIcon';
 import { MailIcon } from '@/public/assets/svgs/MailIcon';
+import { Container } from '@/components/ui/container';
+import { useAppSelector } from '@/store/hooks';
+import { selectMenus } from '@/store/manu';
 import { Fragment } from 'react';
-import useWindowSize from '@/hooks/useWindowSize';
+
 import Link from 'next/link';
 import Image from 'next/image';
+import useWindowSize from '@/hooks/useWindowSize';
 import classes from './index.module.css';
 
 const Footer = () => {

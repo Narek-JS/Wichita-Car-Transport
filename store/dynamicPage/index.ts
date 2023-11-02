@@ -1,6 +1,6 @@
+import { IDynamicPageData, DynamicPageAdapter, IDynamicContentFromAdmin, IPostData } from '@/model/dynamicPage';
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 import { BASE_URL } from '@/constants/api'
-import { IDynamicPageData, DynamicPageAdapter, IDynamicContentFromAdmin, IPostData } from '@/model/dynamicPage';
 
 export type ResponseType = IDynamicPageData | IDynamicContentFromAdmin | IPostData;
 
@@ -19,7 +19,7 @@ export const dynamicPageApi = createApi({
         );
  
         if(isPost) {
-          dynamicPageData = DynamicPageAdapter.createPostData(response?.data?.posts, response?.relatedPosts);
+          dynamicPageData = DynamicPageAdapter.createPostData(response?.data?.posts, response?.data?.relatedPosts);
           return new Promise<IPostData>(resolve => resolve(dynamicPageData));
         };
         

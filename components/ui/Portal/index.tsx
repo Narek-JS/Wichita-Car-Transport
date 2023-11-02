@@ -1,7 +1,7 @@
-import React, { useState, useEffect, useRef } from 'react';
 import { CloseIcon } from '@/public/assets/svgs/CloseIcon';
+import { useState, useEffect, useRef } from 'react';
 import { eventEmitter } from '@/eventEmitter';
-import styles from './index.module.css';
+import classes from './index.module.css';
 
 interface Props {
   children: React.ReactNode;
@@ -33,7 +33,7 @@ const Portal: React.FC<Props> = ({ children, onClose }) => {
 
   const handleClickOutside = (event: MouseEvent) => {
     const target = event.target as HTMLElement;
-    const portal = document.querySelector(`.${styles.portal}`) as HTMLElement;
+    const portal = document.querySelector(`.${classes.portal}`) as HTMLElement;
     if ( portal &&
         !portal.contains(target) &&
         !target.className.includes('option') &&
@@ -52,12 +52,12 @@ const Portal: React.FC<Props> = ({ children, onClose }) => {
   }, [portalRoot, onClose]);
 
   return portalRoot ? (
-    <div className={styles.overlay}>
-      <div className={styles.portal}>
-        <div className={styles.closeButton} onClick={onClose}>
+    <div className={classes.overlay}>
+      <div className={classes.portal}>
+        <div className={classes.closeButton} onClick={onClose}>
           <CloseIcon color='#FFFFFF' />
         </div>
-        <div className={styles.content} ref={contentRef}>{children}</div>
+        <div className={classes.content} ref={contentRef}>{children}</div>
       </div>
     </div>
   ) : null;

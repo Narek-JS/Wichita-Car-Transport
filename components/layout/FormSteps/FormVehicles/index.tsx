@@ -1,17 +1,17 @@
-import { getMentionAnimationValues, getMentionInitialValues } from '@/helper/form';
-import { useFormik } from 'formik';
-import { LabelUI } from '@/components/ui/LabelUI';
-import { AddVehiclesIcon } from '@/public/assets/svgs/AddVehiclesIcon';
-import { RemoveVehiclesIcon } from '@/public/assets/svgs/RemoveVehiclesIcon';
-import { DropdownSelectUI } from '@/components/ui/DropdownSelectUI';
-import { timeOptions } from '@/constants/options';
-import { GoBackFormIcon } from '@/public/assets/svgs/GoBackFormIcon';
 import { validationSchemaFormVehicles as validationSchema } from '@/constants/validationSchema';
+import { getMentionAnimationValues, getMentionInitialValues } from '@/helper/form';
+import { RemoveVehiclesIcon } from '@/public/assets/svgs/RemoveVehiclesIcon';
+import { AddVehiclesIcon } from '@/public/assets/svgs/AddVehiclesIcon';
+import { GoBackFormIcon } from '@/public/assets/svgs/GoBackFormIcon';
+import { DropdownSelectUI } from '@/components/ui/DropdownSelectUI';
 import { FormikErrors } from '@/components/ui/FormikError';
 import { handleTypeChangeYear } from '@/helper/strings';
+import { timeOptions } from '@/constants/options';
+import { LabelUI } from '@/components/ui/LabelUI';
 import { eventEmitter } from '@/eventEmitter';
 import { useRef, useState } from 'react';
 import { motion } from "framer-motion"
+import { useFormik } from 'formik';
 import {
     IVehicleFormData,
     MentionVariants,
@@ -21,9 +21,10 @@ import {
     UpdateGeneralFormData,
     VahicleNode
 } from '@/model/form';
+
+import classNames from 'classnames';
 import useWindowSize from '@/hooks/useWindowSize';
 import classes from './index.module.css';
-import classNames from 'classnames';
 
 interface IProps {
     setStep: SetStepFunction;
@@ -44,11 +45,11 @@ const FormVehicles: React.FC<IProps> = ({
 
     const formik = useFormik<IVehicleFormData>({
         initialValues,
+        validationSchema,
         onSubmit: (values) => {
             updateGeneralFormData('form_vehicles', values);
             setAnimationVariant('toRight');
         },
-        validationSchema
     });
 
     eventEmitter.subscribe('resetForm', formik.resetForm);
@@ -88,13 +89,13 @@ const FormVehicles: React.FC<IProps> = ({
         });
     };
 
-    const goBack = () => setStep(1);
-
     const onAnimationComplete = () => {
         if(animationVariant === 'toRight') {
             setStep(3);
         };
     };
+    
+    const goBack = () => setStep(1);
 
     return (
         <motion.form

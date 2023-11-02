@@ -1,27 +1,29 @@
-import { useState } from 'react';
-import { ActiveStareIcon } from '@/public/assets/svgs/ActiveStareIcon';
-import { Container } from '@/components/ui/container';
+import { handleCloseForm, selectCustomerReviewsFormStatus, useAddFeedbackMutation } from '@/store/customerReviews';
 import { CloseIconReviewPopup } from '@/public/assets/svgs/CloseIconReviewPopup';
-import { useFormik } from 'formik';
-import { DislikeIcon } from '@/public/assets/svgs/DislikeIcon';
-import { LikeIconReview } from '@/public/assets/svgs/LikeIconReview';
+import { Autocomplete, TextField, TextFieldProps } from '@mui/material';
+import { ActiveStareIcon } from '@/public/assets/svgs/ActiveStareIcon';
 import { DisableStarIcon } from '@/public/assets/svgs/DisableStarIcon';
-import * as yup from "yup";
+import { LikeIconReview } from '@/public/assets/svgs/LikeIconReview';
+import { DislikeIcon } from '@/public/assets/svgs/DislikeIcon';
+import { useGetOptionsApiQuery } from '@/store/optionsByZip';
+import { IFeedbackFormData } from '@/model/customerReviews';
+import { hendleTypeRemoveSpace } from '@/helper/strings';
+import { Container } from '@/components/ui/container';
+import { LoadingUI } from '@/components/ui/LoadingUI';
+import { useAppSelector } from '@/store/hooks';
+import { useState, useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { toast } from 'react-toastify';
+import { useFormik } from 'formik';
+
 import Recaptcha from "react-google-recaptcha";
-import Image from 'next/image';
 import classNames from 'classnames';
+import Image from 'next/image';
+import * as yup from "yup";
+
 import classes from './index.module.css';
 
-interface IFormData {
-    name: string,
-    email: string,
-    year: string,
-    make: string,
-    model: string,
-    pickUp: string,
-    dropOff: string,
-    message: string,
-};
+type TReatings = 0 | 1 | 2 | 3 | 4 | 5;
 
 const initialValues = {
     name: '',
@@ -29,39 +31,94 @@ const initialValues = {
     year: '',
     make: '',
     model: '',
-    pickUp: '',
-    dropOff: '',
-    message: ''
+    pick_up: '',
+    drop_off: '',
+    tell_us: ''
 };
 
-interface IProps {
-    setIsOpenForm: React.Dispatch<React.SetStateAction<boolean>>;
-};
+const validationSchema = yup.object({
+    name: yup.string().required(),
+    email: yup.string().required().email(),
+    year: yup.number()
+        .typeError('Year must be a number')
+        .integer('Year must be an integer')
+        .min(2000, 'must be least 2000')
+        .max(new Date().getFullYear(), 'Year cannot exceed the current year')
+        .required('Year is required'),
+    make: yup.string().required('Make is required'),
+    model: yup.string().required('Model is required'),
+    pick_up: yup.string().required(),
+    drop_off: yup.string().required(),
+});
 
-const FeedbackForm: React.FC<IProps> = ({ setIsOpenForm }) => {
+const FeedbackForm: React.FC = () => {
+    const dispatch = useDispatch();
+    const isShow = useAppSelector(selectCustomerReviewsFormStatus).isOpen;
+
+    const [ addFeetback, { isLoading, isError, isSuccess } ] = useAddFeedbackMutation();
     const [ like, setLike ] = useState<boolean | null>(null);
-    const [ ratingCount, setRatingCount ] = useState<0 | 1 | 2 | 3 | 4 | 5 | any>(0);
-    
-    const formik = useFormik<IFormData>({
+    const [ ratingCount, setRatingCount ] = useState<TReatings>(0);
+    const [ isSelectedIndex, setIsSelectedIndex ] = useState<TReatings>(0);
+
+    const formik = useFormik<IFeedbackFormData>({
         initialValues,
+        validationSchema,
         onSubmit: (values) => {
-            console.log('values --> ', values);
+            addFeetback({
+                ...values,
+                like_dislike: like ? 1 : 0,
+                star: isSelectedIndex
+            });
         },
-        validationSchema: yup.object({
-            name: yup.string().required(),
-            email: yup.string().required().email(),
-            year: yup.number()
-                .typeError('Year must be a number')
-                .integer('Year must be an integer')
-                .min(2000, 'must be least 2000')
-                .max(new Date().getFullYear(), 'Year cannot exceed the current year')
-                .required('Year is required'),
-            make: yup.string().required('Make is required'),
-            model: yup.string().required('Model is required'),
-            pickUp: yup.string().required(),
-            dropOff: yup.string().required(),
-        })
     });
+
+    const { isLoading: loadingPick_up, data: optionsPick_up } = useGetOptionsApiQuery(
+        formik.values.pick_up, { skip: !formik.values.pick_up }
+    );
+
+    const { isLoading: loadingDrop_off, data: optionsDrop_off } = useGetOptionsApiQuery(
+        formik.values.drop_off, { skip: !formik.values.drop_off }
+    );
+
+    useEffect(() => {
+        if(isError) {
+            toast.error('sorry something is wrong', {
+                position: toast.POSITION.TOP_RIGHT
+            });
+        };
+
+        if(isSuccess) {
+            closeForm();
+            toast.success('your feedback have successfully', {
+                position: toast.POSITION.TOP_RIGHT
+            });
+        };
+    }, [isError, isSuccess]);
+
+    function closeForm() {
+        formik.resetForm();
+        formik.setTouched({});
+        setLike(null);
+        setRatingCount(0);
+        setIsSelectedIndex(0);
+        dispatch(handleCloseForm());
+    };
+
+    const getPropsTextFaild = (name: string, label: string): TextFieldProps => ({
+        onChange: (event) => {
+            hendleTypeRemoveSpace(event);
+            formik.handleChange(event);
+        },
+        error: Boolean(formik.touched?.[name] && formik.errors?.[name]),
+        helperText: formik.touched?.[name] && formik.errors?.[name],
+        InputLabelProps: { style: { color: '#A1A1A2' } },
+        value: formik.values?.[name],
+        className: classes.input,
+        variant: 'standard',
+        label, name,
+    });
+
+    if(!isShow) return null;
 
     return (
         <div className={classNames(classes.feedbackForm, 'feedbackForm')}>
@@ -70,95 +127,85 @@ const FeedbackForm: React.FC<IProps> = ({ setIsOpenForm }) => {
                     <form className={classes.form} onSubmit={formik.handleSubmit}>
                         <h2 className={classes.fomrTitle}>Submit a Review</h2>
                         <div className={classes.wrapperInput}>
-                            <input
-                                className={classes.input}
-                                name='name'
-                                placeholder='Name *'
-                                autoComplete='off'
-                                onChange={formik.handleChange}
-                                value={formik.values.name}
-                            />
-                            { formik.errors.name && <span className={classes.error}>{formik.errors.name}</span> }
+                            <TextField {...getPropsTextFaild('name', 'Name *')} />
                         </div>
                         <div className={classes.wrapperInput}>
-                            <input
-                                className={classes.input}
-                                name='email'
-                                placeholder='Email Address *'
-                                autoComplete='off'
-                                onChange={formik.handleChange}
-                                value={formik.values.email}
-                            />
-                            { formik.errors.email && <span className={classes.error}>{formik.errors.email}</span> }
+                            <TextField {...getPropsTextFaild('email', 'Email Address *')} />
                         </div>
                         <div className={classes.vihacleList}>
                             <div className={classes.wrapperInput}>
-                                <input
-                                    className={classes.input}
-                                    name='year'
-                                    placeholder='Year *'
-                                    autoComplete='off'
-                                    onChange={formik.handleChange}
-                                    value={formik.values.year}
-                                />
-                                { formik.errors.year && <span className={classes.error}>{formik.errors.year}</span> }
+                                <TextField {...getPropsTextFaild('year', 'Year *')} />
                             </div>
                             <div className={classes.wrapperInput}>
-                                <input
-                                    className={classes.input}
-                                    name='make'
-                                    placeholder='Make *'
-                                    autoComplete='off'
-                                    onChange={formik.handleChange}
-                                    value={formik.values.make}
-                                />
-                                { formik.errors.make && <span className={classes.error}>{formik.errors.make}</span> }
+                                <TextField {...getPropsTextFaild('make', 'Make *')} />
                             </div>
                             <div className={classes.wrapperInput}>
-                                <input
-                                    className={classes.input}
-                                    name='model'
-                                    placeholder='Model *'
-                                    autoComplete='off'
-                                    onChange={formik.handleChange}
-                                    value={formik.values.model}
-                                />
-                                { formik.errors.model && <span className={classes.error}>{formik.errors.model}</span> }
+                                <TextField {...getPropsTextFaild('model', 'Model *')} />
                             </div>
                         </div>
                         <div className={classes.locations}>
                             <div className={classes.wrapperInput}>
-                                <input
-                                    className={classes.input}
-                                    name='pickUp'
-                                    placeholder='Pick-Up Location'
-                                    autoComplete='off'
-                                    onChange={formik.handleChange}
-                                    value={formik.values.pickUp}
+                                <Autocomplete
+                                    className={'autocomplete'}
+                                    options={optionsPick_up?.data || []}
+                                    clearOnBlur={false}
+                                    loading={loadingPick_up}
+                                    value={formik.values.pick_up}
+                                    renderInput={(params) => <TextField
+                                        error={Boolean(formik.touched?.pick_up && formik.errors?.pick_up)}
+                                        helperText={formik.touched?.pick_up && formik.errors?.pick_up}
+                                        variant='standard'
+                                        onSelect={(event) => {
+                                            hendleTypeRemoveSpace(event);
+                                            formik.handleChange(event);
+                                        }}
+                                        name='pick_up'
+                                        {...params}
+                                        placeholder="Pick-Up Location"
+                                    />}
                                 />
-                                { formik.errors.pickUp && <span className={classes.error}>{formik.errors.pickUp}</span> }
+                                
                             </div>
                             <div className={classes.wrapperInput}>
-                                <input
-                                    className={classes.input}
-                                    name='dropOff'
-                                    placeholder='Drop-Off Location'
-                                    autoComplete='off'
-                                    onChange={formik.handleChange}
-                                    value={formik.values.dropOff}
+                                <Autocomplete
+                                    className={'autocomplete'}
+                                    options={optionsDrop_off?.data || []}
+                                    clearOnBlur={false}
+                                    loading={loadingDrop_off}
+                                    value={formik.values.drop_off}
+                                    renderInput={(params) => <TextField
+                                        error={Boolean(formik.touched?.drop_off && formik.errors?.drop_off)}
+                                        helperText={formik.touched?.drop_off && formik.errors?.drop_off}
+                                        variant='standard'
+                                        onSelect={(event) => {
+                                            hendleTypeRemoveSpace(event);
+                                            formik.handleChange(event);
+                                        }}
+                                        name='drop_off'
+                                        {...params}
+                                        placeholder="Pick-Up Location"
+                                    />}
                                 />
-                                { formik.errors.dropOff && <span className={classes.error}>{formik.errors.dropOff}</span> }
                             </div>
                         </div>
-                        <textarea
-                            className={classes.textarea}
-                            name='message'
-                            placeholder='Your Message*'
-                            autoComplete='off'
-                            onChange={formik.handleChange}
-                            value={formik.values.message}
+                        <TextField
+                            name='tell_us'
+                            onChange={(event) => {
+                                hendleTypeRemoveSpace(event);
+                                formik.handleChange(event);
+                            }}
+                            value={formik.values.tell_us}
+                            className={classes.textArea}
+                            error={Boolean(formik.errors.tell_us)}
+                            helperText={formik.errors.tell_us}
+                            id="outlined-multiline-static"
+                            label="Your Message*"
+                            multiline
+                            rows={4}
+                            inputProps={{
+                                style: { height: '100%', width: '100%' }
+                            }}
                         />
-
                         <div className={classes.recommend}>
                             <p>Do you recommend our services to a friend?</p>
                             <i onClick={() => setLike(true)}>
@@ -177,9 +224,15 @@ const FeedbackForm: React.FC<IProps> = ({ setIsOpenForm }) => {
                             {[...new Array(5)].map((_, index) => (
                                 <i
                                     key={index}
-                                    onClick={() => setRatingCount(index + 1)}
+                                    onClick={() => {
+                                        setIsSelectedIndex(index + 1 as TReatings);
+                                        setRatingCount(index + 1 as TReatings);
+
+                                    }}
+                                    onMouseEnter={() => setRatingCount(index + 1 as TReatings)}
+                                    onMouseLeave={() => setRatingCount(0)}
                                 >
-                                    { ratingCount <= index ? <DisableStarIcon  /> : <ActiveStareIcon />}
+                                    { (ratingCount === 0 ? isSelectedIndex : ratingCount) <= index ? <DisableStarIcon  /> : <ActiveStareIcon />}
                                 </i>
                             ))} 
                         </div>
@@ -193,7 +246,13 @@ const FeedbackForm: React.FC<IProps> = ({ setIsOpenForm }) => {
                             />
                         </div>
 
-                        <button className={classes.btn} type='submit'>Submit</button>
+                        <button
+                            className={classes.btn}
+                            type='submit'
+                        >
+                            {isLoading && <LoadingUI type='roundSmall' />}
+                            {!isLoading && 'Submit'}
+                        </button>
                     </form>
                     <div className={classes.imageNode}>
                         <Image
@@ -204,7 +263,7 @@ const FeedbackForm: React.FC<IProps> = ({ setIsOpenForm }) => {
                             height={670}
                         />
                     </div>
-                    <div className={classes.closeForm} onClick={() => setIsOpenForm(false)}>
+                    <div className={classes.closeForm} onClick={closeForm}>
                         <CloseIconReviewPopup />
                     </div>
                 </div>

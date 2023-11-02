@@ -2,7 +2,7 @@ import classes from './index.module.css';
 
 interface IProps {
   type: "round" | 'row' | 'fullPage' | 'roundSmall',
-}
+};
 
 const LoadingUI: React.FC<IProps> = ({ type }) => {
 

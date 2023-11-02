@@ -1,21 +1,22 @@
-import { Post } from "@/components/Posts/Post";
-import { LoadingUI } from "@/components/ui/LoadingUI";
-import { Redirect } from "@/components/Redirect";
-import { useRouter } from "next/router";
+import { IDynamicContentFromAdmin, IDynamicPageData, IPostData } from "@/model/dynamicPage";
+import { DynamicContentFromAdmin } from "@/components/DynamicContentFromAdmin";
 import { useGetDynamicPageDataQuery } from "@/store/dynamicPage";
 import { DynamicRoute } from "@/components/DynamicRoute";
-import { DynamicContentFromAdmin } from "@/components/DynamicContentFromAdmin";
-import { IDynamicContentFromAdmin, IDynamicPageData, IPostData } from "@/model/dynamicPage";
+import { LoadingUI } from "@/components/ui/LoadingUI";
+import { Redirect } from "@/components/Redirect";
+import { Post } from "@/components/Posts/Post";
+import { useRouter } from "next/router";
 import NotFound from './404';
 
 const DynamicPage: React.FC = () => {
     const { query: { dynamicPage: slug } } = useRouter();
 
-    const { isLoading, data } = useGetDynamicPageDataQuery(String(slug), {
+    const { isLoading, isError, data } = useGetDynamicPageDataQuery(String(slug), {
         skip: !slug
     });
 
-    if(slug === 'home') return <Redirect to="/"/>;
+    if(slug === 'home') return <Redirect to="/" />;
+    if(isError) return <Redirect to="/404" />;
 
     if(isLoading) return <LoadingUI type="fullPage" />;
 

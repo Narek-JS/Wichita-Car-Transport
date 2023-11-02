@@ -2,6 +2,7 @@ import { ArrowRightRed } from '@/public/assets/svgs/ArrowRightRed';
 import { CalendarIcon } from '@/public/assets/svgs/CalendarIcon';
 import { formatDate } from '@/helper/time';
 import { IPost } from '@/model/posts';
+
 import Image from 'next/image';
 import Link from 'next/link';
 import classes from './index.module.css';
@@ -14,10 +15,6 @@ const BannerPost: React.FC<IPost> = ({
     title,
     url
 }) => {
-
-    const onLoad = (event) => {
-        console.log('onLoad event --> ', event);
-    };
 
     return (
         <div className={classes.bannerPost}>
@@ -33,8 +30,8 @@ const BannerPost: React.FC<IPost> = ({
                         width={800}
                         height={550}
                         priority={true}
+                        quality={0}
                         sizes='(max-width: 768px) 100vw, (max-width: 1200) 50vw, 33vw'
-                        onLoad={onLoad}
                     />
                 }
                 <div className={classes.postData}>

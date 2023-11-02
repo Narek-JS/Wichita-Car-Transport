@@ -1,3 +1,19 @@
+export interface IFeedbackFormData {
+    name: string,
+    email: string,
+    year: string,
+    make: string,
+    model: string,
+    pick_up: string,
+    drop_off: string,
+    tell_us: string,
+};
+
+export interface IFeedbackPayload extends IFeedbackFormData {
+    star: TStarCountsId;
+    like_dislike: 0 | 1;
+}
+
 export interface IFeedback {
     name: string;
     data: string;
@@ -7,7 +23,7 @@ export interface IFeedback {
     stars: number;
 };
 
-export type TStarCountsId = 1 | 2 | 3 | 4 | 5;
+export type TStarCountsId = 0 | 1 | 2 | 3 | 4 | 5;
 export type TStarCountsIdKeys = '1' | '2' | '3' | '4' | '5';
 
 export interface IStarCounts {
@@ -38,11 +54,13 @@ export class ReviewsAdapter {
     };
 
     static getStarCounts(starCounts, feedbacksLenght: number): Array<IStarCounts> {
-        return starCounts ? Object.keys(starCounts).map((key) => ({
+        const result = starCounts ? Object.keys(starCounts).map((key) => ({
             id: Number(key) as TStarCountsId,
             percentCount: starCounts[key],
             percent: Math.round(starCounts[key] * 100 / feedbacksLenght)
-        })) : []
+        })) : [];
+
+        return result.sort((a, b) => b.id - a.id);
     };
 
     static createReviewsData({ data }: any): ReviewsAdapter {

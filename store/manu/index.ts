@@ -1,6 +1,6 @@
-import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
-import { BASE_URL } from '@/constants/api'
+import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import { IMenuData, MenuAdapter } from '@/model/menu';
+import { BASE_URL } from '@/constants/api';
 
 export const manuApi = createApi({
   reducerPath: 'manuApi',

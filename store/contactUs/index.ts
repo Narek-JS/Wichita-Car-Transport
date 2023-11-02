@@ -1,5 +1,5 @@
-import { BASE_URL } from '@/constants/api';
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
+import { BASE_URL } from '@/constants/api';
 
 interface IContactData {
     name: string;
@@ -19,7 +19,6 @@ export const contactUsApi = createApi({
                 body: data,
             }),
             transformResponse: (response: any) =>  {
-                debugger
                 return new Promise<any>(resolve => resolve(response));
             },
         }),

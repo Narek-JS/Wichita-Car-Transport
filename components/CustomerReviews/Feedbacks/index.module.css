@@ -5,28 +5,34 @@
     padding-top: 20px;
 }
 
-.content {
+.overflowBlock {
     background: #FFFFFF;
     border: 2px solid rgba(7, 133, 134, 0.2);
     border-bottom: none;
     border-radius: 20px 20px 0 0;
-    padding: 20px;
-    max-height: 1100px;
+    padding:  10px 1px 0 0;
+    max-height: 500px;
     overflow-y: auto;
-
     display: flex;
     flex-direction: column;
     gap: 20px;
 }
 
+.content {
+    padding: 5px 20px 20px 20px;
+    max-height: 500px;
+    overflow-y: auto;
+}
+
 .content::-webkit-scrollbar {
     width: 8px;
 }
-  
+
 .content::-webkit-scrollbar-track {
-    background-color: #FFFFFF;
+    border-radius: 10px;
+    background-color: rgba(0, 83, 121, 0.1);
 }
-  
+
 .content::-webkit-scrollbar-thumb {
     background-color: #DDC00C;
     border-radius: 10px;
@@ -39,11 +45,18 @@
     position: relative;
     padding-bottom: 25px;
     border-bottom: 1px solid rgba(0, 83, 121, 0.1);
+    padding-top: 10px;
+}
+
+.feedback:first-child {
+    padding-top: 0px;
 }
 
 .logo {
     width: 40px;
     height: 40px;
+    min-width: 40px;
+    min-height: 40px;
     background: #DDC00C;
     display: flex;
     align-items: center;
@@ -93,6 +106,7 @@
     right: 0;
     top: 15px;
     display: flex;
+    align-items: center;
     gap: 10px;
     color: #005379;
     font-weight: 500;
@@ -105,5 +119,40 @@
         top: initial;
         left: 0;
         bottom: 5px;
+    }
+
+    .feedback {
+        padding-bottom: 40px;
+        gap: 5px;
+    }
+
+    .logo {
+        width: 25px;
+        min-width: 25px;
+        height: 25px;
+        min-height: 25px;
+        font-size: 16px;
+    }
+
+    .content {
+        padding: 5px 10px 20px 10px;
+    }
+}
+
+@media screen and (max-width: 560px) {
+    .data {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+    }
+
+    .data span i {
+        display: none;
+    }
+
+    .container {
+        max-width: initial;
+        width: initial;
+        padding: initial;
     }
 }

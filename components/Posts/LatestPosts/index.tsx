@@ -1,9 +1,10 @@
-import { ArrowRightRed } from '@/public/assets/svgs/ArrowRightRed';
 import { useGetLatestPostsApiQuery } from '@/store/posts/latestPosts';
+import { ArrowRightRed } from '@/public/assets/svgs/ArrowRightRed';
 import { Container } from '@/components/ui/container';
 import { PostCard } from '@/components/PostCard';
 import { useRouter } from 'next/router';
 import { memo } from 'react';
+
 import Link from 'next/link';
 import classes from './index.module.css';
 
@@ -36,7 +37,6 @@ const LatestPosts: React.FC = memo(() => {
                                 imagePath={post?.imagePath || ''}
                                 url={post?.url || ''}
                                 key={post?.id}
-                                priority={true}
                             />
                         ))}
                     </div>

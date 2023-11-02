@@ -1,5 +1,5 @@
-import { useEffect, useMemo, useRef, useState } from 'react';
 import { ArrowBottmgender } from '@/public/assets/svgs/ArrowBottmgender';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { eventEmitter } from '@/eventEmitter';
 import classNames from 'classnames';
 import classes from './index.module.css';

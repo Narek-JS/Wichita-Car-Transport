@@ -1,22 +1,22 @@
-import { Container } from '@/components/ui/container';
-import { Fragment } from 'react';
-import { DateIcon } from '@/public/assets/svgs/DateIcon';
-import { FbSmollOrangeIcon } from '@/public/assets/svgs/FbSmollOrangeIcon';
+import { FacebookShareButton, TwitterShareButton, PinterestShareButton, LinkedinShareButton } from 'next-share'
 import { TwitterIconSmollOrangeIcon } from '@/public/assets/svgs/TwitterIconSmollOrangeIcon';
 import { LinkdinIconSmallOrange } from '@/public/assets/svgs/LinkdinIconSmallOrange';
 import { GmailSmallIconOrange } from '@/public/assets/svgs/GmailSmallIconOrange';
+import { FbSmollOrangeIcon } from '@/public/assets/svgs/FbSmollOrangeIcon';
+import { useGetLatestPostsApiQuery } from '@/store/posts/latestPosts';
+import { CommentIcon } from '@/public/assets/svgs/CommentIcon';
+import { DateIcon } from '@/public/assets/svgs/DateIcon';
+import { Container } from '@/components/ui/container';
+import { IPostData } from '@/model/dynamicPage';
+import { RelatedPosts } from './RelatedPosts';
+import { LatestPosts } from './LatestPosts';
 import { formatDate } from '@/helper/time';
 import { Responses } from './Responses';
-import { RelatedPosts } from './RelatedPosts';
 import { Comment } from './Comment';
-import { LatestPosts } from './LatestPosts';
-import { FacebookShareButton, TwitterShareButton, PinterestShareButton, LinkedinShareButton } from 'next-share'
-import { CommentIcon } from '@/public/assets/svgs/CommentIcon';
-import { IPostData } from '@/model/dynamicPage';
-import { useGetLatestPostsApiQuery } from '@/store/posts/latestPosts';
+import { Fragment } from 'react';
 import Link from 'next/link';
-import Image from 'next/image';
 import Head from 'next/head';
+import Image from 'next/image';
 import classes from './index.module.css';
 
 interface Iprops {
@@ -119,7 +119,7 @@ const Post: React.FC<Iprops> = ({ data }) => {
                         { Boolean(data.relatedPosts.length) && (
                             <RelatedPosts relatedPosts={data.relatedPosts} />
                         )}
-                        <Comment />
+                        <Comment postId={data?.id}/>
                     </div>
                 </Container>
             </section>

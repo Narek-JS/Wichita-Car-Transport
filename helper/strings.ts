@@ -43,8 +43,12 @@ export function sliceDangerousHTMLString(
 };
 
 export const hendleTypeRemoveSpace = (event) => {
-    const { target, target: { value } } = event;
-    target.value = value.replace(/^\s+/g, '');
+    const { target, target: { value, name } } = event;
+    if(name === 'year') {
+        target.value = value.replace(/\D/g, '').slice(0, 4);
+    } else {
+        target.value = value.replace(/^\s+/g, '');
+    };
 };
 
 export const handleTypeChangeYear = (event) => {

@@ -1,6 +1,7 @@
-import { NextPage } from 'next';
-import { Fragment } from 'react';
 import { metaTags } from '@/constants/metaTags';
+import { Fragment } from 'react';
+import { NextPage } from 'next';
+
 import Link from 'next/link';
 import Head from 'next/head';
 import classes from './index.module.css';

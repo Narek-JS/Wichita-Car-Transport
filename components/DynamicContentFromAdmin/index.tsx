@@ -1,18 +1,15 @@
-import { Fragment } from 'react';
+import { IDynamicContentFromAdmin } from '@/model/dynamicPage';
+import { useScrollToView } from '@/hooks/useScrollToView';
 import { HelpSection } from '@/components/HelpSection';
 import { Container } from '@/components/ui/container';
-import { useScrollToView } from '@/hooks/useScrollToView';
-import { IDynamicContentFromAdmin } from '@/model/dynamicPage';
+import { Fragment } from 'react';
+
 import Head from 'next/head';
 import classes from './index.module.css';
 
-
-const DynamicContentFromAdmin: React.FC<IDynamicContentFromAdmin> = (props) => {
-    const {
-        title,
-        content
-    } = props;
+const DynamicContentFromAdmin: React.FC<IDynamicContentFromAdmin> = ({ title, content }) => {
     const sectionRef = useScrollToView<HTMLDivElement>();
+
     return (
         <Fragment>
             <Head>
@@ -22,8 +19,9 @@ const DynamicContentFromAdmin: React.FC<IDynamicContentFromAdmin> = (props) => {
                     data-hid="og:title"
                     data-n-head="ssr"
                     content={`Wichita Car Transport Website `}
-                ></meta>
+                />
             </Head>
+
             <section className={classes.section} ref={sectionRef}>
                 <Container>
                     <h1 className={classes.title}>{title}</h1>
@@ -35,6 +33,7 @@ const DynamicContentFromAdmin: React.FC<IDynamicContentFromAdmin> = (props) => {
                     }
                 </Container>
             </section>
+
             <HelpSection />
         </Fragment>
     );

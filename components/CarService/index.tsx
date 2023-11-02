@@ -8,7 +8,7 @@ interface IProps {
     description: string;
     imagePath: string;
     link: { text: string; url: string };
-}
+};
 
 const CarService: React.FC<IProps> = ({
     imagePath,

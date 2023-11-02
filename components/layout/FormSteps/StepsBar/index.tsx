@@ -1,13 +1,13 @@
-import { useAppSelector } from '@/store/hooks';
-import { selectQuoteFormMobileStatus } from '@/store/quoteForm';
-import { useMemo } from 'react';
-import { OptionsIcon } from '@/public/assets/svgs/OptionsIcon';
 import { ConfirmationStepIcon } from '@/public/assets/svgs/ConfirmationStepIcon';
 import { QuoteStepIcon } from '@/public/assets/svgs/QuoteStepIcon';
 import { LocationIcon } from '@/public/assets/svgs/locationIcon';
+import { selectQuoteFormMobileStatus } from '@/store/quoteForm';
+import { OptionsIcon } from '@/public/assets/svgs/OptionsIcon';
+import { useAppSelector } from '@/store/hooks';
+import { useMemo } from 'react';
 import classNames from 'classnames';
-import classes from './index.module.css';
 import useWindowSize from '@/hooks/useWindowSize';
+import classes from './index.module.css';
 
 type ActiveStep = 1 | 2 | 3 | 4;
 
@@ -32,6 +32,7 @@ const initialContentsStepsBar: Array<IContentsStepsBar> = [
 const StepsBar: React.FC<IProps> = ({ activeStep, setInputBorderAnime }) => {
     const isOpen = useAppSelector(selectQuoteFormMobileStatus);
     const { width } = useWindowSize();
+
     const contentsStepsBar: Array<IContentsStepsBar> = useMemo(() => {
         if(Number(width) <= 768) {
             const activeStapIndex = initialContentsStepsBar.findIndex(item => item.id === activeStep)

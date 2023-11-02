@@ -1,110 +1,152 @@
+import { useAddPostCommentMutation } from '@/store/posts/posts';
+import { PhoneMaskCustom } from '@/components/ui/PhoneMask';
+import { STORAGE_NAMES } from '@/constants/storageNames';
+import { hendleTypeRemoveSpace } from '@/helper/strings';
 import { ButtonUI } from '@/components/ui/ButtonUI';
+import { IPostComment } from '@/model/posts';
 import { TextField } from '@mui/material';
+import { useRouter } from 'next/router';
+import { toast } from 'react-toastify';
 import { useFormik } from 'formik';
+import { useEffect } from 'react';
+
 import * as yup from "yup";
 import classes from './index.module.css';
 
-interface IFormData {
-    name: string;
-    email: string;
-    phone: string;
-    comment: string;
+interface IFormData extends IPostComment {
     checkbox: boolean;
 };
 
-const initialValues = {
-    name: '',
-    email: '',
-    phone: '',
-    comment: '',
-    checkbox: false
-};
-
-const helperTextProps = {
-    sx: {
-        position: 'absolute',
-        bottom: '0px',
-    }
-}; 
-
 const validationSchema: any = yup.object().shape({
     name: yup.string().required(),
-    phone: yup.string().required(),
+    phone: yup.string().min(14, "Invalid phone number").matches(new RegExp('[0-9]')).required(),
     email: yup.string().required().matches(
         /[A-z0-9]+@{1}[A-z0-9]+\.[A-z]{2,}$/,
       'Invalid email'
     ),
-    comment: yup.string().required(),
-    checkbox: yup.bool().oneOf([true])
+    comments: yup.string().required(),
+    checkbox: yup.bool()
 });
 
-const Comment = () => {
+const initialValues: IFormData = {
+    name: '',
+    email: '',
+    phone: '',
+    comments: '',
+    checkbox: false
+};
+
+const Comment: React.FC<{ postId: number }> = ({ postId: id }) => {
+    const { query: { dynamicPage: slug } } = useRouter();
+    const [ addComment, { isLoading, isError, isSuccess } ] = useAddPostCommentMutation();
+
     const formik = useFormik<IFormData>({
         initialValues,
-        onSubmit: (values) => {
-            console.log('values --> ', values);
-        },
         validationSchema,
+        onSubmit: (values) => {
+            const { checkbox, ...specialValue } = values;
+            keepUserDataInBrowser();
+            addComment({...specialValue, id});
+        }
     });
 
-    return ( 
+    useEffect(() => {
+        const steamObject = localStorage.getItem(STORAGE_NAMES.USER_COMMENT);
+        const userFromStorage = JSON.parse(steamObject || '{}');
+        const { email, name } = formik.values;
+        formik.setValues({
+            ...formik.values,
+            email: userFromStorage?.email || email,
+            name: userFromStorage?.name || name,
+        });
+    }, [slug]);
+
+    useEffect(() => {
+        if(isError) {
+            toast.error('sorry something is wrong', {
+                position: toast.POSITION.TOP_RIGHT
+            });
+        };
+        if(isSuccess) {
+            formik.resetForm();
+            toast.success('your comment have successfully posted', {
+                position: toast.POSITION.TOP_RIGHT
+            });
+        };
+    }, [isError, isSuccess]);
+
+    function keepUserDataInBrowser() {
+        const { checkbox, email, name } = formik.values;
+        if(checkbox) {
+            const steamObject = JSON.stringify({ name, email });
+            localStorage.setItem(STORAGE_NAMES.USER_COMMENT, steamObject);
+        } else {
+            localStorage.removeItem(STORAGE_NAMES.USER_COMMENT);
+        };
+    };
+
+    const getTextFieldOptions = (name: string, label: string): any => ({
+        onChange: (event) => {
+            hendleTypeRemoveSpace(event);
+            formik.handleChange(event);
+        },
+        FormHelperTextProps: { sx: {
+            position: 'absolute',
+            bottom: '0px',
+        }},
+        value: formik.values?.[name],
+        name, label,
+        className: classes.input,
+        variant: 'standard',
+        error: Boolean(formik.touched?.[name] && formik.errors?.[name]),
+        helperText: formik.touched?.[name] && formik.errors?.[name]
+    });
+
+    return (
         <div className={classes.postComment}>
             <h2 className={classes.postCommentTitle}>Leave a Reply</h2>
             <form className={classes.form} onSubmit={formik.handleSubmit}>
                 <div className={classes.wrapperSubmit}>
                     <TextField
+                        error={Boolean(formik.touched.comments && formik.errors.comments)}
+                        helperText={formik.touched.comments && formik.errors.comments}
                         onChange={formik.handleChange}
-                        value={formik.values.comment}
-                        name='comment'
+                        value={formik.values.comments}
                         className={classes.comment}
-                        error={Boolean(formik.touched.comment && formik.errors.comment)}
                         id="outlined-multiline-static"
-                        helperText={formik.touched.comment && formik.errors.comment}
                         label="Your comment here..."
+                        name='comments'
+                        FormHelperTextProps={{ sx: {
+                            position: 'absolute',
+                            bottom: '-20px',
+                            marginLeft: '4px'
+                        }}}
                         multiline
                         rows={4}
-                        FormHelperTextProps={{
-                            sx: {
-                                position: 'absolute',
-                                bottom: '-20px',
-                                marginLeft: '4px'
-                            }
-                        }}
                     />
                 </div>
                 <div className={classes.inputs}>
+                    <TextField {...getTextFieldOptions('name', 'Name *')} />
+                    <TextField {...getTextFieldOptions('email', 'Email Address*')} />
                     <TextField
-                        name='name'
-                        label='Name *'
-                        variant='standard'
-                        onChange={formik.handleChange}
-                        value={formik.values.name}
-                        FormHelperTextProps={helperTextProps}
-                        error={Boolean(formik.touched.name && formik.errors.name)}
-                        helperText={formik.touched.name && formik.errors.name}
+                        error={Boolean(formik.touched?.phone && formik.errors?.phone)}
+                        helperText={formik.touched?.phone && formik.errors?.phone}
+                        value={formik.values?.phone}
                         className={classes.input}
-                    />
-                    <TextField
-                        name='email'
-                        label='Email Address *'
+                        onChange={(event) => {
+                            hendleTypeRemoveSpace(event);
+                            formik.handleChange(event);
+                        }}
+                        InputProps={{
+                            inputComponent: PhoneMaskCustom
+                        }}
+                        FormHelperTextProps={{ sx: {
+                            position: 'absolute',
+                            bottom: '0px',
+                        }}}
+                        label='Phone Number*'
                         variant='standard'
-                        onChange={formik.handleChange}
-                        value={formik.values.email}
-                        FormHelperTextProps={helperTextProps}
-                        error={Boolean(formik.touched.email && formik.errors.email)}
-                        helperText={formik.touched.email && formik.errors.email}
-                        className={classes.input}
-                    />
-                    <TextField
                         name='phone'
-                        label='Phone Number *'
-                        variant='standard'
-                        onChange={formik.handleChange}
-                        value={formik.values.phone}
-                        FormHelperTextProps={helperTextProps}
-                        error={Boolean(formik.touched.phone && formik.errors.phone)}
-                        helperText={formik.touched.phone && formik.errors.phone}
-                        className={classes.input}
                     />
                 </div>
                 <div className={classes.wrapperCheckbox}>
@@ -112,14 +154,13 @@ const Comment = () => {
                         <label className={classes.checkbox}>
                             <input
                                 type="checkbox"
-                                name='checkbox'
                                 onChange={formik.handleChange}
                                 checked={formik.values.checkbox}
+                                name='checkbox'
                                 id='checkbox'
                             />
                             <span className={classes.checkmark} />
                         </label>
-                        <span className={classes.error}>{formik.errors?.checkbox}</span>
                         <label className={classes.emailSaveText} htmlFor='checkbox'>
                             Save my name, email, and website in this browser for the next time I comment
                         </label>
@@ -127,8 +168,9 @@ const Comment = () => {
                     <ButtonUI
                         classN='transparent'
                         text='Post Comment'
-                        width='max-content'
+                        width={155}
                         type='submit'
+                        isLoading={isLoading}
                     />
                 </div>
             </form>

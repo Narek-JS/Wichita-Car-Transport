@@ -1,17 +1,19 @@
-import { metaTags } from '@/constants/metaTags';
-import { NextPage } from 'next';
-import { Fragment, useState } from 'react';
-import { useGetFaqsQuery } from '@/store/faq';
-import { Container } from '@/components/ui/container';
+import { sliceDangerousHTMLString } from '@/helper/strings';
 import { useScrollToView } from '@/hooks/useScrollToView';
 import { AddIcon } from '@/public/assets/svgs/AddIcon';
-import { sliceDangerousHTMLString } from '@/helper/strings';
+import { Container } from '@/components/ui/container';
+import { LoadingUI } from '@/components/ui/LoadingUI';
+import { metaTags } from '@/constants/metaTags';
+import { useGetFaqsQuery } from '@/store/faq';
+import { Fragment, useState } from 'react';
+import { NextPage } from 'next';
+
 import Head from 'next/head';
-import classes from './index.module.css';
 import classNames from 'classnames';
+import classes from './index.module.css';
 
 const Faqs: NextPage = () => {
-  const { data } = useGetFaqsQuery('getDynamicData/faq');
+  const { data, isLoading } = useGetFaqsQuery('getDynamicData/faq');
   const [ activeIndex, setActiveIndex ] = useState<null | number>();
   const sectionRef = useScrollToView<HTMLDivElement>();
 
@@ -25,6 +27,7 @@ const Faqs: NextPage = () => {
 
   return (
     <Fragment>
+      { isLoading && <LoadingUI type='fullPage' /> }
       <Head>{metaTags.faqs}</Head>
       <section className={classes.questionsSection} ref={sectionRef}>
         <Container>

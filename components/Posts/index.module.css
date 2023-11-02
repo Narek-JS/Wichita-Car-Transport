@@ -94,9 +94,20 @@
     .paginationBtns {
         gap: 10px;
     }
+
     .contentBlocks .card {
         flex: 25;
         width: 200px;
         min-width: 200px;
+    }
+
+    .wrapperPosts {
+        justify-content: center;
+    }
+}
+
+@media screen and (max-width: 560px) {
+    .wrapperPosts {
+        justify-content: center;
     }
 }

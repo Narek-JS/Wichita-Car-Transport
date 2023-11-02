@@ -1,6 +1,5 @@
-import { createSlice } from "@reduxjs/toolkit"
+import { createSlice } from "@reduxjs/toolkit";
 import { RootState } from "..";
-
 
 export const siteBarSlice = createSlice({
     name: 'siteBar',

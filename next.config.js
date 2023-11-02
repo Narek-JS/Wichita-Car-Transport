@@ -6,7 +6,16 @@ const nextConfig = {
     disableStaticImages: true,
     loader: "custom",
     loaderFile: './public/assets/images/loader.js',
-  }, async headers() {
+  },
+  // remotePatterns: [
+  //   {
+  //     protocol: 'https',
+  //     hostname: 'wichita.logixdevops.com/api/v1',
+  //     port: '3000',
+  //     pathname: '/my-bucket/**',
+  //   },
+  // ],
+  async headers() {
     return [
       {
         source: '/(.*).jpg',

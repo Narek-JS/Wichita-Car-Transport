@@ -1,5 +1,5 @@
 .section {
-    margin-top: 210px;
+    margin-top: 80px;
 }
 
 .reviewsGraph {
@@ -8,7 +8,6 @@
     padding-bottom: 50px;
     padding-top: 20px;
 }
-
 
 .content {
     background: #FFFFFF;
@@ -137,6 +136,14 @@
     max-height: 230px;
 }
 
+.reviewContent .buttons {
+    display: none;
+}
+
+.reviewContent .reviewContentSecondeBlock .buttons {
+    display: flex;
+}
+
 .feedbackBtn {
     max-width: 230px;
     background: #DDC00C;
@@ -180,6 +187,15 @@
         flex-direction: column;
         align-items: center;
     }
+
+    .reviewContent .buttons {
+        display: flex;
+    }
+    
+    .reviewContent .reviewContentSecondeBlock .buttons {
+        display: none;
+    }
+    
 }
 
 @media screen and (max-width: 768px) {
@@ -187,14 +203,39 @@
         flex-direction: column;
         align-items: center;
     }
+
+    .estimate {
+        align-items: center;
+    }
 }
 
 @media screen and (max-width: 560px) {
+    .reviewsGraph {
+        padding: 0;
+    }
+
+    .container {
+        max-width: initial;
+        width: initial;
+        padding: initial;
+    }
+
+    .section {
+        margin-top: 20px;
+    }
+
+    .content {
+        padding: 15px;
+    }
+
     .content { padding: 15px; }
     .percentList { gap: 2px; }
     .percentWrapper { width: 170px; }
     .percent,
     .percentId { font-size: 14px; }
-    .subTitle { margin-bottom: 15px; }
     .estimate { gap: 15px; }
+    .subTitle {
+        font-size: 22px;
+        margin-bottom: 15px;
+    }
 }

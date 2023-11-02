@@ -1,5 +1,6 @@
 
 .responses {
+    max-width: 865px;
     display: flex;
     flex-direction: column;
     gap: 20px;
@@ -22,6 +23,39 @@
     font-size: 24px; 
 }
 
+.wrapperComments {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.wrapperComments * {
+    transition: all 1s;
+}
+
+.wrapperComments .wrapperComments {
+    height: 0;
+    overflow-y: clip;
+}
+
+.wrapperComments .openAllComments {
+    height: 100%;
+}
+
+.wrapperComments .openAllComments .responseItem {
+    transition: all .3s;
+    animation: fromZero .3s forwards;
+}
+
+@keyframes fromZero {
+    from {
+        margin-top: -999px;
+    }
+    to {
+        margin-top: 0px;
+    }
+}
+
 .responseItem {
     display: flex;
     flex-direction: column;
@@ -35,17 +69,18 @@
 }
 
 .responseItem .responseUser p {
-    color: #003B56; 
+    color: #005379;
 }
 
 .responseItem .responseUser span { 
     font-size: 14px;
-    color: #003B56;
+    color: #005379;
     font-weight: 300;
 }
 
 .responseItem p {
-    color: rgba(0, 59, 86, 0.6); 
+    color: rgba(0, 83, 121, 0.60);
+    line-height: 20px
 }
 
 .responseItem p a {
@@ -59,7 +94,7 @@
     align-items: center;
     gap: 5px;
     color: #DDC00C;
-    font-weight: 700; 
+    font-weight: 500; 
     cursor: pointer;
     max-width: max-content;
 }

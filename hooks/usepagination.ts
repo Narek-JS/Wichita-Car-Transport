@@ -6,24 +6,24 @@ interface PaginationProps {
   nextPage: () => void;
   prevPage: () => void;
   getVisiblePages: () => number[];
-}
+};
 
-function usePagination(totalPages: number, initialCurrentPage: number): PaginationProps {
+const usePagination = (totalPages: number, initialCurrentPage: number): PaginationProps => {
   const [currentPage, setCurrentPage] = useState<number>(initialCurrentPage);
 
-  function goToPage(pageNumber: number) {
+  const goToPage = (pageNumber: number) => {
     setCurrentPage(pageNumber);
-  }
+  };
 
-  function nextPage() {
+  const nextPage = () => {
     setCurrentPage((currentPage) => Math.min(currentPage + 1, totalPages));
-  }
+  };
 
-  function prevPage() {
+  const prevPage = () => {
     setCurrentPage((currentPage) => Math.max(currentPage - 1, 1));
-  }
+  };
 
-  function getVisiblePages(): number[] {
+  const getVisiblePages = (): number[] => {
     const visiblePages: Array<number> = [];
     let startPage: number = currentPage - 2;
     if (startPage <= 0) {

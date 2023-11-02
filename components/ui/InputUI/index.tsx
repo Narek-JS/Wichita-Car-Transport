@@ -1,7 +1,8 @@
 import { LabelUI } from '../LabelUI';
 import { ChangeEvent } from 'react';
-import InputMask from 'react-input-mask';
+
 import classNames from 'classnames';
+import InputMask from 'react-input-mask';
 import classes from './index.module.css';
 
 interface Iprops {

@@ -1,13 +1,13 @@
 import React, { useState } from "react";
-import classes from './index.module.css';
 import classNames from "classnames";
+import classes from './index.module.css';
 
 interface Props {
   children: React.ReactNode;
   content: string;
   direction?: 'top' | 'right' | 'bottom' | 'left';
   delay?: number;
-}
+};
 
 const TooltipUI: React.FC<Props> = ({ children, content, direction = "top", delay = 100 }) => {
   let timeout: ReturnType<typeof setTimeout>;

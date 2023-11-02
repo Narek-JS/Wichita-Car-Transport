@@ -1,12 +1,13 @@
 import { getMentionAnimationValues, getMentionInitialValues } from '@/helper/form';
 import { IFormData, MentionVariants, SetStepFunction } from '@/model/form';
 import { GoBackFormIcon } from '@/public/assets/svgs/GoBackFormIcon';
+import { ArrowDynamic } from '@/public/assets/svgs/ArrowDynamic';
 import { MouseEvent, useState } from 'react';
 import { motion } from "framer-motion"
+
 import useWindowSize from '@/hooks/useWindowSize';
 import classNames from 'classnames';
 import classes from './index.module.css';
-import { ArrowDynamic } from '@/public/assets/svgs/ArrowDynamic';
 
 interface IProps {
     formData: IFormData;

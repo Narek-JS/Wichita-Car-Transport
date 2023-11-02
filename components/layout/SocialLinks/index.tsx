@@ -1,10 +1,11 @@
-import { Fragment } from 'react';
-import { FormQuote } from '@/components/FormQuote';
+import { closeQuoteFormDesktop, openQuoteFormDesktop, selectQuoteFormStatusDesktop } from '@/store/quoteForm';
 import { QuoteButtonIcon } from '@/public/assets/svgs/QuoteButtonIcon';
 import { useAppDispatch, useAppSelector } from '@/store/hooks';
-import { closeQuoteFormDesktop, openQuoteFormDesktop, selectQuoteFormStatusDesktop } from '@/store/quoteForm';
-import { selectMenus } from '@/store/manu';
+import { FormQuote } from '@/components/FormQuote';
 import { socialIcons } from '@/constants/options';
+import { selectMenus } from '@/store/manu';
+import { Fragment } from 'react';
+
 import useWindowSize from '@/hooks/useWindowSize';
 import Portal from '@/components/ui/Portal';
 import classNames from 'classnames';
@@ -19,7 +20,7 @@ const SocialLinks = () => {
     const openFormPopup = () => dispatch(openQuoteFormDesktop());
     const closeFormPopup = () => dispatch(closeQuoteFormDesktop());
 
-    if(Number(width) <= 768) return null;
+    if(Number(width) <= 1400) return null;
 
     return (
         <Fragment>

@@ -1,9 +1,9 @@
-import React, { useState, useEffect, useRef } from 'react';
 import { ArrowDynamic } from '@/public/assets/svgs/ArrowDynamic';
+import { useState, useEffect, useRef } from 'react';
 import { MenuItem } from '@/model/menu';
 import Link from 'next/link';
-import classes from './index.module.css';
 import classNames from 'classnames';
+import classes from './index.module.css';
 
 export type DropdownItems = Array<{
   link: string;

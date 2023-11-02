@@ -1,9 +1,10 @@
-import Image from 'next/image';
-import classes from './index.module.css';
-import Link from 'next/link';
+import { LINKS_FROM_MENU_TITLES } from '@/constants/words';
 import { useAppSelector } from '@/store/hooks';
 import { selectMenus } from '@/store/manu';
-import { LINKS_FROM_MENU_TITLES } from '@/constants/words';
+
+import Image from 'next/image';
+import Link from 'next/link';
+import classes from './index.module.css';
 
 const ImageNode: React.FC = () => {
     const { data } = useAppSelector(selectMenus);

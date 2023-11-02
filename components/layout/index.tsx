@@ -1,16 +1,16 @@
-import React, { Fragment } from 'react';
-import Head from 'next/head';
+import { FeedbackForm } from '../CustomerReviews/FeedbackForm';
 import { Provider as ReduxProvider } from 'react-redux'
-import { store } from '@/store';
+import { ToastContainer } from 'react-toastify';
+import { ScrollTopIcon } from './ScrollTopIcon';
+import { SideBarMenu } from './SideBarMenu';
+import { SocialLinks } from './SocialLinks';
+import { Ubuntu } from 'next/font/google';
 import { Header } from './Header';
 import { Banner } from './Banner';
-import { SideBarMenu } from './SideBarMenu';
 import { Footer } from './Footer';
-import { SocialLinks } from './SocialLinks';
-import { useRouter } from 'next/router';
-import { ScrollTopIcon } from './ScrollTopIcon';
-import { Ubuntu } from 'next/font/google';
-import { ToastContainer } from 'react-toastify';
+import { Fragment } from 'react';
+import { store } from '@/store';
+import Head from 'next/head';
 
 const ubuntuFont = Ubuntu({
   weight: '400',
@@ -24,15 +24,6 @@ interface IProps {
 };
 
 const Layout: React.FC<IProps> = ({ children, pageTitle = 'New York' }) => {
-    const { pathname } = useRouter();
-    
-    const isBanner = (
-        pathname === '/blogs' ||
-        pathname === '/news' ||
-        pathname === '/404' ||
-        pathname === '/customer-reviews'
-    );
-
     return (
         <Fragment>
             <Head>
@@ -41,7 +32,8 @@ const Layout: React.FC<IProps> = ({ children, pageTitle = 'New York' }) => {
             <main className={ubuntuFont.className}>
                 <ReduxProvider store={store}>
                     <Header />
-                    {!isBanner && <Banner />}
+                    <Banner />
+                    <FeedbackForm />
                     <SideBarMenu />
                     <SocialLinks />
                     <ToastContainer />

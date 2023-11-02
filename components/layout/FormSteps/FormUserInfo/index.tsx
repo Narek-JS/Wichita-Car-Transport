@@ -1,21 +1,22 @@
-import { useFormik } from 'formik';
-import { useState } from 'react';
-import { LabelUI } from '@/components/ui/LabelUI';
-import { GoBackFormIcon } from '@/public/assets/svgs/GoBackFormIcon';
+import { getCuurentFormatData, getMentionAnimationValues, getMentionInitialValues } from '@/helper/form';
 import { IFormData, IUserInfoFormData, MentionVariants, SetStepFunction } from '@/model/form';
 import { validationSchemaFormUserInfo } from '@/constants/validationSchema';
+import { GoBackFormIcon } from '@/public/assets/svgs/GoBackFormIcon';
+import { useQuoteFormMutation } from '@/store/quoteForm/mutation';
 import { FormikErrors } from '@/components/ui/FormikError';
 import { hendleTypeRemoveSpace } from '@/helper/strings';
-import { IMaskInput } from 'react-imask';
-import { useQuoteFormMutation } from '@/store/quoteForm/mutation';
-import { getCuurentFormatData, getMentionAnimationValues, getMentionInitialValues } from '@/helper/form';
 import { LoadingUI } from '@/components/ui/LoadingUI';
+import { LabelUI } from '@/components/ui/LabelUI';
 import { eventEmitter } from '@/eventEmitter';
-import { motion } from "framer-motion"
+import { IMaskInput } from 'react-imask';
 import { toast } from 'react-toastify';
+import { motion } from "framer-motion";
+import { useFormik } from 'formik';
+import { useState } from 'react';
+
+import classNames from 'classnames';
 import useWindowSize from '@/hooks/useWindowSize';
 import classes from './index.module.css';
-import classNames from 'classnames';
 
 interface IProps {
     setStep: SetStepFunction;

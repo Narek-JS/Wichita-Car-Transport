@@ -1,14 +1,15 @@
-import { Container } from '../ui/container';
 import { ArrowRightRed } from '@/public/assets/svgs/ArrowRightRed';
-import { AddIcon } from '@/public/assets/svgs/AddIcon';
-import { useState } from 'react';
 import { CloseIcon } from '@/public/assets/svgs/CloseIcon';
-import { selectHome } from '@/store/home';
+import { AddIcon } from '@/public/assets/svgs/AddIcon';
 import { useAppSelector } from '@/store/hooks';
+import { Container } from '../ui/container';
+import { selectHome } from '@/store/home';
+import { useState } from 'react';
+
 import Link from 'next/link';
-import classes from './index.module.css';
 import Image from 'next/image';
 import classNames from 'classnames';
+import classes from './index.module.css';
 
 const CalculatedFee: React.FC = () => {
     const data = useAppSelector(selectHome).data?.calculate;

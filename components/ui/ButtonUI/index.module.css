@@ -61,6 +61,14 @@
     display: block;
     position: relative;
     overflow: hidden;
+    height: 43px;
+}
+
+.transparent.loading {
+    background-color: #DDC00C; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .transparent::before {
@@ -82,7 +90,6 @@
 .transparent:hover::before {
     transform: translateX(100%);
 }
-
 
 .max-content {
     width: max-content;

@@ -1,3 +1,7 @@
+.feedbackForm * {
+    transition: all .1s;
+}
+
 .feedbackForm {
     width: 100%;
     height: 100vh;
@@ -9,7 +13,6 @@
     justify-content: center;
     align-items: center;
     background-color: #00000041;
-    
 }
 
 .content {
@@ -37,17 +40,21 @@
 }
 
 .wrapperInput {
+    padding-bottom: 20px;
     position: relative;
+    width: 100%;
+}
+
+.wrapperInput p {
+    position: absolute;
+    bottom: -20px;
 }
 
 .input {
-    padding-bottom: 22px;
-    margin-bottom: 20px;
     border: none;
     text-decoration: none;
     outline: none;
     background: transparent;
-    border-bottom: 1px solid rgba(0, 83, 121, 0.4);
     color: #16426c;
     font-weight: 700;
     width: 100%;
@@ -88,6 +95,11 @@
     gap: 20px;
 }
 
+.locations {
+    margin-bottom: 20px;
+    margin-top: 16px;
+}
+
 .rating,
 .recommend {
     width: 100%;
@@ -99,6 +111,10 @@
     align-items: center;
     gap: 23px;
     margin-bottom: 20px;
+}
+
+.recommend {
+    margin-top: 22px;
 }
 
 .recapcha {
@@ -123,7 +139,7 @@
 .btn {
     cursor: pointer;
     width: 100%;
-    background: #0069D9;
+    background: #DDC00C;
     border-radius: 5px;
     font-weight: 700;
     color: #FFFFFF;
@@ -131,6 +147,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    font-size: 18px;
+    letter-spacing: 1px;
 }
 
 .imageNode {
@@ -149,7 +167,6 @@
     max-height: 670px;
     width: 100%;
     height: 100%;
-
     object-fit: contain;
 }
 
@@ -161,7 +178,6 @@
     display: flex;
     align-items: center;
     justify-content: center;
-
     position: absolute;
     right: 20px;
     top: 20px;
@@ -173,4 +189,58 @@
     .imageNode { display: none; }
     .form { border-radius: 20px; }
     .content { max-width: 570px; margin: 0 auto; }
+}
+
+@media screen and (max-width: 500px) {
+    .content {
+        max-height: 660px;
+        padding: 20px 0;
+        border-radius: 20px 20px 20px 20px;
+        background: #FFFFFF;
+    }
+
+    .form {
+        max-height: 620px;
+        overflow-y: auto;
+
+        border-radius: 20px 0 0 20px;
+        padding: 0 20px;
+    }
+
+    .form::-webkit-scrollbar {
+        width: 8px;
+    }
+    
+    .form::-webkit-scrollbar-track {
+        border-radius: 10px;
+        background-color: rgba(0, 83, 121, 0.1);
+    }
+    
+    .form::-webkit-scrollbar-thumb {
+        background-color: #DDC00C;
+        border-radius: 10px;
+    }
+
+    .vihacleList,
+    .locations {
+        flex-direction: column;
+        gap: 0;
+    }
+
+    .locations {
+        gap: 20px;
+    }
+
+    .fomrTitle {
+        font-size: 24px;
+    }
+
+    .closeForm {
+        width: 25px;
+        height: 25px;
+    }
+
+    .btn {
+        margin-bottom: 25px;
+    }
 }

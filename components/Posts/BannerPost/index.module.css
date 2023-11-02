@@ -52,9 +52,10 @@
 
 .subTitle {
     color: #005379;
-    text-decoration-line: underline;
+    text-decoration: underline;
     font-weight: 700;
     font-size: 30px;
+    word-wrap: break-word;
 }
 
 .description {
@@ -86,6 +87,17 @@
     font-weight: 500;
 }
 
+
+@media screen and (max-width: 1024px) {
+    .title {
+        font-size: 42px;
+    }
+
+    .image {
+        min-width: 510px;
+    }
+}
+
 @media screen and (max-width: 991px) {
     .image {
         flex: 50;
@@ -93,10 +105,51 @@
 }
 
 @media screen and (max-width: 768px) {
+    .subTitle {
+        font-size: 24px;
+    }
+
+    .description {
+        height: auto;
+        max-height: 390px;
+    }
+
     .content {
         flex-direction: column;
     }
     .title {
         margin-bottom: 25px;
+    }
+
+    .image {
+        min-width: 100%;
+    }
+}
+
+
+@media screen and (max-width: 560px) {
+    .bannerPost {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .title {
+        text-align: center;
+    }
+
+    .content {
+        border-radius: 15px;
+        height: fit-content;
+        max-width: 350px;
+        width: 100%;
+        transition: all .2s;
+    }
+}
+
+@media screen and (max-width: 420px) {
+    .title {
+        font-size: 32px;
     }
 }

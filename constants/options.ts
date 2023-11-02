@@ -1,9 +1,9 @@
-import { BingIcon } from "@/public/assets/svgs/BingIcon";
-import { FbIcon } from "@/public/assets/svgs/FbIcon";
-import { GoogleIcon } from "@/public/assets/svgs/GoogleIcon";
 import { PinterestIcon } from "@/public/assets/svgs/PinterestIcon";
 import { TwitterIcon } from "@/public/assets/svgs/TwitterIcon";
+import { GoogleIcon } from "@/public/assets/svgs/GoogleIcon";
+import { BingIcon } from "@/public/assets/svgs/BingIcon";
 import { YelpIcon } from "@/public/assets/svgs/YelpIcon";
+import { FbIcon } from "@/public/assets/svgs/FbIcon";
 
 export const socialIcons = {
     'Facebook': FbIcon,
@@ -20,4 +20,4 @@ export const timeOptions = [
     'Within 2 weeks',
     'Within 30 days',
     'More than 30 days'
-]
+];

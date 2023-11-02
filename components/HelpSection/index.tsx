@@ -1,20 +1,23 @@
-import { FaqIconHelpSection } from '@/public/assets/svgs/FaqIconHelpSection';
 import { CallIconHelpSection } from '@/public/assets/svgs/CallIconHelpSection';
-import { useAppSelector } from '@/store/hooks';
-import { selectMenus } from '@/store/manu';
+import { FaqIconHelpSection } from '@/public/assets/svgs/FaqIconHelpSection';
 import { LINKS_FROM_MENU_TITLES } from '@/constants/words';
 import { useGetHelpsQuery } from '@/store/help';
+import { useAppSelector } from '@/store/hooks';
+import { LoadingUI } from '../ui/LoadingUI';
+import { selectMenus } from '@/store/manu';
+
 import Image from 'next/image';
 import Link from 'next/link';
 import classes from './index.module.css';
 
 const HelpSection: React.FC = () => {
     const { data: menuData } = useAppSelector(selectMenus);
-    const { data } = useGetHelpsQuery('help');
+    const { data, isLoading } = useGetHelpsQuery('help');
 
     return (
         <section className={classes.helpSection}>
-            <div className={classes.fakyBg}/>
+            { isLoading && <LoadingUI type='fullPage' /> }
+            <div className={classes.fakyBg} />
             <Image
                 src='/assets/images/heplSectionBg.png'
                 alt="help background image"
@@ -39,7 +42,7 @@ const HelpSection: React.FC = () => {
                         ))}
                     </div>
                     <div className={classes.links}>
-                        <Link href={'tel:'+menuData?.contactInfo?.[LINKS_FROM_MENU_TITLES.phone]?.url || ''}>
+                        <Link href={'tel:' + menuData?.contactInfo?.[LINKS_FROM_MENU_TITLES.phone]?.url || ''}>
                             <CallIconHelpSection />
                             <span>Call Us</span>
                         </Link>

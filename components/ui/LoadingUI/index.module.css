@@ -63,7 +63,9 @@
 .fullPage {
   width: 100%;
   position: fixed;
-  z-index: 999;
+  z-index: 99999;
+  top: 0;
+  left: 0;
   height: 100vh;
   background-color: #c9cdd3;
   display: flex;

@@ -1,18 +1,18 @@
-import { configureStore } from '@reduxjs/toolkit'
-import { setupListeners } from '@reduxjs/toolkit/query'
-import { manuApi } from './manu'
-import { faqApi } from './faq'
-import { siteBarSlice } from './siteBar';
-import { quoteFormSlice } from './quoteForm';
-import { customerReviewsApi } from './customerReviews';
+import { customerReviewsApi, customerReviewsUI } from './customerReviews';
 import { transportServicesApi } from './transportServices';
-import { homeApi } from './home';
+import { setupListeners } from '@reduxjs/toolkit/query';
 import { latestPostsApi } from './posts/latestPosts';
-import { helpApi } from './help';
+import { configureStore } from '@reduxjs/toolkit';
+import { optionsByZipApi } from './optionsByZip';
 import { dynamicPageApi } from './dynamicPage';
+import { quoteFormSlice } from './quoteForm';
+import { siteBarSlice } from './siteBar';
 import { postsApi } from './posts/posts';
 import { searchApi } from './search';
-import { optionsByZipApi } from './optionsByZip';
+import { manuApi } from './manu';
+import { homeApi } from './home';
+import { helpApi } from './help';
+import { faqApi } from './faq';
 
 export const store = configureStore({
   reducer: {
@@ -28,6 +28,7 @@ export const store = configureStore({
     [customerReviewsApi.reducerPath]: customerReviewsApi.reducer,
     [transportServicesApi.reducerPath]: transportServicesApi.reducer,
     siteBar: siteBarSlice.reducer,
+    customerReviewsUI: customerReviewsUI.reducer,
     quoteForm: quoteFormSlice.reducer
   },
   middleware: getDefaultMiddleware => getDefaultMiddleware().concat([
@@ -43,9 +44,9 @@ export const store = configureStore({
     customerReviewsApi.middleware,
     transportServicesApi.middleware
   ]),
-})
+});
 
 setupListeners(store.dispatch);
 
-export type RootState = ReturnType<typeof store.getState>
+export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;

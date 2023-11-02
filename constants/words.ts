@@ -26,4 +26,4 @@ export const LINKS_FROM_MENU_TITLES = {
     home: "Home",
     termsAndConditions: 'Terms And Conditions',
     privacyPolicy: 'Privacy Policy'
-}
+};

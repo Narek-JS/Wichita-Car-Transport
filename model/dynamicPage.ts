@@ -16,6 +16,16 @@ export interface IDynamicContentFromAdmin {
     content: string;
 };
 
+export interface IRelatedPost {
+    id: number;
+    image: string;
+    slug: string;
+    title: string;
+    date: string;
+    categoryName: string;
+    categoryId: number;
+};
+
 export interface IPostData {
     content: string;
     categoryName: string;
@@ -27,7 +37,7 @@ export interface IPostData {
     title: string;
     date: string;
     post_comment: Array<any>;
-    relatedPosts: Array<any>;
+    relatedPosts: Array<IRelatedPost>;
 };
 
 export class DynamicPageAdapter {
@@ -45,7 +55,15 @@ export class DynamicPageAdapter {
             title: data?.title || '',
             date: data?.updated_at || '',
             post_comment: data?.post_comment || [],
-            relatedPosts: relatedPosts || []
+            relatedPosts: (relatedPosts || []).map(((post, index) => ({
+                id: post?.id || index,
+                image: post?.image || '',
+                slug: post?.slug || '',
+                title: post?.title || '',
+                date: post?.updated_at || '',
+                categoryName: post?.category?.name || '',
+                categoryId: post?.category_id
+            })))
         };
     };
 

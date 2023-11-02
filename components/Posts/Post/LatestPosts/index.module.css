@@ -4,6 +4,7 @@
     flex-direction: column;
     gap: 40px;
     max-width: 400px;
+    min-width: 230px;
 }
 
 .postsTitle {
@@ -111,6 +112,17 @@
     color: rgba(0, 41, 122, 0.6);
     font-size: 15px;
     font-weight: 500;
+}
+
+@media screen and (max-width: 1200px) {
+    .viewAllSlice p,
+    .postsCardReadMore {
+        font-size: 16px;
+    }
+
+    .defaultText {
+        font-size: 15px;
+    }
 }
 
 @media screen and (max-width: 991px) {

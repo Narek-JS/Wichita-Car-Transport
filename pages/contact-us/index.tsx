@@ -1,12 +1,12 @@
-import { metaTags } from '@/constants/metaTags';
-import { NextPage } from 'next';
-import { Fragment } from 'react';
-import { Container } from '@/components/ui/container';
-import { Form } from '@/components/contactUs/Form';
 import { ImageNode } from '@/components/contactUs/ImageNode';
 import { useScrollToView } from '@/hooks/useScrollToView';
-import Head from 'next/head';
+import { Container } from '@/components/ui/container';
+import { Form } from '@/components/contactUs/Form';
+import { metaTags } from '@/constants/metaTags';
+import { Fragment } from 'react';
+import { NextPage } from 'next';
 
+import Head from 'next/head';
 import classes from './index.module.css';
 
 const Faqs: NextPage = () => {
@@ -14,16 +14,16 @@ const Faqs: NextPage = () => {
 
   return (
     <Fragment>
-        <Head>{metaTags.contact}</Head>
-        <section className={classes.contactUsSection} ref={sectionRef}>
-            <Container>
-                <h2 className={classes.title}>Contact Us</h2>
-                <div className={classes.content}>
-                  <ImageNode />
-                  <Form />
-                </div>
-            </Container>
-        </section>
+      <Head>{metaTags.contact}</Head>
+      <section className={classes.contactUsSection} ref={sectionRef}>
+        <Container>
+          <h2 className={classes.title}>Contact Us</h2>
+          <div className={classes.content}>
+            <ImageNode />
+            <Form />
+          </div>
+        </Container>
+      </section>
     </Fragment>
   );
 };

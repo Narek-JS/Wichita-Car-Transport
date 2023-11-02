@@ -1,6 +1,6 @@
-import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
-import { BASE_URL } from '@/constants/api'
 import { ITransportServicesData, TransportServicesAdapter } from '@/model/transportServices';
+import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
+import { BASE_URL } from '@/constants/api';
 
 export const transportServicesApi = createApi({
   reducerPath: 'transportServicesApi',

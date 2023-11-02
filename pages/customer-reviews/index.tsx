@@ -1,24 +1,23 @@
-import { Fragment, useState } from 'react';
-import { metaTags } from '@/constants/metaTags';
-import { ReviewsGraph } from '@/components/CustomerReviews';
-import { Feedback } from '@/components/CustomerReviews/Feedbacks';
-import { FeedbackForm } from '@/components/CustomerReviews/FeedbackForm';
 import { useGetCustomerReviewsQuery } from '@/store/customerReviews';
+import { Feedback } from '@/components/CustomerReviews/Feedbacks';
+import { ReviewsGraph } from '@/components/CustomerReviews';
 import { LoadingUI } from '@/components/ui/LoadingUI';
+import { Redirect } from '@/components/Redirect';
+import { metaTags } from '@/constants/metaTags';
+import { Fragment } from 'react';
 import Head from 'next/head';
 
 export default function CustomerReviews() {
-  const [ isOpenForm, setIsOpenForm ] = useState(false);
-  const { isLoading, data } = useGetCustomerReviewsQuery('');
+  const { isLoading, isError } = useGetCustomerReviewsQuery('reviews');
 
-  if(isLoading) return <LoadingUI type='fullPage' />
+  if(isError) return <Redirect to='/404' />;
 
   return (
     <Fragment>
-      <Head>{metaTags.quote}</Head>
-      <ReviewsGraph setIsOpenForm={setIsOpenForm}/>
-      <Feedback feedbacks={data?.feedbacks} />
-      { isOpenForm && <FeedbackForm setIsOpenForm={setIsOpenForm}/> }
+      { isLoading && <LoadingUI type='fullPage' /> }
+      <Head>{metaTags.customerReviews}</Head>
+      <ReviewsGraph />
+      <Feedback />
     </Fragment>
   );
 };

@@ -46,10 +46,57 @@
     max-height: 100px;
 }
 
+@media screen and (max-width: 1276px) {
+    .contentBlocks div:nth-child(4) {
+        display: none;
+    }
+}
+
+@media screen and (max-width: 991px) {
+    .contentBlocks div:nth-child(3) {
+        display: none;
+    }
+}
+
 @media screen and (max-width: 768px) {
     .contentBlocks .card {
         flex: 25;
         width: 200px;
         min-width: 200px;
     }
+
+    .firstLine p {
+        font-size: 32px;
+    }
+
+    .latstBlocks {
+        padding-top: 20px;
+    }
+    
+}
+
+
+@media screen and (max-width: 657px) {
+    .contentBlocks div {
+        max-width: 100%;
+        min-width: 100% !important;
+        width: 100% !important;
+    }
+
+    .content {
+        gap: 20px;
+    }
+}
+
+@media screen and (max-width: 556px) {
+    .firstLine a {
+        display: none;
+    }
+}
+
+@media screen and (max-width: 435px) {
+    .firstLine p {
+        font-size: 24px;
+    }
+
 }

@@ -164,7 +164,6 @@
 .postBody {
     display: flex;
     flex-direction: column;
-    gap: 20px;
 }
 
 .postBody h2 {
@@ -172,6 +171,7 @@
     font-weight: 500;
     font-size: 24px;
     margin: 25px 0;
+    line-height: 32px;
 }
 
 .postBody p { 
@@ -185,23 +185,18 @@
 
 /* Latest News */
 
-
 /* relatedPosts */
 
 .relatedPosts {
     display: flex;
     justify-content: space-between;
+    flex-direction: column;
     gap: 28px;
     margin-bottom: 30px;
     padding-bottom: 30px;
 }
 
 @media screen and (max-width: 1050px) {
-    .wrapperSocial {
-        align-items: flex-start;
-        flex-direction: column;
-        gap: 10px;
-    }
 
     .socialSlice {
         flex-direction: row-reverse;
@@ -227,14 +222,15 @@
     }
 }
 
-@media screen and (max-width: 620px) {
-    .wrapperSocial {
-        flex-direction: column;
-    }
-
+@media screen and (max-width: 500px) {
     .wrapperSocial .calendarSlice,
     .wrapperSocial .socialSlice {
-        justify-content: space-between;
-        width: 100%;
+        gap: 10px;
+    }
+
+    .wrapperSocial {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
     }
 }

@@ -1,7 +1,7 @@
+import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
+import { ISearchData, getSearchAdaptedData } from '@/helper/search';
 import { PostData } from '@/components/Search';
 import { BASE_URL } from '@/constants/api';
-import { ISearchData, getSearchAdaptedData } from '@/helper/search';
-import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
 export const searchApi = createApi({
   baseQuery: fetchBaseQuery({ baseUrl: BASE_URL }),

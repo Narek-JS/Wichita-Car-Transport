@@ -1,17 +1,17 @@
-import { useEffect, useState } from 'react';
-import { Container } from '@/components/ui/container';
+import { closeQuoteFormMobile, openQuoteFormMobile, selectQuoteFormMobileStatus } from '@/store/quoteForm';
+import { useScrollPositionWindow } from '@/hooks/useScrollPositionWindow';
+import { GetQuoteButton } from '@/public/assets/svgs/GetQuoteButton';
+import { closeSidebar, selectSiteBarStatus } from '@/store/siteBar';
 import { useAppDispatch, useAppSelector } from '@/store/hooks';
-import { selectMenus } from '@/store/manu';
 import { EarringIcon } from '@/public/assets/svgs/EarringIcon';
 import { MailIcon } from '@/public/assets/svgs/MailIcon';
-import { GetQuoteButton } from '@/public/assets/svgs/GetQuoteButton';
-import { closeQuoteFormMobile, openQuoteFormMobile, selectQuoteFormMobileStatus } from '@/store/quoteForm';
-import { closeSidebar, selectSiteBarStatus } from '@/store/siteBar';
-import { useScrollPositionWindow } from '@/hooks/useScrollPositionWindow';
+import { Container } from '@/components/ui/container';
+import { useEffect, useState } from 'react';
+import { selectMenus } from '@/store/manu';
 import { useRouter } from 'next/router';
-import useWindowSize from '@/hooks/useWindowSize';
 import Link from 'next/link';
 import classNames from 'classnames';
+import useWindowSize from '@/hooks/useWindowSize';
 import classes from './index.module.css';
 
 const Nav: React.FC = () => {

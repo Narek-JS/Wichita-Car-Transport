@@ -8,8 +8,8 @@
 
 .postCommentTitle {
     color: #005379;
-    font-weight: 400;
-    font-size: 20px; 
+    font-weight: 700;
+    font-size: 36px;
 }
 
 .form {
@@ -52,7 +52,7 @@
 .checkNode {
     display: flex;
     align-items: center;
-    gap: 20px;
+    gap: 10px;
 }
 
 .wrapperCheckbox .error {
@@ -64,6 +64,8 @@
     display: inline-block;
     width: 20px;
     height: 20px;
+    min-width: 20px;
+    min-height: 20px;
 }
   
 .checkbox input[type="checkbox"] {
@@ -77,7 +79,9 @@
     top: 0;
     left: 0;
     width: 25px;
+    min-width: 25px;
     height: 25px;
+    min-height: 25px;
     background-color: transparent;
     border-radius: 999px;
     border: 2px solid #DDC00C;
@@ -99,7 +103,8 @@
 
 .emailSaveText {
     color: #003B56;
-    font-size: 12px; 
+    font-size: 12px;
+    transform: translateY(2px); 
     cursor: pointer;
 }
 
@@ -127,4 +132,28 @@
     font-size: 0.75rem;
     line-height: 1.66;
     letter-spacing: 0.03333em;
+}
+
+@media screen and (max-width: 768px) {
+    .inputs {
+        gap: 10px;
+    }
+}
+
+@media screen and (max-width: 555px) {
+    .inputs {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .wrapperCheckbox {
+        display: flex;
+        flex-direction: column-reverse;
+        gap: 15px;
+    }
+
+    .wrapperCheckbox button {
+        width: 100% !important;
+        min-width: 100% !important;
+    }
 }

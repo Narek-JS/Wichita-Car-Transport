@@ -1,8 +1,8 @@
-import { DateIcon } from '@/public/assets/svgs/DateIcon';
 import { ArrowIcon } from '@/public/assets/svgs/ArrowIcon';
+import { DateIcon } from '@/public/assets/svgs/DateIcon';
 import { formatDate } from '@/helper/time';
-import Image from 'next/image';
 import Link from 'next/link';
+import Image from 'next/image';
 import classes from './index.module.css';
 
 interface IProps {

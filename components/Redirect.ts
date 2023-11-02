@@ -1,9 +1,9 @@
-import { useEffect } from 'react';
 import { useRouter } from 'next/router';
+import { useEffect } from 'react';
 
 interface RedirectProps {
   to: string;
-}
+};
 
 const Redirect: React.FC<RedirectProps> = ({ to }) => {
     const router = useRouter();

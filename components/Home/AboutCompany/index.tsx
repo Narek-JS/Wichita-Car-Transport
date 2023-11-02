@@ -1,13 +1,14 @@
 
-import { Container } from '@/components/ui/container';
-import { ArrowIcon } from '@/public/assets/svgs/ArrowIcon';
-import { WarningIcon } from '@/public/assets/svgs/WarningIcon';
 import { ArrowRightRed } from '@/public/assets/svgs/ArrowRightRed';
+import { WarningIcon } from '@/public/assets/svgs/WarningIcon';
+import { ArrowIcon } from '@/public/assets/svgs/ArrowIcon';
+import { Container } from '@/components/ui/container';
 import { useAppSelector } from '@/store/hooks';
 import { selectHome } from '@/store/home';
+
+import Link from 'next/link';
 import Image from 'next/image';
 import classes from './index.module.css';
-import Link from 'next/link';
 
 const AboutCompany: React.FC = () => {
     const data = useAppSelector(selectHome).data?.aboutUs;

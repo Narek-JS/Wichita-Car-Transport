@@ -39,8 +39,6 @@ const getPosts = (posts: Array<Record<string, any>>, searchText: string): Array<
 
 export const getSearchAdaptedData = (data: any, searchText: string): ISearchData => {
     
-    console.log('data --> ', data);
-
     return {
         pages: getPagesData(data?.pages || []),
         postByCategory: getPosts(data?.postByCategory || [], searchText),

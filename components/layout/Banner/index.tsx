@@ -1,15 +1,25 @@
+import { Container } from '@/components/ui/container';
 import { useEffect, useRef, useState } from 'react';
 import { BannerSlider } from './BannerSlider';
-import { Container } from '@/components/ui/container';
-import { FormSteps } from '../FormSteps';
 import { eventEmitter } from '@/eventEmitter';
+import { FormSteps } from '../FormSteps';
+import { useRouter } from 'next/router';
+
 import useWindowSize from '@/hooks/useWindowSize';
 import classes from './index.module.css';
 
 const Banner: React.FC = () => {
-    const bannerConentRef = useRef<HTMLDivElement>(null);
+    const { pathname } = useRouter();
     const [bannerContentElm, setBannerContentElm] = useState<null | HTMLDivElement>(null);
+
     const size = useWindowSize();
+    const bannerConentRef = useRef<HTMLDivElement>(null);
+
+    const isNotBanner = (
+        pathname === '/blogs' ||
+        pathname === '/news' ||
+        pathname === '/404'
+    );
 
     useEffect(() => {
         if(bannerConentRef.current !== null) {
@@ -26,6 +36,8 @@ const Banner: React.FC = () => {
             };
         };
     });
+
+    if(isNotBanner) return null; 
 
     return (
         <section>

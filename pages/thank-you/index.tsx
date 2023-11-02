@@ -1,12 +1,14 @@
-import { Fragment } from 'react';
+import { ThankYouTextIcon } from '@/public/assets/svgs/ThankYouTextIcon';
+import { useScrollToView } from '@/hooks/useScrollToView';
+import { VideoPlayer } from '@/components/VideoPlayer';
 import { Container } from '@/components/ui/container';
 import { metaTags } from '@/constants/metaTags';
-import { ThankYouTextIcon } from '@/public/assets/svgs/ThankYouTextIcon';
-import { VideoPlayer } from '@/components/VideoPlayer';
-import { useScrollToView } from '@/hooks/useScrollToView';
+import { Fragment } from 'react';
+
 import Head from 'next/head';
 import Link from 'next/link';
 import Image from 'next/image';
+
 import classes from './index.module.css';
 
 export default function ThankYou() {

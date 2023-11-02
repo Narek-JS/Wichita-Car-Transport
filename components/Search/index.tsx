@@ -1,5 +1,5 @@
-import { SearchIcon } from '@/public/assets/svgs/SearchIcon';
 import { useScrollPosition } from '@/hooks/useScrollPosition';
+import { SearchIcon } from '@/public/assets/svgs/SearchIcon';
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { CloseIcon } from '@/public/assets/svgs/CloseIcon';
 import { scrollIsArriveBottom } from '@/helper/search';
@@ -7,9 +7,10 @@ import { LoadingUI } from '@/components/ui/LoadingUI';
 import { useSearchMutation } from '@/store/search';
 import { InputUI } from '@/components/ui/InputUI';
 import { useDebounce } from '@/hooks/useDebounce';
-import useWindowSize from '@/hooks/useWindowSize';
-import classNames from 'classnames';
+
 import Link from 'next/link';
+import classNames from 'classnames';
+import useWindowSize from '@/hooks/useWindowSize';
 import classes from './index.module.css';
 
 export interface PostData {
@@ -20,13 +21,6 @@ export interface PostData {
 type FindMessage = {
     slug: string;
     title: string; 
-};
-
-interface ApiResponse {
-    pages: Array<FindMessage>;
-    postByCategory: Array<FindMessage>;
-    posts: Array<FindMessage>;
-    empty?: boolean;
 };
 
 const Search = () => {
@@ -43,6 +37,7 @@ const Search = () => {
 
     const [ search, { isLoading, data } ] = useSearchMutation();
 
+    // Side Effects
     useEffect(() => {
         if(data !== undefined) {
             setSearchData([
@@ -84,7 +79,7 @@ const Search = () => {
             search({ page, text: debouncedSearchTerm });
         };
     };
-    
+
     // JSX
     return (
         <div className={classes.wrapperSearch}>

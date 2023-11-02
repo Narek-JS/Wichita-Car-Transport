@@ -1,8 +1,9 @@
-import { Fragment } from 'react';
-import { DateIcon } from '@/public/assets/svgs/DateIcon';
-import { formatDate } from '@/helper/time';
 import { ArrowRightRed } from '@/public/assets/svgs/ArrowRightRed';
+import { DateIcon } from '@/public/assets/svgs/DateIcon';
 import { IPosts } from '@/model/latestPosts';
+import { formatDate } from '@/helper/time';
+import { Fragment } from 'react';
+
 import Link from 'next/link';
 import Image from 'next/image';
 import classes from './index.module.css';
@@ -13,7 +14,6 @@ interface IProps {
     latestPosts: IPosts;
     latestPostCategory: CategoryT;
 };
-
 
 const LatestPosts: React.FC<IProps> = ({
     latestPosts,

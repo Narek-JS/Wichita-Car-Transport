@@ -1,6 +1,6 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
-import { BASE_URL } from '@/constants/api'
 import { FaqAdapter, IFaqData } from '@/model/faqs';
+import { BASE_URL } from '@/constants/api'
 
 export const faqApi = createApi({
   reducerPath: 'faqApi',

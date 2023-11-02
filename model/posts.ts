@@ -11,6 +11,13 @@ export interface IPost {
     key: number
 };
 
+export interface IPostComment {
+    name: string;
+    email: string;
+    phone: string;
+    comments: string;
+};
+
 export interface IPosts {
     data: Array<IPost>;
     currentPage: string;
