@@ -226,9 +226,11 @@ const FormQuote = () => {
                             name='time'
                             onChange={formik.handleChange}
                         >
-                            <MenuItem value={10}>Ten</MenuItem>
-                            <MenuItem value={20}>Twenty</MenuItem>
-                            <MenuItem value={30}>Thirty</MenuItem>
+                            <MenuItem value={10}>As soon as possible</MenuItem>
+                            <MenuItem value={20}>Within 1 week</MenuItem>
+                            <MenuItem value={30}>Within 2 weeks</MenuItem>
+                            <MenuItem value={30}>Within 30 days</MenuItem>
+                            <MenuItem value={30}>More than 30 days</MenuItem>
                         </Select>
                     </FormControl>
                     <FormikErrors {...{ classes, formik, name: 'time' }}/>
@@ -355,7 +357,7 @@ const FormQuote = () => {
                 </div>
             </div>
             <button className={classes.btn} type='submit'>
-                { isLoading && <LoadingUI type='roundSmall' /> }
+                { isLoading && <LoadingUI type='roundSmall' color='yellow' /> }
                 { !isLoading && 'Continue' }
             </button>
         </form>

@@ -1,10 +1,12 @@
+import classNames from 'classnames';
 import classes from './index.module.css';
 
 interface IProps {
   type: "round" | 'row' | 'fullPage' | 'roundSmall',
+  color?: 'yellow'
 };
 
-const LoadingUI: React.FC<IProps> = ({ type }) => {
+const LoadingUI: React.FC<IProps> = ({ type, color }) => {
 
   if(type === 'fullPage') {
     return <div className={classes[type]}>
@@ -14,7 +16,9 @@ const LoadingUI: React.FC<IProps> = ({ type }) => {
   }
 
   return (
-    <span className={classes[type]} />
+    <span className={classNames(classes[type], {
+      [classes.yellow]: color
+    })} />
   );
 }
 

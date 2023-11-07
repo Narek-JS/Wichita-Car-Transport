@@ -147,6 +147,11 @@
   animation: roundSmallRotation 1s linear infinite;
 }
 
+.yellow {
+  border: 2.5px solid #ddc00c;
+  border-bottom-color: transparent;
+}
+
 @keyframes roundSmallRotation {
   0% {
     transform: rotate(0deg);
