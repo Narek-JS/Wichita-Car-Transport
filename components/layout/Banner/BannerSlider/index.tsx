@@ -35,7 +35,7 @@ const BannerSlider: React.FC<IProps> = ({ bannerContentElm }) => {
   useEffect(() => {
     setTimeout(() => {
       handleCarouselChange(0);
-    }, 2000);
+    }, 2200);
   }, []);
 
   useEffect(() => {

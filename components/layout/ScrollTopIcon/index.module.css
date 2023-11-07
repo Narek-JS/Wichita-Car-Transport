@@ -33,6 +33,10 @@
     animation: move-top 1s infinite;
 }
 
+.scrollTopIcon span svg {
+  transform: translateY(2px);
+}
+
 .toTop {
     transform: rotate(0deg)
 }

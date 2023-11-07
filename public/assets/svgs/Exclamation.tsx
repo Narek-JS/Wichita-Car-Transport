@@ -1,4 +1,4 @@
-export const Exclamation: React.FC<{ color?: string }> = ({ color = '#FDFDFF' }) => (
+export const Exclamation: React.FC<{ color?: string }> = ({ color }) => (
     <svg 
         width="18" 
         height="18" 
@@ -8,7 +8,7 @@ export const Exclamation: React.FC<{ color?: string }> = ({ color = '#FDFDFF' })
     >
         <path
             d="M13.875 15H4.125L1.875 17.25V4.5C1.875 3.2625 2.8875 2.25 4.125 2.25H13.875C15.1125 2.25 16.125 3.2625 16.125 4.5V12.75C16.125 13.9875 15.1125 15 13.875 15Z"
-            fill={color}
+            fill={color || '#FDFDFF'}
         />
         <path
             d="M8.25 7.5H9.75V11.625H8.25V7.5Z"
