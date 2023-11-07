@@ -118,3 +118,7 @@ form * {
 .dropDownWrapper [data-shrink="true"] {
   top: 4px;
 }
+
+.css-18nc3u2 .MuiOutlinedInput-root {
+  padding: 8px 9px;
+}
