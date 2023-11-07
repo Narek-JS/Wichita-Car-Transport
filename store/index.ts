@@ -5,11 +5,12 @@ import { latestPostsApi } from './posts/latestPosts';
 import { configureStore } from '@reduxjs/toolkit';
 import { optionsByZipApi } from './optionsByZip';
 import { dynamicPageApi } from './dynamicPage';
+import { bannerApi, bannerUI } from './banner';
 import { quoteFormSlice } from './quoteForm';
+import { thankYouSlice } from './thankYou';
 import { siteBarSlice } from './siteBar';
 import { postsApi } from './posts/posts';
 import { searchApi } from './search';
-import { bannerApi, bannerUI } from './banner';
 import { manuApi } from './manu';
 import { homeApi } from './home';
 import { helpApi } from './help';
@@ -30,6 +31,7 @@ export const store = configureStore({
     [customerReviewsApi.reducerPath]: customerReviewsApi.reducer,
     [transportServicesApi.reducerPath]: transportServicesApi.reducer,
     siteBar: siteBarSlice.reducer,
+    thankYou: thankYouSlice.reducer,
     customerReviewsUI: customerReviewsUI.reducer,
     bannerUI: bannerUI.reducer,
     quoteForm: quoteFormSlice.reducer

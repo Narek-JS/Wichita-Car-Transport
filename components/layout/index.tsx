@@ -2,6 +2,7 @@ import { FeedbackForm } from '../CustomerReviews/FeedbackForm';
 import { Provider as ReduxProvider } from 'react-redux'
 import { ToastContainer } from 'react-toastify';
 import { ScrollTopIcon } from './ScrollTopIcon';
+import { ThankYouPopup } from './ThankYouPopup';
 import { SideBarMenu } from './SideBarMenu';
 import { SocialLinks } from './SocialLinks';
 import { Ubuntu } from 'next/font/google';
@@ -37,6 +38,7 @@ const Layout: React.FC<IProps> = ({ children, pageTitle = 'New York' }) => {
                     <SideBarMenu />
                     <SocialLinks />
                     <ToastContainer />
+                    <ThankYouPopup />
                     {children}
                     <ScrollTopIcon />
                     <Footer />

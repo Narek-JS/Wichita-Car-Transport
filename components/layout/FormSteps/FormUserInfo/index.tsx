@@ -7,6 +7,8 @@ import { FormikErrors } from '@/components/ui/FormikError';
 import { hendleTypeRemoveSpace } from '@/helper/strings';
 import { LoadingUI } from '@/components/ui/LoadingUI';
 import { LabelUI } from '@/components/ui/LabelUI';
+import { openThankYou } from '@/store/thankYou';
+import { useAppDispatch } from '@/store/hooks';
 import { eventEmitter } from '@/eventEmitter';
 import { IMaskInput } from 'react-imask';
 import { toast } from 'react-toastify';
@@ -33,6 +35,7 @@ const FormUserInfo: React.FC<IProps> = ({
     formData,
     handleResetForm
 }) => {
+    const dispatch = useAppDispatch();
     const [ mutate, { isLoading } ] = useQuoteFormMutation();
     const [ animationVariant, setAnimationVariant ] = useState<MentionVariants>('fromLeft');
     const { width } = useWindowSize();
@@ -49,6 +52,7 @@ const FormUserInfo: React.FC<IProps> = ({
                     toast.success('your message is successfully sent', {
                         position: toast.POSITION.TOP_RIGHT
                     });
+                    dispatch(openThankYou());
                 }).catch(() => {
                     toast.error('something is wrong', {
                         position: toast.POSITION.TOP_RIGHT

@@ -9,15 +9,14 @@ import { useGetOptionsApiQuery } from '@/store/optionsByZip';
 import { closeQuoteFormDesktop } from '@/store/quoteForm';
 import { PhoneMaskCustom } from '../ui/PhoneMask';
 import { FormikErrors } from '../ui/FormikError';
+import { openThankYou } from '@/store/thankYou';
 import { LoadingUI } from '../ui/LoadingUI';
 import { useDispatch } from 'react-redux';
 import { LabelUI } from '../ui/LabelUI';
+import { toast } from 'react-toastify';
 import { useFormik } from 'formik';
 import classNames from 'classnames';
 import classes from './index.module.css';
-
-// error={Boolean(errors?.phone?.message)}
-// helperText={errors.phone?.message}
 
 const FormQuote = () => {
     const dispatch = useDispatch();
@@ -33,8 +32,16 @@ const FormQuote = () => {
                     operable: isOperable,
                     shipping: shippingMethod
                 }).then(() => {
+                    toast.success('your message is successfully sent', {
+                        position: toast.POSITION.TOP_RIGHT
+                    });
                     resetForm();
                     dispatch(closeQuoteFormDesktop());
+                    dispatch(openThankYou());
+                }).catch(() => {
+                    toast.error('something is wrong', {
+                        position: toast.POSITION.TOP_RIGHT
+                    });
                 });
             };
         },
