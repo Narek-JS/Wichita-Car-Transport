@@ -9,6 +9,7 @@ import { quoteFormSlice } from './quoteForm';
 import { siteBarSlice } from './siteBar';
 import { postsApi } from './posts/posts';
 import { searchApi } from './search';
+import { bannerApi, bannerUI } from './banner';
 import { manuApi } from './manu';
 import { homeApi } from './home';
 import { helpApi } from './help';
@@ -23,18 +24,21 @@ export const store = configureStore({
     [latestPostsApi.reducerPath]: latestPostsApi.reducer,
     [dynamicPageApi.reducerPath]: dynamicPageApi.reducer,
     [postsApi.reducerPath]: postsApi.reducer,
+    [bannerApi.reducerPath]: bannerApi.reducer,
     [searchApi.reducerPath]: searchApi.reducer,
     [optionsByZipApi.reducerPath]: optionsByZipApi.reducer,
     [customerReviewsApi.reducerPath]: customerReviewsApi.reducer,
     [transportServicesApi.reducerPath]: transportServicesApi.reducer,
     siteBar: siteBarSlice.reducer,
     customerReviewsUI: customerReviewsUI.reducer,
+    bannerUI: bannerUI.reducer,
     quoteForm: quoteFormSlice.reducer
   },
   middleware: getDefaultMiddleware => getDefaultMiddleware().concat([
     manuApi.middleware,
     faqApi.middleware,
     helpApi.middleware,
+    bannerApi.middleware,
     homeApi.middleware,
     dynamicPageApi.middleware,
     latestPostsApi.middleware,

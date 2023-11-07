@@ -6,7 +6,6 @@ import { LoadingUI } from "@/components/ui/LoadingUI";
 import { Redirect } from "@/components/Redirect";
 import { Post } from "@/components/Posts/Post";
 import { useRouter } from "next/router";
-import NotFound from './404';
 
 const DynamicPage: React.FC = () => {
     const { query: { dynamicPage: slug } } = useRouter();
@@ -43,7 +42,7 @@ const DynamicPage: React.FC = () => {
         };
     };
 
-    return <NotFound />;
+    return <Redirect to="/404"/>;
 };
 
 export default DynamicPage;

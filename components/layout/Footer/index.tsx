@@ -3,6 +3,7 @@ import { MailIcon } from '@/public/assets/svgs/MailIcon';
 import { Container } from '@/components/ui/container';
 import { useAppSelector } from '@/store/hooks';
 import { selectMenus } from '@/store/manu';
+import { useRouter } from 'next/router';
 import { Fragment } from 'react';
 
 import Link from 'next/link';
@@ -13,6 +14,7 @@ import classes from './index.module.css';
 const Footer = () => {
     const { data } = useAppSelector(selectMenus);
     const { width } = useWindowSize();
+    const { pathname } = useRouter();
 
     const splitedNodes = data?.footerItems?.reduce((acc: any, menuItem: any): any => {
         if(menuItem.children?.isEmpty()) {
@@ -28,6 +30,8 @@ const Footer = () => {
             arr.slice(index * 5, index * 5 + 5)
         );
     };
+
+    if(pathname === '/404') return null;
 
     return (
         <footer className={classes.footer}>

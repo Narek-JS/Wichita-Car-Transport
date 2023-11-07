@@ -1,9 +1,11 @@
 import { useScrollPositionWindow } from '@/hooks/useScrollPositionWindow';
 import { useEffect, useState } from 'react';
-import classes from './index.module.css';
+import { useRouter } from 'next/router';
 import classNames from 'classnames';
+import classes from './index.module.css';
 
 const ScrollTopIcon: React.FC = () => {
+    const { pathname } = useRouter();
     const [ to, setTo ] = useState<'top' | 'bottom'>('top');
     const scrollPosition = useScrollPositionWindow();
 
@@ -21,6 +23,8 @@ const ScrollTopIcon: React.FC = () => {
         left: 0,
         behavior: 'smooth'
     });
+
+    if(pathname === '/404') return null;
 
     return (
         <div className={classNames(classes.scrollTopIcon, {

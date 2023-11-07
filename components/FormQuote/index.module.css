@@ -4,7 +4,7 @@
     flex-direction: column;
     align-items: center;
     border-radius: 15px;
-    padding: 25px;
+    padding: 20px 25px;
     position: relative;
 }
 
@@ -25,14 +25,14 @@
 }
 
 .fromTitle {
-    color: #FFFFFF;
+    color: #005379f2;
     width: 280px;
     border-bottom: 1px solid #FFFFFF;
     font-weight: 700;
     font-size: 30px;
     text-align: center;
     padding-bottom: 5px;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
 }
 
 .fromTitle span {
@@ -43,19 +43,18 @@
     width: 100%;
     display: flex;
     justify-content: space-between;
-    margin-bottom: 25px;
+    margin-bottom: 20px;
     gap: 10px;
 }
 
 .vehicles {
     display: flex;
     flex-direction: column;
-    margin-bottom: 10px;
     overflow-y: auto;
 }
 
 .vehicles label {
-    margin-bottom: 5px;
+    margin-bottom: 10px;
 }
 
 .vehicleList {
@@ -77,7 +76,6 @@
 .input {
     background: #FFFFFF;
     height: 37px;
-    padding: 7px 10px 4px 12px;
     border-radius: 5px;
     border: none;
     line-height: inherit;
@@ -98,20 +96,18 @@
 
 .btn {
     width: 260px;
-    border: 1px solid rgba(221, 192, 12, 0.4);
+    border: 1px solid #DDC00C;
     border-radius: 5px;
     background: transparent;
-    color: #FFFFFF;
+    color: #005379f2;
     font-size: 20px;
     font-weight: 700;
-    margin-top: 10px;
     display: flex;
     justify-content: center;
     align-items: center;
     text-align: center;
-
+    margin-top: 5px;
     padding: 12px 0;
-
     cursor: pointer;
 }
 
@@ -120,11 +116,11 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 30px;
+    margin-bottom: 20px;
 }
 
 .underVehicleLine span {
-    color: #FFFFFF;
+    color: #005379f2;
     font-weight: 700;
     font-size: 20px;
     letter-spacing: .5px;
@@ -142,14 +138,15 @@
     justify-content: space-between;
     align-items: center;
     width: 100%;
-    margin-bottom: 30px;
+    margin-bottom: 20px;
     gap: 20px;
 }
 
 .dropDownWrapper {
+    width: 100%;
     display: flex;
     flex-direction: column;
-    gap: 6px;
+    gap: 10px;
     position: relative;
 }
 
@@ -177,7 +174,7 @@
 }
 
 .checkBox label {
-    color: #FFFFFF;
+    color: #005379f2;
     font-weight: 700;
     cursor: pointer;
 }
@@ -229,7 +226,7 @@
 
 .error {
     position: absolute;
-    bottom: -13px;
+    bottom: -16px;
     left: 5px;
     font-size: 11px;
     letter-spacing: .5px;

@@ -36,12 +36,12 @@ const Header: React.FC = () => {
     const isBanner = (
         pathname === '/blogs' ||
         pathname === '/news' ||
-        pathname === '/404' ||
         pathname === '/customer-reviews' ||
         query.dynamicPage
     );
 
-    if(error !== undefined) return <Redirect to='/404'/>
+    if(pathname === '/404') return null;
+    if(error !== undefined) return <Redirect to='/404'/>;
 
     return (
         <Fragment>

@@ -1,22 +1,23 @@
 import { IQuoteFormData, TypeOperableMethod, TypeShippingMethod, VahicleNode, initialValuesQuoteForm } from '@/model/form';
 import { handleTypeChangePhone, handleTypeChangeYear, hendleTypeRemoveSpace } from '@/helper/strings';
+import { Autocomplete, FormControl, InputLabel, MenuItem, NativeSelect, Select, TextField } from '@mui/material';
 import { RemoveVehiclesIcon } from '@/public/assets/svgs/RemoveVehiclesIcon';
 import { validationSchemaQuoteForm } from '@/constants/validationSchema';
 import { AddVehiclesIcon } from '@/public/assets/svgs/AddVehiclesIcon';
 import { useQuoteFormMutation } from '@/store/quoteForm/mutation';
 import { useGetOptionsApiQuery } from '@/store/optionsByZip';
 import { closeQuoteFormDesktop } from '@/store/quoteForm';
-import { DropdownSelectUI } from '../ui/DropdownSelectUI';
-import { Autocomplete, TextField } from '@mui/material';
-import { timeOptions } from '@/constants/options';
+import { PhoneMaskCustom } from '../ui/PhoneMask';
 import { FormikErrors } from '../ui/FormikError';
 import { LoadingUI } from '../ui/LoadingUI';
 import { useDispatch } from 'react-redux';
-import { IMaskInput } from 'react-imask';
 import { LabelUI } from '../ui/LabelUI';
 import { useFormik } from 'formik';
 import classNames from 'classnames';
 import classes from './index.module.css';
+
+// error={Boolean(errors?.phone?.message)}
+// helperText={errors.phone?.message}
 
 const FormQuote = () => {
     const dispatch = useDispatch();
@@ -48,10 +49,6 @@ const FormQuote = () => {
         skip: !formik.values.to
     });
 
-    const handleSelectTime = (value: string) => {
-        formik.setFieldValue("time", value);
-    };
-
     const handleCheckboxChange = (field: 'shippingMethod' | 'isOperable', value: TypeShippingMethod | TypeOperableMethod) => {
         formik.setFieldValue(field, value);
     };
@@ -79,7 +76,7 @@ const FormQuote = () => {
             </h2>
             <div className={classes.fromTo}>
                 <div className={classes.inputWrapper}>
-                    <LabelUI color="#FFFFFF" text='From' toolti={true} icon={true}/>
+                    <LabelUI color="#005379f2" text='From' toolti={true} icon={true}/>
                     <Autocomplete
                         className={classNames('autocomplete')}
                         options={formik.values.from === '' ? [] : (fromData?.data || [])}
@@ -102,7 +99,7 @@ const FormQuote = () => {
                     <FormikErrors {...{ classes, formik, name: 'from' }}/>
                 </div>
                 <div className={classes.inputWrapper}>
-                    <LabelUI color="#FFFFFF" text='To' toolti={true} icon={true}/>
+                    <LabelUI color="#005379f2" text='To' toolti={true} icon={true}/>
 
                     <Autocomplete
                         className={classNames('autocomplete')}
@@ -128,22 +125,22 @@ const FormQuote = () => {
             </div>
 
             <div className={classes.vehicles}>
-                <LabelUI color="#FFFFFF" text='Vehicle' toolti={true} icon={true}/>
+                <LabelUI color="#005379f2" text='Vehicle' toolti={true} icon={true}/>
                 { formik.values.vehicle.map((vehicle, index) => {
                     const errors = formik.errors as any;
                     return (
                         <div key={index} className={classes.vehicleList}>
                             <div className={classes.inputWrapper}>
-                                <input
-                                    className={classes.input}
+                                <TextField
+                                    className={classNames('autocomplete', classes.input)}
                                     autoComplete='off'
                                     placeholder='Year'
+                                    name={`vehicle[${index}].year`}
+                                    value={vehicle.year}
                                     onChange={(event) => {
                                         handleTypeChangeYear(event)
                                         formik.handleChange(event);
                                     }}
-                                    name={`vehicle[${index}].year`}
-                                    value={vehicle.year}
                                 />
                                 { formik.touched?.vehicle?.[index]?.year &&
                                   errors?.vehicle?.[index]?.year && (
@@ -153,16 +150,16 @@ const FormQuote = () => {
                                 )}
                             </div>
                             <div className={classes.inputWrapper}>
-                                <input
-                                    className={classes.input}
+                                <TextField
+                                    className={classNames('autocomplete', classes.input)}
                                     autoComplete='off'
                                     placeholder='Make'
+                                    name={`vehicle[${index}].make`}
+                                    value={vehicle.make}
                                     onChange={(event) => {
                                         hendleTypeRemoveSpace(event);
                                         formik.handleChange(event);
                                     }}
-                                    name={`vehicle[${index}].make`}
-                                    value={vehicle.make}
                                 />
                                 { formik.touched?.vehicle?.[index]?.make &&
                                   errors?.vehicle?.[index]?.make && (
@@ -172,16 +169,16 @@ const FormQuote = () => {
                                 )}
                             </div>
                             <div className={classes.inputWrapper}>
-                                <input
-                                    className={classes.input}
+                                <TextField
+                                    className={classNames('autocomplete', classes.input)}
                                     autoComplete='off'
                                     placeholder='Model'
+                                    name={`vehicle[${index}].model`}
+                                    value={vehicle.model}
                                     onChange={(event) => {
                                         hendleTypeRemoveSpace(event);
                                         formik.handleChange(event);
                                     }}
-                                    name={`vehicle[${index}].model`}
-                                    value={vehicle.model}
                                 />
                                 { formik.touched?.vehicle?.[index]?.model &&
                                   errors?.vehicle?.[index]?.model && (
@@ -205,17 +202,33 @@ const FormQuote = () => {
                 </div>
             </div>
             <div className={classes.seccondLine}>
-                <div className={classes.dropDownWrapper}>
-                    <LabelUI color="#FFFFFF" text='Time' toolti={true} icon={true}/>
-                    <DropdownSelectUI
-                        items={timeOptions}
-                        selectedItem={formik.values.time}
-                        setSelectedItem={handleSelectTime}
-                    />
+                <div className={classNames(classes.dropDownWrapper, 'dropDownWrapper')}>
+                    <LabelUI color="#005379f2" text='Time' toolti={true} icon={true}/>
+                    
+                    <FormControl sx={{ height: 40, minWidth: 120 }}>
+                        <InputLabel id="demo-simple-select-helper-label">
+                            Pick up Date
+                        </InputLabel>
+                        <Select
+                            MenuProps={{ disableScrollLock: true }}
+                            sx={{ height: 40 }}
+                            labelId="demo-simple-select-helper-label"
+                            id="demo-simple-select-helper"
+                            value={formik.values.time}
+                            label="Pick up Date"
+                            name='time'
+                            onChange={formik.handleChange}
+                        >
+                            <MenuItem value={10}>Ten</MenuItem>
+                            <MenuItem value={20}>Twenty</MenuItem>
+                            <MenuItem value={30}>Thirty</MenuItem>
+                        </Select>
+                    </FormControl>
                     <FormikErrors {...{ classes, formik, name: 'time' }}/>
                 </div>
+
                 <div className={classes.shippingMethod}>
-                    <LabelUI color="#FFFFFF" text='Shipping Method?' toolti={true} icon={true}/>
+                    <LabelUI color="#005379f2" text='Shipping Method?' toolti={true} icon={true}/>
                     <div className={classes.wrapperCheckboxes}>
                         <div
                             className={classes.checkBox}
@@ -246,7 +259,7 @@ const FormQuote = () => {
                 </div>
                 <div className={classes.operableOrNot}>
                     <LabelUI
-                        color="#FFFFFF"
+                        color="#005379f2"
                         text='Is It Operable?'
                         toolti={true}
                         icon={true}
@@ -284,31 +297,32 @@ const FormQuote = () => {
 
             <div className={classes.userInfo}>
                 <div className={classes.inputWrapper}>
-                    <LabelUI color="#FFFFFF" text='Name' toolti={true} icon={true}/>
-                    <input
-                        className={classes.input}
+                    <LabelUI color="#005379f2" text='Name' toolti={true} icon={true}/>
+                    <TextField
+                        className={classNames('autocomplete', classes.input)}
                         autoComplete='off'
                         placeholder='Enter full name'
+                        name='name'
+                        value={formik.values.name}
                         onChange={(event) => {
                             hendleTypeRemoveSpace(event);
                             formik.handleChange(event);
                         }}
-                        value={formik.values.name}
-                        name='name'
                     />
                     <FormikErrors {...{ classes, formik, name: 'name' }}/>
                 </div>
                 <div className={classes.inputWrapper}>
-                    <LabelUI color="#FFFFFF" text='Phone number' toolti={true} icon={true} />
+                    <LabelUI color="#005379f2" text='Phone number' toolti={true} icon={true} />
 
-                    <IMaskInput
-                        className={classes.input}
-                        value={formik.values.phone}
+                    <TextField
+                        className={classNames('autocomplete', classes.input)}
                         placeholder='Enter Phone number'
+                        value={formik.values.phone}
                         type="tel"
-                        mask="(#00) 000-0000"
-                        definitions={{"#": /[1-9]/}}
                         name='phone'
+                        InputProps={{
+                            inputComponent: PhoneMaskCustom
+                        }}
                         onChange={(event) => {
                             handleTypeChangePhone(event);
                             formik.handleChange(event);
@@ -318,17 +332,17 @@ const FormQuote = () => {
                     <FormikErrors {...{ classes, formik, name: 'phone' }} />
                 </div>
                 <div className={classes.inputWrapper}>
-                    <LabelUI color="#FFFFFF" text='Email' toolti={true} icon={true}/>
-                    <input
-                        className={classes.input}
+                    <LabelUI color="#005379f2" text='Email' toolti={true} icon={true}/>
+                    <TextField
+                        className={classNames('autocomplete', classes.input)}
                         autoComplete='off'
                         placeholder='example@domain.com'
+                        name='email'
+                        value={formik.values.email}
                         onChange={(event) => {
                             hendleTypeRemoveSpace(event);
                             formik.handleChange(event);
                         }}
-                        value={formik.values.email}
-                        name='email'
                     />
                     <FormikErrors {...{ classes, formik, name: 'email' }}/>
                 </div>

@@ -2,6 +2,7 @@ import { CloseIcon } from '@/public/assets/svgs/CloseIcon';
 import { useState, useEffect, useRef } from 'react';
 import { eventEmitter } from '@/eventEmitter';
 import classes from './index.module.css';
+import classNames from 'classnames';
 
 interface Props {
   children: React.ReactNode;
@@ -34,13 +35,15 @@ const Portal: React.FC<Props> = ({ children, onClose }) => {
   const handleClickOutside = (event: MouseEvent) => {
     const target = event.target as HTMLElement;
     const portal = document.querySelector(`.${classes.portal}`) as HTMLElement;
+
     if ( portal &&
         !portal.contains(target) &&
         !target.className.includes('option') &&
-        !target.className.includes('dropdownMenuItem')
-    ) {
-      onClose();
-    }
+        !target.className.includes('dropdownMenuItem') &&
+        !target.className.includes('MuiButtonBase-root') &&
+        !target.className.includes('MuiBackdrop-root') &&
+        target.tagName !== 'BODY'
+    ) { onClose() };
   };    
 
   useEffect(() => {
@@ -53,9 +56,9 @@ const Portal: React.FC<Props> = ({ children, onClose }) => {
 
   return portalRoot ? (
     <div className={classes.overlay}>
-      <div className={classes.portal}>
+      <div className={classNames(classes.portal, 'portal')}>
         <div className={classes.closeButton} onClick={onClose}>
-          <CloseIcon color='#FFFFFF' />
+          <CloseIcon color='#DDC00C' />
         </div>
         <div className={classes.content} ref={contentRef}>{children}</div>
       </div>

@@ -93,7 +93,7 @@
 }
 
 .fistNodeLeft .text .redMoreBtn:hover i {
-    transform: translate(95px);
+    transform: translate(90px);
 }
 
 .fistNodeLeft .text .redMoreBtn:hover span {
@@ -214,6 +214,22 @@
     align-items: center;
     gap: 5px;
     color: #DDC00C;
+}
+
+.link i {
+    transform: translateY(2px);
+}
+
+.link * {
+    transition: all .3s;
+}
+
+.link:hover i {
+    transform: translate(140px, 4px);
+}
+
+.link:hover span {
+    transform: translateX(-25px);
 }
 
 @media screen and (max-width: 991px) {

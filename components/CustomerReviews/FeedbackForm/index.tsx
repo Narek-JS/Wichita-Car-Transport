@@ -1,4 +1,3 @@
-import { handleCloseForm, selectCustomerReviewsFormStatus, useAddFeedbackMutation } from '@/store/customerReviews';
 import { CloseIconReviewPopup } from '@/public/assets/svgs/CloseIconReviewPopup';
 import { Autocomplete, TextField, TextFieldProps } from '@mui/material';
 import { ActiveStareIcon } from '@/public/assets/svgs/ActiveStareIcon';
@@ -6,7 +5,7 @@ import { DisableStarIcon } from '@/public/assets/svgs/DisableStarIcon';
 import { LikeIconReview } from '@/public/assets/svgs/LikeIconReview';
 import { DislikeIcon } from '@/public/assets/svgs/DislikeIcon';
 import { useGetOptionsApiQuery } from '@/store/optionsByZip';
-import { IFeedbackFormData } from '@/model/customerReviews';
+import { IFeedbackFormData, TStarCountsId } from '@/model/customerReviews';
 import { hendleTypeRemoveSpace } from '@/helper/strings';
 import { Container } from '@/components/ui/container';
 import { LoadingUI } from '@/components/ui/LoadingUI';
@@ -15,6 +14,12 @@ import { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { toast } from 'react-toastify';
 import { useFormik } from 'formik';
+import {
+  selectCustomerReviewsFormStatus,
+  useGetCustomerReviewsQuery,
+  useAddFeedbackMutation,
+  handleCloseForm,
+} from '@/store/customerReviews';
 
 import Recaptcha from "react-google-recaptcha";
 import classNames from 'classnames';
@@ -22,8 +27,6 @@ import Image from 'next/image';
 import * as yup from "yup";
 
 import classes from './index.module.css';
-
-type TReatings = 0 | 1 | 2 | 3 | 4 | 5;
 
 const initialValues = {
     name: '',
@@ -54,11 +57,13 @@ const validationSchema = yup.object({
 const FeedbackForm: React.FC = () => {
     const dispatch = useDispatch();
     const isShow = useAppSelector(selectCustomerReviewsFormStatus).isOpen;
-
     const [ addFeetback, { isLoading, isError, isSuccess } ] = useAddFeedbackMutation();
     const [ like, setLike ] = useState<boolean | null>(null);
-    const [ ratingCount, setRatingCount ] = useState<TReatings>(0);
-    const [ isSelectedIndex, setIsSelectedIndex ] = useState<TReatings>(0);
+    const [ ratingCount, setRatingCount ] = useState<TStarCountsId>(0);
+    const [ isSelectedIndex, setIsSelectedIndex ] = useState<TStarCountsId>(0);
+    const [ pollingInterval, setPollingInterval ] = useState<number>(Infinity);
+
+    useGetCustomerReviewsQuery('reviews', {pollingInterval});
 
     const formik = useFormik<IFeedbackFormData>({
         initialValues,
@@ -89,10 +94,17 @@ const FeedbackForm: React.FC = () => {
 
         if(isSuccess) {
             closeForm();
+
+            setPollingInterval(100);
+            setTimeout(() => {
+                setPollingInterval(Infinity);
+            }, 200);
+
             toast.success('your feedback have successfully', {
                 position: toast.POSITION.TOP_RIGHT
             });
         };
+
     }, [isError, isSuccess]);
 
     function closeForm() {
@@ -225,11 +237,11 @@ const FeedbackForm: React.FC = () => {
                                 <i
                                     key={index}
                                     onClick={() => {
-                                        setIsSelectedIndex(index + 1 as TReatings);
-                                        setRatingCount(index + 1 as TReatings);
+                                        setIsSelectedIndex(index + 1 as TStarCountsId);
+                                        setRatingCount(index + 1 as TStarCountsId);
 
                                     }}
-                                    onMouseEnter={() => setRatingCount(index + 1 as TReatings)}
+                                    onMouseEnter={() => setRatingCount(index + 1 as TStarCountsId)}
                                     onMouseLeave={() => setRatingCount(0)}
                                 >
                                     { (ratingCount === 0 ? isSelectedIndex : ratingCount) <= index ? <DisableStarIcon  /> : <ActiveStareIcon />}

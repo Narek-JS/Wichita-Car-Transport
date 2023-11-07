@@ -1,5 +1,8 @@
 import { Container } from '@/components/ui/container';
+import { LoadingUI } from '@/components/ui/LoadingUI';
 import { useEffect, useRef, useState } from 'react';
+import { useGetBannerQuery } from '@/store/banner';
+import { Redirect } from '@/components/Redirect';
 import { BannerSlider } from './BannerSlider';
 import { eventEmitter } from '@/eventEmitter';
 import { FormSteps } from '../FormSteps';
@@ -7,10 +10,12 @@ import { useRouter } from 'next/router';
 
 import useWindowSize from '@/hooks/useWindowSize';
 import classes from './index.module.css';
+import classNames from 'classnames';
 
 const Banner: React.FC = () => {
     const { pathname } = useRouter();
-    const [bannerContentElm, setBannerContentElm] = useState<null | HTMLDivElement>(null);
+    const [ bannerContentElm, setBannerContentElm ] = useState<null | HTMLDivElement>(null);
+    const { isError, isLoading } = useGetBannerQuery('banner');
 
     const size = useWindowSize();
     const bannerConentRef = useRef<HTMLDivElement>(null);
@@ -25,7 +30,7 @@ const Banner: React.FC = () => {
         if(bannerConentRef.current !== null) {
             setBannerContentElm(bannerConentRef.current);
         };
-    }, [size]);
+    }, [size, pathname]);
 
     eventEmitter.subscribe('dropdownStatus', (status) => {
         if(bannerConentRef.current !== null) {
@@ -37,10 +42,11 @@ const Banner: React.FC = () => {
         };
     });
 
-    if(isNotBanner) return null; 
+    if(isError) return <Redirect to='/404' />;
 
     return (
-        <section>
+        <section className={classNames({ [classes.isNotBanner]: isNotBanner })}>
+            { isLoading && <LoadingUI type='fullPage' /> }
             { Number(size.width) > 768 && (
                 <div className={classes.banner}>
                     <BannerSlider bannerContentElm={bannerContentElm} />

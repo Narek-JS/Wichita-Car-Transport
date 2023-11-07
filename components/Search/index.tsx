@@ -60,7 +60,13 @@ const Search = () => {
     // Memo
     const findedLinks = useMemo<Array<JSX.Element>>(() => (
         searchData.map(({ slug, title }, index) => (
-            <Link href={'/' + slug} key={index} dangerouslySetInnerHTML={{ __html: title.replaceAll(value!, `<span>${value}</span>`) }} />
+            <Link
+                key={index}
+                href={'/' + slug}
+                dangerouslySetInnerHTML={{
+                    __html: title.replaceAll(value!, `<span>${value}</span>`)
+                }}
+            />
         ))
     ), [searchData]);
 

@@ -8,7 +8,7 @@ const currentDate = new Date().toISOString().slice(0, 10);
 
 const pages = [
   { url: '/', meta: { lastmod: currentDate, changefreq: 'weekly', priority: 0.5 } },
-  { url: '/404', meta: { lastmod: currentDate, changefreq: 'weekly', priority: 0.5 } },
+  { url: '/404', meta: { lastmod: currentDate, changefreq: 'weekly', priority: 0.5 } }
 ];
 
 async function generateSitemap() {
@@ -35,7 +35,7 @@ async function generateSitemap() {
     writeStream.on('finish', resolve);
     writeStream.on('error', reject);
   });
-}
+};
 
 generateSitemap()
   .catch((error) => {

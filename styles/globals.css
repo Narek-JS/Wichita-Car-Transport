@@ -79,7 +79,7 @@ section, nav, header, footer {
 }
 
 .carousel .control-dots {
-  z-index: 2;
+  z-index: 998;
 }
 
 body:has(.sideBar), body:has(.fullScreen), body:has(.feedbackForm) {
@@ -101,7 +101,20 @@ body:has(.feedbackForm) .socialLinks {
   outline: none !important;
 }
 
+.portal .css-18nc3u2 .MuiOutlinedInput-root .MuiAutocomplete-input:hover fieldset,
+.portal .css-1h51icj-MuiAutocomplete-root .MuiOutlinedInput-root:hover fieldset {
+  border: 1px solid rgba(0, 0, 0, 0.23) !important;
+}
+
 form * {
   user-select: none;
   transition: all .2s !important;
+}
+
+.dropDownWrapper [data-shrink="false"] {
+  top: -6px;
+}
+
+.dropDownWrapper [data-shrink="true"] {
+  top: 4px;
 }

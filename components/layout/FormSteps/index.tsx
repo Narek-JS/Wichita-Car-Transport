@@ -1,8 +1,10 @@
 import { FormConfirmation } from './FormConfirmation';
 import { useCallback, useRef, useState } from 'react';
+import { useAppSelector } from '@/store/hooks';
 import { FormVehicles } from './FormVehicles';
 import { FormUserInfo } from './FormUserInfo';
 import { eventEmitter } from '@/eventEmitter';
+import { selectBanner, slelectCarouselActiveIndex } from '@/store/banner';
 import { FormFromTo } from './FormFromTo';
 import { StepsBar } from './StepsBar';
 import {
@@ -14,6 +16,7 @@ import {
     initialValuesVehicleForm
 } from '@/model/form';
 import classes from './index.module.css';
+import Link from 'next/link';
 
 const initialValues = {
     from_to: initialValuesFromToForm,
@@ -24,6 +27,8 @@ const initialValues = {
 const FormSteps: React.FC = () => {
     const [ step, setStep ] = useState<1 | 2 | 3 | 4>(1);
     const [ inputBorderAnime, setInputBorderAnime ] = useState<'' | 'back' | 'continue'>('');
+    const { data } = useAppSelector(selectBanner);
+    const carouselActiveIndex = useAppSelector(slelectCarouselActiveIndex);
 
     const wholeFormDataRef = useRef<IFormData>({
         form_user_info: { ...initialValues.form_user_info },
@@ -64,16 +69,18 @@ const FormSteps: React.FC = () => {
                 <div className={classes.textes}>
                     <div className={classes.explore}>
                         <p>
-                            <span>Moving </span>Made <span>Easy</span>
+                            {data?.title.split(' ').map((word, index) => (
+                                index % 2 === 0 ? <span> {word} </span> : word
+                            ))}
                         </p>
                         <p className={classes.fz24}>
-                            WICHITA CAR TRANSPORT
+                            {data?.subTitle}
                         </p>
                     </div>
                     <div className={classes.seccondLinkTitle}>
-                        <p>
-                            Open Car Transport and Full Insurance Benefits
-                        </p>
+                        <Link href={data?.links[carouselActiveIndex].url || ''}>
+                            { data?.links[carouselActiveIndex].text }
+                        </Link>
                     </div>
                 </div>
                 <div className={classes.form}>

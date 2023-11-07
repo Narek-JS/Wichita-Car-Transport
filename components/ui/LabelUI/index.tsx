@@ -30,8 +30,8 @@ const LabelUI: React.FC<IProps> = ({
                 style={styles}
             >
                 {text}
-                <TooltipUI content={text} direction={tooltiPosition} >
-                    <Exclamation />
+                <TooltipUI color={color} content={text} direction={tooltiPosition} >
+                    <Exclamation {...styles}/>
                 </TooltipUI>
             </label>
         );

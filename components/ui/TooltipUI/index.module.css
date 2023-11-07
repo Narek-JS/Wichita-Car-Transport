@@ -83,3 +83,19 @@
     transform: translateX(0) translateY(-50%);
     border-left-color: var(--tooltip-background-color);
   }
+
+.getQuote.left::before {
+    border-left-color: #005379f2;
+}
+
+.getQuote.top::before {
+  border-top-color: #005379f2;
+}
+
+.getQuote.right::before {
+  border-right-color: #005379f2;
+}
+
+.getQuote.bottom::before {
+  border-bottom-color: #005379f2;
+}

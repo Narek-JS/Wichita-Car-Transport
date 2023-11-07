@@ -6,6 +6,10 @@
     width: 100%;
 }
 
+.isNotBanner {
+    display: none;
+}
+
 .bannerConent {
     margin-top: 185px;
     position: relative;

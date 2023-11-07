@@ -7,9 +7,16 @@ interface Props {
   content: string;
   direction?: 'top' | 'right' | 'bottom' | 'left';
   delay?: number;
+  color?: string;
 };
 
-const TooltipUI: React.FC<Props> = ({ children, content, direction = "top", delay = 100 }) => {
+const TooltipUI: React.FC<Props> = ({
+  children,
+  content,
+  color,
+  direction = "top", 
+  delay = 100
+}) => {
   let timeout: ReturnType<typeof setTimeout>;
   const [active, setActive] = useState(false);
 
@@ -30,8 +37,15 @@ const TooltipUI: React.FC<Props> = ({ children, content, direction = "top", dela
     >
       {children}
       { active && (
-          <div className={classNames(classes['Tooltip-Tip'], classes[direction])}>
-              {content}
+          <div
+            style={{ ...(color && { backgroundColor: color, color: "#FFFFFF" }) }}
+            className={classNames(
+              { [classes.getQuote]: color },
+              classes['Tooltip-Tip'],
+              classes[direction],
+            )}
+          >
+            {content}
           </div>
       )}
     </div>

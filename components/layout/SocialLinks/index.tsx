@@ -4,6 +4,7 @@ import { useAppDispatch, useAppSelector } from '@/store/hooks';
 import { FormQuote } from '@/components/FormQuote';
 import { socialIcons } from '@/constants/options';
 import { selectMenus } from '@/store/manu';
+import { useRouter } from 'next/router';
 import { Fragment } from 'react';
 
 import useWindowSize from '@/hooks/useWindowSize';
@@ -13,6 +14,7 @@ import classes from './index.module.css';
 
 const SocialLinks = () => {
     const dispatch = useAppDispatch();
+    const { pathname } = useRouter();
     const { width } = useWindowSize();
     const { data } = useAppSelector(selectMenus);
     const isOpenQuoteFormDesktop = useAppSelector(selectQuoteFormStatusDesktop)
@@ -20,7 +22,7 @@ const SocialLinks = () => {
     const openFormPopup = () => dispatch(openQuoteFormDesktop());
     const closeFormPopup = () => dispatch(closeQuoteFormDesktop());
 
-    if(Number(width) <= 1400) return null;
+    if(Number(width) <= 1400 || pathname === '/404') return null;
 
     return (
         <Fragment>

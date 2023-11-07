@@ -25,10 +25,10 @@ const AboutCompany: React.FC = () => {
                                 { data?.description && 
                                     <p dangerouslySetInnerHTML={{ __html: data.description }} />
                                 }
-                                <button className={classes.redMoreBtn}>
+                                <Link href='/about-us' className={classes.redMoreBtn}>
                                     <ArrowIcon /> 
                                     <span>Read More</span>
-                                </button>
+                                </Link>
                             </div>
                             <div className={classes.warning}>
                                 <WarningIcon />
@@ -69,7 +69,8 @@ const AboutCompany: React.FC = () => {
                                 </p>
 
                                 <Link href={service.serviceLink} className={classes.link}>
-                                    <ArrowRightRed /> {service.serviceLinkText}
+                                    <ArrowRightRed />
+                                    <span>{service.serviceLinkText}</span>
                                 </Link>
                             </div>
                         ))}

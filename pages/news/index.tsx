@@ -7,10 +7,10 @@ import Head from 'next/head';
 
 const News: NextPage = () => {
     return (
-        <Fragment>
-          <Head>{metaTags.news}</Head>
-          <Posts />
-        </Fragment>
+      <Fragment>
+        <Head>{metaTags.news}</Head>
+        <Posts />
+      </Fragment>
     );
 };
 
