@@ -1,10 +1,10 @@
+import { selectBanner, slelectCarouselActiveIndex } from '@/store/banner';
 import { FormConfirmation } from './FormConfirmation';
 import { useCallback, useRef, useState } from 'react';
 import { useAppSelector } from '@/store/hooks';
 import { FormVehicles } from './FormVehicles';
 import { FormUserInfo } from './FormUserInfo';
 import { eventEmitter } from '@/eventEmitter';
-import { selectBanner, slelectCarouselActiveIndex } from '@/store/banner';
 import { FormFromTo } from './FormFromTo';
 import { StepsBar } from './StepsBar';
 import {
@@ -18,6 +18,8 @@ import {
 import classes from './index.module.css';
 import Link from 'next/link';
 
+type Steps = 1 | 2 | 3 | 4;
+
 const initialValues = {
     from_to: initialValuesFromToForm,
     form_vehicles: initialValuesVehicleForm,
@@ -25,10 +27,12 @@ const initialValues = {
 };
 
 const FormSteps: React.FC = () => {
-    const [ step, setStep ] = useState<1 | 2 | 3 | 4>(1);
+    const [ step, setStep ] = useState<Steps>(1);
     const [ inputBorderAnime, setInputBorderAnime ] = useState<'' | 'back' | 'continue'>('');
     const { data } = useAppSelector(selectBanner);
     const carouselActiveIndex = useAppSelector(slelectCarouselActiveIndex);
+
+    const formRef = useRef<HTMLDivElement>(null);
 
     const wholeFormDataRef = useRef<IFormData>({
         form_user_info: { ...initialValues.form_user_info },
@@ -59,6 +63,14 @@ const FormSteps: React.FC = () => {
         });
     };
 
+    const handleChangeStep = (step: Steps) => {
+        setStep(step);
+        formRef.current?.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+        });
+    };
+
     return (
         <div className={classes.formSteps}>
             <StepsBar
@@ -83,12 +95,12 @@ const FormSteps: React.FC = () => {
                         </Link>
                     </div>
                 </div>
-                <div className={classes.form}>
+                <div className={classes.form} ref={formRef}>
                     { step === 1 && (
                         <FormFromTo
                             animatedBorder={inputBorderAnime}
                             initialValues={wholeFormDataRef.current.from_to}
-                            setStep={setStep}
+                            setStep={handleChangeStep}
                             updateGeneralFormData={updateGeneralFormData}
                         />
                     )}
@@ -96,7 +108,7 @@ const FormSteps: React.FC = () => {
                         <FormVehicles
                             animatedBorder={inputBorderAnime}
                             initialValues={wholeFormDataRef.current.form_vehicles}
-                            setStep={setStep}
+                            setStep={handleChangeStep}
                             updateGeneralFormData={updateGeneralFormData}
                         />
                     )}
@@ -104,14 +116,14 @@ const FormSteps: React.FC = () => {
                         <FormConfirmation
                             animatedBorder={inputBorderAnime}
                             formData={wholeFormDataRef.current}
-                            setStep={setStep}
+                            setStep={handleChangeStep}
                         />
                     )}
                     { step === 4 && (
                         <FormUserInfo
                             animatedBorder={inputBorderAnime}
                             initialValues={wholeFormDataRef.current.form_user_info}
-                            setStep={setStep}
+                            setStep={handleChangeStep}
                             formData={wholeFormDataRef.current}
                             handleResetForm={handleResetForm}
                         />

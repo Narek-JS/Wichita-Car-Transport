@@ -130,9 +130,12 @@
     width: 0;
 }
 
+.questionNode p {
+    color: #005379;
+}
+
 .questionNode p:has(:not(.answer)) {
     position: relative;
-    color: #005379;
     font-weight: 500;
     font-size: 20px;
     padding-left: 20px;
@@ -272,19 +275,19 @@
 }
 
 @media screen and (max-width: 440px) {
-    .questionNode p:has(:not(.answer)) {
+    .questionNode p {
         font-size: 16px;
     }
 }
 
 @media screen and (max-width: 420px) {
-    .questionNode p:has(:not(.answer)) {
+    .questionNode p {
         font-size: 15px;
     }
 }
 
 @media screen and (max-width: 400px) {
-    .questionNode p:has(:not(.answer)) {
+    .questionNode p {
         font-size: 14px;
     }
 

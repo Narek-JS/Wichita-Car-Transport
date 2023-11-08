@@ -72,7 +72,7 @@ export const initialValuesQuoteForm: IQuoteFormData = {
 export type TypeNamesFormData = 'from_to' | 'form_vehicles' | 'form_user_info';
 export type TypeFormData = IFromToFormData | IVehicleFormData | IUserInfoFormData;
 
-export type SetStepFunction = React.Dispatch<React.SetStateAction<1 | 2 | 3 | 4>>;
+export type SetStepFunction = (step: 1 | 2 | 3 | 4) => void;;
 export type UpdateGeneralFormData = (name: TypeNamesFormData, updatedFormData: TypeFormData) => void;
 
 export interface ISubmitFormData extends IUserInfoFormData, IFromToFormData {
