@@ -8,7 +8,7 @@ type ActiveStep = 1 | 2 | 3 | 4;
 interface IContentsStepsBar {
     id: ActiveStep;
     text: string;
-    IconComponent: React.FC<{ color?: string }>;
+    IconComponentIndex: number;
 };
 
 export interface IBannerImages {
@@ -29,20 +29,13 @@ export class BannerAdapter {
   
     static createBannerData(data: any): IBannerData {
 
-        const Icons = [
-            LocationIcon,
-            OptionsIcon,
-            ConfirmationStepIcon,
-            QuoteStepIcon,
-        ];
-
         return {
             title: data?.['banner.title']?.value || '',
             subTitle: data?.['banner.sub-title']?.value || '',
             stepsBar: data?.['banner.form_steps']?.map((step, index) => ({
                 id: index + 1,
                 text: step?.text?.value || '',
-                IconComponent: Icons[index]
+                IconComponentIndex: index
             })),
             links: data?.['banner.link']?.map((link, index) => ({
                 text: link?.text?.value  || "",

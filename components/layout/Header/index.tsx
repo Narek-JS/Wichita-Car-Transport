@@ -43,9 +43,6 @@ const Header: React.FC = () => {
     if(pathname === '/404') return null;
     if(error !== undefined) return <Redirect to='/404'/>;
 
-    console.log('pathname --> ', pathname);
-    console.log('query.dynamicPage --> ', query.dynamicPage);
-    console.log('data?.items --> ', data?.items);
     return (
         <Fragment>
             {isLoading && <LoadingUI type='fullPage' />}
@@ -67,13 +64,6 @@ const Header: React.FC = () => {
                             <ul className={classes.ul}>
                                 { data?.items.map((item) => {
                                     if(item.children?.isEmpty()) {
-                                        if((pathname === '/' && item?.url === 'home') ||
-                                            pathname.slice(1) === item?.url ||
-                                            query.dynamicPage === item?.url
-                                        ) {
-                                            return null;
-                                        };
-
                                         return <Link
                                             className={classNames(classes.link, {
                                                 [classes.activeLink]: pathname === '/' + item.url
