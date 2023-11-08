@@ -254,10 +254,14 @@
     }
 
     .questionNode p:has(:not(.answer)) {
-        padding-top: 12px;
+        padding-top: 5px;
         padding-left: 10px;
         font-size: 17px;
         line-height: 20px;
+    }
+
+    .questionNode p {
+        padding-top: 5px;
     }
 
     .questionNode p:has(:not(.answer))::before {
