@@ -14,7 +14,7 @@ Number.prototype.isOdd = function (number) {
 
 Number.prototype.isEven = function (number) {
   return number % 2 === 0;
-};
+}; 
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
