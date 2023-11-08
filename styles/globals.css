@@ -82,7 +82,10 @@ section, nav, header, footer {
   z-index: 998;
 }
 
-body:has(.sideBar), body:has(.fullScreen), body:has(.feedbackForm) {
+body:has(.sideBar),
+body:has(.fullScreen),
+body:has(.feedbackForm),
+body:has(.thank-you) {
   overflow: hidden;
 }
 

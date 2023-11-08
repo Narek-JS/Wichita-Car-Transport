@@ -1,5 +1,6 @@
-import { useAppDispatch, useAppSelector } from '@/store/hooks';
+import { closeQuoteFormMobile, selectQuoteFormMobileStatus } from '@/store/quoteForm';
 import { closeThankYou, selectThankYouStatus } from '@/store/thankYou';
+import { useAppDispatch, useAppSelector } from '@/store/hooks';
 
 import Link from 'next/link';
 import Image from 'next/image';
@@ -8,17 +9,21 @@ import classes from './index.module.css';
 
 const ThankYouPopup: React.FC = () => {
     const isOpen = useAppSelector(selectThankYouStatus);
+    const isOpenQuoteFormMobile = useAppSelector(selectQuoteFormMobileStatus);
     const dispatch = useAppDispatch();
 
     const onClose = () => {
         dispatch(closeThankYou());
+        if(isOpenQuoteFormMobile) {
+            dispatch(closeQuoteFormMobile());
+        };
     };
 
     if(!isOpen) return null;
 
     return (
         <div className={classes.overlay}>
-            <div className={classNames(classes.portal, 'portal')}>
+            <div className={classNames(classes.portal, 'portal thank-you')}>
                 <div className={classes.content}>
                     <div className={classes.leftNode}>
                         <h2>Thank You</h2>

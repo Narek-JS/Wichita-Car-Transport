@@ -74,7 +74,8 @@
     background: #FFFFFF;
     z-index: 999;
     margin-top: 60px;
-    padding-top: 40px;
+    padding: 40px 0 70px 0;
+    overflow-y: auto;
 }
 
 @media screen and (max-width: 1070px) {
@@ -128,11 +129,17 @@
     .informationBar {
         background: #F4F7FB;
     }
+
     .contentMobile {
         display: flex;
     }
+
     .contentDesktop {
         display: none;
+    }
+
+    .container {
+        padding: 0 10px;
     }
 
     .header * {

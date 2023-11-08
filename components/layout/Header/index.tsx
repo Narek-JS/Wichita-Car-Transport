@@ -117,7 +117,7 @@ const Header: React.FC = () => {
                 </div>
                 { isOpen && (
                     <div className={classNames(classes.fullScreen, 'fullScreen')}>
-                        <Container>
+                        <Container parentCssObject={classes}>
                             <FormSteps />
                         </Container>
                     </div>
