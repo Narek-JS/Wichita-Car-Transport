@@ -32,7 +32,7 @@
     padding: 0.5rem;
     box-shadow: 0 5px 6px #005379;
     min-width: 200px;
-    z-index: 10;
+    z-index: 1000;
     border-radius: 10px;
 }
 

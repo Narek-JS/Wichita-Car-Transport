@@ -132,6 +132,9 @@
 
 .questionNode p {
     color: #005379;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 
 .questionNode p:has(:not(.answer)) {

@@ -160,6 +160,24 @@
         margin-top: 0;
         padding-top: 0;
     }
+
+    .question .icon {
+        min-width: 23px;
+        height: 23px;
+    }
+}
+
+@media screen and (max-width: 412px) {
+    .question .icon {
+        display: none;
+    }
+}
+
+@media screen and (max-width: 387px) {
+    .question {
+        padding: 10px;
+        border-radius: 10px;
+    }
 }
 
 @keyframes formTop {
