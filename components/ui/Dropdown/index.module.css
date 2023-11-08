@@ -19,6 +19,10 @@
     font-weight: 700;
 }
 
+.isNested .dropdownBtn {
+    font-weight: normal;
+}
+
 .dropdownMenu {
     position: absolute;
     display: flex;

@@ -70,12 +70,14 @@
     color: #005379;
     font-weight: 400;
     line-height: 24px;
+    font-size: 15.5px;
 }
 
 .leftNode p a {
     color: #DDC00C;
     text-decoration-line: underline;
     white-space: nowrap;
+    padding: 0 3px;
 }
 
 .leftNode button {

@@ -23,7 +23,12 @@ const ThankYouPopup: React.FC = () => {
                     <div className={classes.leftNode}>
                         <h2>Thank You</h2>
                         <p>
-                            Thank you for your shipping quote request. We will get back to you very shortly with the most competitive pricing and truck space availability. In the meantime, feel free to call us directly at <Link href='tel: (316) 247-8958'>(316) 247-8958</Link> or <Link href='/contact-us'>contact us</Link> and one of our live agents will be able to assist you with all your shipping needs!
+                            Thank you for your shipping quote request. We will get back to you very shortly with the most
+                            competitive pricing and truck space availability. In the meantime, feel free to call us directly at
+                            <Link href='tel: (316) 247-8958'>(316) 247-8958</Link>
+                            or
+                            <Link href='/contact-us' onClick={onClose}>contact us</Link>
+                            and one of our live agents will be able to assist you with all your shipping needs!
                         </p>
                         <button onClick={onClose}>
                             Ok Good!

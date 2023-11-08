@@ -20,7 +20,7 @@
 }
 
 .form::-webkit-scrollbar {
-    width: 8px;
+    width: 5px;
 }
   
 .form::-webkit-scrollbar-track {

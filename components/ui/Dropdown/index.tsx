@@ -1,6 +1,7 @@
 import { ArrowDynamic } from '@/public/assets/svgs/ArrowDynamic';
 import { useState, useEffect, useRef } from 'react';
 import { MenuItem } from '@/model/menu';
+
 import Link from 'next/link';
 import classNames from 'classnames';
 import classes from './index.module.css';
@@ -54,7 +55,12 @@ const Dropdown: React.FC<Iprops> = ({
       })}
       ref={dropdownRef}
     >
-      <button onClick={toggleDropdown} className={classNames(classes.dropdownBtn, { [classes.colorWhite]: colorWhite })}>
+      <button
+        onClick={toggleDropdown}
+        className={classNames(classes.dropdownBtn, {
+          [classes.colorWhite]: colorWhite
+        })}
+      >
         {label}
         <ArrowDynamic
           {...(isOpen && { rotate: 180 })}
@@ -63,28 +69,24 @@ const Dropdown: React.FC<Iprops> = ({
       </button>
       {isOpen && (
         <ul className={classes.dropdownMenu}>
-          {items.map((item, index) => {
-            return (
-              !item.children?.isEmpty() ? (
-                <Dropdown
-                  key={index}
-                  isNested={true}
-                  label={item.label}
-                  items={item.children!.map(({ url, title, children }) => ({
-                    link: url!,
-                    label: title!,
-                    ...(!item.children?.isEmpty() && { children })
-                  }))}                
-                />
-              ) : (
-                <li key={index} className={classes.dropdownMenuItem}>
-                  <Link href={'/'+item.link} onClick={toggleDropdown}>
-                    {item.label}
-                  </Link>
-                </li>
-              ) 
-            )
-          })}
+          {items.map((item, index) => !item.children?.isEmpty() ? (
+            <Dropdown
+              key={index}
+              isNested={true}
+              label={item.label}
+              items={item.children!.map(({ url, title, children }) => ({
+                link: url!,
+                label: title!,
+                ...(!item.children?.isEmpty() && { children })
+              }))}
+            />
+          ) : (
+            <li key={index} className={classes.dropdownMenuItem}>
+              <Link href={'/'+item.link} onClick={toggleDropdown}>
+                {item.label}
+              </Link>
+            </li>
+          ))}
         </ul>
       )}
     </div>

@@ -88,10 +88,13 @@ const Search = () => {
 
     // JSX
     return (
-        <div className={classes.wrapperSearch}>
+        <div className={classNames(classes.wrapperSearch, {
+            [classes.isOpenWrapperSearch]: isOpen
+        })}>
             <div className={classNames(classes.input, {
                 [classes.open]: isOpen,
-                [classes.close]: !isOpen && !isMobile
+                [classes.close]: !isOpen && !isMobile,
+                [classes.squareInput]: value !== null && debouncedSearchTerm !== ''
             })}>
                 <InputUI
                     classN='focusTransparent'
@@ -111,7 +114,12 @@ const Search = () => {
                     {Boolean(findedLinks.length) ? findedLinks : <p>Not result</p>}
                 </div>
             </div>
-            <div className={classes.seaech} onClick={toogleIsOpen}>
+            <div
+                className={classNames(classes.seaech, {
+                    [classes.squareSearch]: value !== null && debouncedSearchTerm !== ''
+                })}
+                onClick={toogleIsOpen}
+            >
                 { isLoading ? <LoadingUI type='roundSmall' /> : (
                     isOpen ? <CloseIcon height={32} width={32} /> : <SearchIcon />
                 )}

@@ -13,6 +13,7 @@ import { useFormik } from 'formik';
 import * as yup from "yup";
 import classNames from 'classnames';
 import classes from './index.module.css';
+import { PhoneMaskCustom } from '@/components/ui/PhoneMask';
 
 interface IFormData {
     name: string;
@@ -33,18 +34,18 @@ const initialValues = {
 const validationSchema = yup.object({
     name: yup.string().required(),
     email: yup.string().required().email(),
-    phone: yup.string().required(),
+    phone: yup.string().min(14, "Invalid phone number").matches(new RegExp('[0-9]')).required(),
     subject: yup.string().required(),
     message: yup.string().required()
 });
 
 const Form: React.FC = () => {
     const [ isCheckRecapchaAnswer, setIsCheckRecapchaAnswer ] = useState<Boolean | null>(null);
-    const [ onSubmit, { isLoading, data, isError } ] = useContactUsMutation();
+    const [ mutationCall, { isLoading, data, isError } ] = useContactUsMutation();
 
     const formik = useFormik<IFormData>({
         initialValues,
-        onSubmit,
+        onSubmit: mutationCall,
         validationSchema 
     });
 
@@ -69,11 +70,11 @@ const Form: React.FC = () => {
     const handleSubmit = (event) => {
         event.preventDefault();
         if(formik.isValid === false || !formik.values.name) {
-            formik.handleSubmit(event);
+            !isLoading && formik.handleSubmit(event);
         } else if (isCheckRecapchaAnswer !== false) {
             setIsCheckRecapchaAnswer(true);
         } else {
-            formik.handleSubmit(event);
+            !isLoading && formik.handleSubmit(event);
         };
     };
 
@@ -91,7 +92,7 @@ const Form: React.FC = () => {
     const getTextFieldOptions = (name: string, label: string): any => ({
         helperText: formik.touched?.[name] && formik.errors?.[name],
         error: formik.touched?.[name] && formik.errors?.[name],
-        classNames: classes.textField,
+        className: classes.textField,
         value: formik.values?.[name],
         onChange: handleChange,
         variant: 'standard',
@@ -104,7 +105,26 @@ const Form: React.FC = () => {
             <div className={classes.frstLine}>
                 <TextField {...getTextFieldOptions('name', 'your Name *')} />
                 <TextField {...getTextFieldOptions('email', 'Your Email *')} />
-                <TextField {...getTextFieldOptions('phone', 'Your Phone *')} />
+                <TextField
+                    error={Boolean(formik.touched?.phone && formik.errors?.phone)}
+                    helperText={formik.touched?.phone && formik.errors?.phone}
+                    value={formik.values?.phone}
+                    className={classes.textField}
+                    onChange={(event) => {
+                        hendleTypeRemoveSpace(event);
+                        formik.handleChange(event);
+                    }}
+                    InputProps={{
+                        inputComponent: PhoneMaskCustom
+                    }}
+                    FormHelperTextProps={{ sx: {
+                        position: 'absolute',
+                        bottom: '0px',
+                    }}}
+                    label='Your Phone *'
+                    variant='standard'
+                    name='phone'
+                />
                 <TextField {...getTextFieldOptions('subject', 'Subject *')} />
             </div>
             <div className={classes.seccondLine}>

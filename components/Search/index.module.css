@@ -1,7 +1,15 @@
+.wrapperSearch * {
+    transition: all .2s;
+}
+
 .wrapperSearch {
     display: flex;
     align-items: center;
     position: relative;
+}
+
+.isOpenWrapperSearch {
+    min-width: 200px;
 }
 
 .seaech {
@@ -17,15 +25,24 @@
     z-index: 0;
 }
 
+.squareSearch {
+    border-radius: 0 5px 0px 0;
+}
+
 .input {
     max-width: 220px;
     display: flex;
     flex-direction: column;
 }
 
+.squareInput input {
+    border-radius: 5px 0 0 0px;
+    border-bottom: none;
+}
+
 .dropDown {
     max-width: 290px;
-    height: 250px;
+    height: 260px;
     overflow-y: auto;
     overflow-x: clip;
     position: absolute;
@@ -38,6 +55,12 @@
     display: flex;
     flex-direction: column;
     gap: 10px;
+}
+
+.squareInput .dropDown {
+    border: 1px solid #DDC00C;
+    border-top: none;
+    padding-bottom: 10px;
 }
 
 .dropDown a {
@@ -127,8 +150,12 @@
     .dropDown {
         padding: 10px 10px;
     }
+
+    .dropDown a {
+        padding: 0;
+    }
+
     .wrapperSearch {
-        max-width: 180px;
         margin-left: 10px;
     }
     .close {
@@ -137,10 +164,9 @@
 
 }
 
-@media screen and (max-width: 1024px) {
-    .seaech {
-        width: 55px;
-        height: 35px;
+@media screen and (max-width: 830px) {
+    .isOpenWrapperSearch {
+        min-width: 180px;
     }
 }
 
