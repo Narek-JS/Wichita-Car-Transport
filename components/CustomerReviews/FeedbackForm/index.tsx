@@ -1,11 +1,11 @@
 import { CloseIconReviewPopup } from '@/public/assets/svgs/CloseIconReviewPopup';
+import { IFeedbackFormData, TStarCountsId } from '@/model/customerReviews';
 import { Autocomplete, TextField, TextFieldProps } from '@mui/material';
 import { ActiveStareIcon } from '@/public/assets/svgs/ActiveStareIcon';
 import { DisableStarIcon } from '@/public/assets/svgs/DisableStarIcon';
 import { LikeIconReview } from '@/public/assets/svgs/LikeIconReview';
 import { DislikeIcon } from '@/public/assets/svgs/DislikeIcon';
 import { useGetOptionsApiQuery } from '@/store/optionsByZip';
-import { IFeedbackFormData, TStarCountsId } from '@/model/customerReviews';
 import { hendleTypeRemoveSpace } from '@/helper/strings';
 import { Container } from '@/components/ui/container';
 import { LoadingUI } from '@/components/ui/LoadingUI';
@@ -63,7 +63,10 @@ const FeedbackForm: React.FC = () => {
     const [ isSelectedIndex, setIsSelectedIndex ] = useState<TStarCountsId>(0);
     const [ pollingInterval, setPollingInterval ] = useState<number>(Infinity);
 
-    useGetCustomerReviewsQuery('reviews', {pollingInterval});
+    useGetCustomerReviewsQuery('reviews', {
+        pollingInterval,
+        skip: !isShow
+    }); 
 
     const formik = useFormik<IFeedbackFormData>({
         initialValues,

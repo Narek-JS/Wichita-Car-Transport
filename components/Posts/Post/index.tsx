@@ -11,16 +11,52 @@ import { IPostData } from '@/model/dynamicPage';
 import { RelatedPosts } from './RelatedPosts';
 import { LatestPosts } from './LatestPosts';
 import { formatDate } from '@/helper/time';
+import React, { Fragment, useState } from 'react';
 import { Responses } from './Responses';
 import { Comment } from './Comment';
-import { Fragment } from 'react';
 import Link from 'next/link';
 import Head from 'next/head';
 import Image from 'next/image';
 import classes from './index.module.css';
+import classNames from 'classnames';
+import { Skeleton } from '@mui/material';
 
 interface Iprops {
     data: IPostData;
+};
+
+interface ISkeletonImage {
+    src: string;
+    alt: string;
+}
+
+const SkeletonImage: React.FC<ISkeletonImage> = (props) => {
+    const [ isLoad, setIsLoad ] = useState(false);
+
+    const onLoad = () => {
+        setIsLoad(true);
+    };
+
+    return (
+        <div className={classes.skeletonImage}>
+            <Image
+                {...props}
+                onLoad={onLoad}
+                className={classNames(classes.postImage, {
+                    [classes.loadedImage]: isLoad
+                })}
+                width={780}
+                height={520}
+            />
+            { !isLoad && (
+                <Skeleton
+                    sx={{ bgcolor: 'rgba(0, 83, 121, 0.5)', borderRadius: '20px' }}
+                    variant="rectangular"
+                    height={520}
+                />
+            )}
+        </div>
+    );
 };
 
 const Post: React.FC<Iprops> = ({ data }) => {
@@ -33,7 +69,9 @@ const Post: React.FC<Iprops> = ({ data }) => {
     return (
         <Fragment>
             <Head>
-                <title key={1}>{data.categoryName} | Wichita Car Transport CRM {data.categoryName.slice(0, data.categoryName.length - 1)}</title>,
+                <title key={1}>
+                    {data.categoryName} | Wichita Car Transport CRM {data.categoryName.slice(0, data.categoryName.length - 1)}
+                </title>,
                 <meta key={2}
                     property="og:title"
                     data-hid="og:title"
@@ -52,12 +90,9 @@ const Post: React.FC<Iprops> = ({ data }) => {
                             </h1>
                             <div className={classes.wrapperImage}>
                                 { data.image &&
-                                    <Image
-                                        src={data.image}
+                                    <SkeletonImage
                                         alt={`hero ${data.categoryName} image`}
-                                        className={classes.postImage}
-                                        width={780}
-                                        height={520}
+                                        src={data.image}
                                     />
                                 }
                                 <div className={classes.wrapperSocial}>

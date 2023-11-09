@@ -30,13 +30,9 @@ const LatestPosts: React.FC = memo(() => {
                     <div className={classes.contentBlocks}>
                         { dataLatestPosts?.[latestPostCategory]?.map((post) => (
                             <PostCard
-                                categoryName={post.categoryName}
-                                date={post?.date || ''}
-                                title={post?.title || ''}
-                                description={post?.description || ''}
-                                imagePath={post?.imagePath || ''}
-                                url={post?.url || ''}
+                                {...post}
                                 key={post?.id}
+                                lazyLoading={true}
                             />
                         ))}
                     </div>

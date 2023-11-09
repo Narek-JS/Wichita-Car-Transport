@@ -3,11 +3,13 @@ import { Carousel } from 'react-responsive-carousel';
 import { useAppSelector } from '@/store/hooks';
 import { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
+import { Skeleton } from '@mui/material';
 import { useRouter } from 'next/router';
 
 import Image from 'next/image';
 import classes from './index.module.css';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
+import classNames from 'classnames';
 
 interface IProps {
   bannerContentElm: HTMLDivElement | null;
@@ -18,12 +20,36 @@ interface ICarouselImage {
   imagePath: string
 };
 
-const CarouselImageNode: React.FC<ICarouselImage> = ({ height, imagePath }) => (
-  <div className={classes.imageWrapper} style={{ height }} >
-    <div className={classes.bg} />
-    <Image src={imagePath} alt="Carousel Image" layout="fill" objectFit="cover" />
-  </div>
-);
+const CarouselImageNode: React.FC<ICarouselImage> = ({ height, imagePath }) => {
+  const [ isLoad, setIsLoad ] = useState(false);
+
+  const onLoad  = () => {
+    setIsLoad(true);
+  };
+
+  return (
+    <div className={classes.imageWrapper} style={{ height }} >
+      <div className={classes.bg} />
+      <Image
+        src={imagePath}
+        alt="Carousel Image"
+        layout="fill"
+        objectFit="cover"
+        onLoad={onLoad}
+        className={classNames(classes.bannerImaeg, {
+          [classes.loadedBannerImaeg]: isLoad
+        })}
+      />
+      {!isLoad && (
+        <Skeleton
+          sx={{ bgcolor: 'rgba(0, 83, 121, 0.5)' }}
+          variant="rectangular"
+          height={'100%'}
+        />
+      )}
+    </div>
+  );
+};
 
 const BannerSlider: React.FC<IProps> = ({ bannerContentElm }) => {
   const carouselActiveIndex = useAppSelector(slelectCarouselActiveIndex);

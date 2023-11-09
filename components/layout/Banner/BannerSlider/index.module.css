@@ -1,14 +1,8 @@
 .imageWrapper {
-    background-color: rgba(17, 17, 17, 0.2);
     position: relative;
     z-index: 99999;
     height: 100vh;
     width: 100%;
-}
-
-.imageWrapper img {
-    position: absolute;
-    z-index: 99;
 }
 
 .imageWrapper .bg {
@@ -19,4 +13,15 @@
     height: 100%;
     background-color: rgba(0, 83, 121, 0.5);
     z-index: 999;
+}
+
+.bannerImaeg {
+    position: absolute;
+    z-index: 99;
+    transition: all .4s;
+    transform: scale(0);
+}
+
+.loadedBannerImaeg {
+    transform: scale(1);
 }

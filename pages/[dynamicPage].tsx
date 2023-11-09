@@ -17,7 +17,7 @@ const DynamicPage: React.FC = () => {
     if(slug === 'home') return <Redirect to="/" />;
     if(isError) return <Redirect to="/404" />;
 
-    if(isLoading) return <LoadingUI type="fullPage" />;
+    if(isLoading || !data) return <LoadingUI type="fullPage" />;
 
     if(data && 'categoryName' in data) {
         if(data?.categoryName === 'Blogs') {

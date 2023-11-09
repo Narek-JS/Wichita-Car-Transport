@@ -54,10 +54,25 @@
     padding-bottom: 20px;
 }
 
-.postImage {
+.skeletonImage {
+    position: relative;
+    height: 520px;
     border-radius: 20px;
-    max-height: 520px;
+}
+
+.postImage {
+    position: absolute;
+    left: 0;
+    top: 0;
+    border-radius: 20px;
+    height: 100%;
     object-fit: cover;
+    transition: all .2s;
+    transform: scale(0);
+}
+
+.loadedImage {
+    transform: scale(1);
 }
 
 .wrapperSocial {

@@ -14,7 +14,7 @@ const RelatedPosts: React.FC<IProps> = ({ relatedPosts }) => {
                 <span>You Might Also Like</span>
             </h2>
             <div className={classes.posts}>
-                { [...relatedPosts, ...relatedPosts,...relatedPosts, ...relatedPosts].slice(0, 4).map(post => (
+                { relatedPosts.slice(0, 4).map(post => (
                      <PostCard
                         parentCssObject={classes}
                         categoryName={post.categoryName}

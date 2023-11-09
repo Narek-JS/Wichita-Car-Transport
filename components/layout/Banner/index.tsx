@@ -14,17 +14,19 @@ import classNames from 'classnames';
 
 const Banner: React.FC = () => {
     const { pathname } = useRouter();
-    const [ bannerContentElm, setBannerContentElm ] = useState<null | HTMLDivElement>(null);
-    const { isError, isLoading } = useGetBannerQuery('banner');
-
-    const size = useWindowSize();
-    const bannerConentRef = useRef<HTMLDivElement>(null);
-
     const isNotBanner = (
         pathname === '/blogs' ||
         pathname === '/news' ||
         pathname === '/404'
     );
+
+    const [ bannerContentElm, setBannerContentElm ] = useState<null | HTMLDivElement>(null);
+    const { isError, isLoading } = useGetBannerQuery('banner', {
+        skip: isNotBanner
+    });
+
+    const size = useWindowSize();
+    const bannerConentRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
         if(bannerConentRef.current !== null) {
@@ -42,7 +44,7 @@ const Banner: React.FC = () => {
         };
     });
 
-    if(isError) return <Redirect to='/404' />;
+    if(isError && !isNotBanner) return <Redirect to='/404' />;
 
     return (
         <section className={classNames({ [classes.isNotBanner]: isNotBanner })}>
